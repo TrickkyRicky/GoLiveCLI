@@ -39,10 +39,10 @@ const requestCameraPermission = async () => {
 
 const HomeScreen = (props) => {
   const [playserver, setPlayserver] = useState(
-    "https://9732-2603-8081-1604-91e7-2da4-bf3b-19a7-103e.ngrok.io/live/"
+    "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
   );
   const [pushserver, setPushserver] = useState(
-    "rtmp://8.tcp.ngrok.io:15721/live/"
+    "rtmp://4.tcp.ngrok.io:13824/live/"
   );
   const [stream, setStream] = useState("STREAM_NAME");
 
