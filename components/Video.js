@@ -2,10 +2,16 @@ import {StyleSheet, View} from 'react-native';
 import {Text, Box, Image, HStack, VStack, Center} from 'native-base';
 import React from 'react';
 import Warzone from '../assets/warzone.jpg';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Video = ({width}) => {
+const Video = ({width, streamName, streamerName, views}) => {
   return (
-    <Box borderRadius={10} bg="#323432" width={width * 0.95} alignSelf="center">
+    <Box
+      borderRadius={10}
+      bg="#323432"
+      width={'100%'}
+      my={2}
+      alignSelf="center">
       <Image
         source={Warzone}
         alt="stream image"
@@ -17,23 +23,26 @@ const Video = ({width}) => {
       />
       <HStack
         py="2"
-        px="2.5"
+        px="3.5"
         justifyContent="space-between"
         alignItems="center">
         <HStack>
           <Center bg="#35C280" width={10} height={10} borderRadius={100} />
           <VStack ml={2}>
             <Text color="#fff" fontSize="sm" fontWeight="bold">
-              24hr Caldera Stream
+              {streamName}
             </Text>
             <Text color="#fff" fontSize="xs" fontWeight="light">
-              llamaLicker25
+              {streamerName}
             </Text>
           </VStack>
         </HStack>
 
-        <HStack>
-          <Text color="#fff">305K</Text>
+        <HStack justifyContent="center" alignItems="center" sapce={5}>
+          <Icon name="eye" size={15} color="#CCC" />
+          <Text ml={1} color="#fff">
+            {views}
+          </Text>
         </HStack>
       </HStack>
     </Box>
