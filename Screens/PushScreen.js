@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { View, Button, StyleSheet } from "react-native";
-import { NodeCameraView } from "react-native-nodemediaclient";
+import React, {useState, useEffect} from 'react';
+import {View, Button, StyleSheet} from 'react-native';
+import {NodeCameraView} from 'react-native-nodemediaclient';
 
-const StreamContent = (props) => {
+const StreamContent = props => {
   const [playerRef, setPlayerRef] = useState(null);
 
   useEffect(() => {
@@ -12,15 +12,15 @@ const StreamContent = (props) => {
   }, []);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#333" }}>
+    <View style={{flex: 1, backgroundColor: '#333'}}>
       <NodeCameraView
-        style={{ flex: 1 }}
-        ref={(vb) => {
+        style={{flex: 1}}
+        ref={vb => {
           setPlayerRef(vb);
         }}
         outputUrl={props.route.params.pushserver + props.route.params.stream}
-        camera={{ cameraId: 1, cameraFrontMirror: true }}
-        audio={{ bitrate: 32000, profile: 1, samplerate: 44100 }}
+        camera={{cameraId: 1, cameraFrontMirror: true}}
+        audio={{bitrate: 32000, profile: 1, samplerate: 44100}}
         video={{
           preset: 1,
           bitrate: 500000,
@@ -31,10 +31,10 @@ const StreamContent = (props) => {
         smoothSkinLevel={3}
         autopreview={true}
         onStatus={(code, msg) => {
-          console.log("onStatus=" + code + " msg=" + msg);
+          console.log('onStatus=' + code + ' msg=' + msg);
         }}
       />
-      <View>
+      <View style={{paddingBottom: 30}}>
         <Button
           onPress={() => {
             playerRef.switchCamera();
