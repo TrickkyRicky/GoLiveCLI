@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Button} from 'react-native';
 import {NodePlayerView} from 'react-native-nodemediaclient';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const PlayStream = props => {
   const [playerRef, setPlayerRef] = useState(null);
@@ -14,7 +15,7 @@ const PlayStream = props => {
   return (
     <View style={{flex: 1}}>
       <NodePlayerView
-        style={{flex: 1, backgroundColor: '#333'}}
+        style={{flex: 1, backgroundColor: '#1F1F1F'}}
         ref={vp => {
           setPlayerRef(vp);
         }}
@@ -32,14 +33,21 @@ const PlayStream = props => {
         }}
       />
 
-      <View style={{paddingBottom: 30}}>
-        <Button
-          onPress={() => {
-            props.navigation.goBack();
-          }}
-          title="Back"
-        />
-      </View>
+      <Icon
+        name="leftcircle"
+        size={30}
+        onPress={() => {
+          props.navigation.goBack();
+        }}
+        color="#8FE0BA"
+        style={{
+          padding: 12,
+          position: 'absolute',
+          top: 46,
+          left: 23,
+          zIndex: 2,
+        }}
+      />
     </View>
   );
 };

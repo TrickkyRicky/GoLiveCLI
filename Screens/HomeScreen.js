@@ -175,19 +175,12 @@ const HomeScreen = ({navigation}) => {
             // borderColor: '#2B6FFF',
             // borderWidth: 3,
             padding: 10,
-            paddingBottom: 200,
+            paddingBottom: 170,
             zIndex: 1,
           }}>
           <VStack>
-            <Text
-              style={{
-                color: '#fff',
-                fontSize: 25,
-              }}>
-              Welcome
-            </Text>
             <Text style={{color: '#fff', fontSize: 18}}>
-              Please enter a stream name.
+              Please enter a stream name
             </Text>
             <View
               style={{
@@ -253,7 +246,13 @@ const HomeScreen = ({navigation}) => {
               data={Data}
               keyExtractor={item => item.id}
               renderItem={({item}) => (
-                <TouchableOpacity onPress={() => null}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Play', {
+                      playserver: playserver,
+                      stream: stream,
+                    })
+                  }>
                   <Video
                     width={width}
                     streamName={item.streamName}
