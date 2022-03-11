@@ -13,7 +13,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import Logo from '../assets/logodark.png';
+import Logo from '../assets/Logo.png';
 import Video from '../components/Video';
 
 const requestCameraPermission = async () => {
