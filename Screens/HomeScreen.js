@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native';
+import {VStack} from 'native-base';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Logo from '../assets/Logo.png';
 import Video from '../components/Video';
@@ -145,76 +146,80 @@ const HomeScreen = ({navigation}) => {
             padding: 10,
             zIndex: 0,
           }}>
-          <Text
-            style={{
-              color: '#fff',
-              fontSize: 25,
-              marginTop: 15,
-              marginBottom: 15,
-            }}>
-            Welcome
-          </Text>
-          <Text style={{color: '#fff', fontSize: 18}}>
-            Please enter a stream name.
-          </Text>
-          <View
-            style={{
-              borderWidth: 1,
-              borderColor: '#1B4332',
-              borderWidth: 2,
-              borderRadius: 10,
-              marginTop: 20,
-              marginBottom: 30,
-            }}>
-            <TextInput
-              style={{color: '#fff', height: 40, padding: 10}}
-              placeholder="Write stream name here"
-              placeholderTextColor="#555"
-              value={stream}
-              onChangeText={stream => setStream(stream)}
-            />
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-            }}>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('Play', {
-                  playserver: playserver,
-                  stream: stream,
-                })
-              }>
-              <View
-                style={{
-                  backgroundColor: '#585858',
-                  padding: 10,
-                  borderRadius: 10,
-                }}>
-                <Text style={{color: '#fff', fontSize: 24}}>Join Stream</Text>
-              </View>
-            </TouchableOpacity>
+          <VStack>
+            <Text
+              style={{
+                color: '#fff',
+                fontSize: 25,
+                marginTop: 15,
+                marginBottom: 15,
+              }}>
+              Welcome
+            </Text>
+            <Text style={{color: '#fff', fontSize: 18}}>
+              Please enter a stream name.
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                borderColor: '#1B4332',
+                borderWidth: 2,
+                borderRadius: 10,
+                marginTop: 20,
+                marginBottom: 30,
+              }}>
+              <TextInput
+                style={{color: '#fff', height: 40, padding: 10}}
+                placeholder="Write stream name here"
+                placeholderTextColor="#555"
+                value={stream}
+                onChangeText={stream => setStream(stream)}
+              />
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                marginBottom: 15,
+              }}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('Play', {
+                    playserver: playserver,
+                    stream: stream,
+                  })
+                }>
+                <View
+                  style={{
+                    backgroundColor: '#585858',
+                    padding: 10,
+                    borderRadius: 10,
+                  }}>
+                  <Text style={{color: '#fff', fontSize: 24}}>Join Stream</Text>
+                </View>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('Push', {
-                  pushserver: pushserver,
-                  stream: stream,
-                })
-              }>
-              <View
-                style={{
-                  backgroundColor: '#585858',
-                  padding: 10,
-                  borderRadius: 10,
-                }}>
-                <Text style={{color: '#fff', fontSize: 24}}>
-                  Stream a Video
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('Push', {
+                    pushserver: pushserver,
+                    stream: stream,
+                  })
+                }>
+                <View
+                  style={{
+                    backgroundColor: '#585858',
+                    padding: 10,
+                    borderRadius: 10,
+                  }}>
+                  <Text style={{color: '#fff', fontSize: 24}}>
+                    Stream a Video
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <Video width={width} />
+          </VStack>
         </Animated.View>
       </TouchableWithoutFeedback>
       {/* CONTENT */}
