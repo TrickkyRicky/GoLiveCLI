@@ -36,6 +36,12 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GoLiveCLI/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GoLiveCLI/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GoLiveCLI/main.m; sourceTree = "<group>"; };
+		19A1A89127DBABAD00040335 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
+		19A1A89227DBABAD00040335 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		19A1A89327DBABAD00040335 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
+		19A1A89427DBABAD00040335 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		19A1A89527DBABAD00040335 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		19A1A89627DBABAD00040335 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		43632A6793D68CAF6A7AA669 /* Pods-GoLiveCLI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoLiveCLI.debug.xcconfig"; path = "Target Support Files/Pods-GoLiveCLI/Pods-GoLiveCLI.debug.xcconfig"; sourceTree = "<group>"; };
 		6DF436B653891C493DBFC05D /* libPods-GoLiveCLI-GoLiveCLITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GoLiveCLI-GoLiveCLITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = GoLiveCLI/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 		13B07FAE1A68108700A75B9A /* GoLiveCLI */ = {
 			isa = PBXGroup;
 			children = (
+				19A1A89027DBABAD00040335 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -94,6 +101,20 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = GoLiveCLI;
+			sourceTree = "<group>";
+		};
+		19A1A89027DBABAD00040335 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				19A1A89127DBABAD00040335 /* Entypo.ttf */,
+				19A1A89227DBABAD00040335 /* MaterialCommunityIcons.ttf */,
+				19A1A89327DBABAD00040335 /* AntDesign.ttf */,
+				19A1A89427DBABAD00040335 /* Ionicons.ttf */,
+				19A1A89527DBABAD00040335 /* FontAwesome.ttf */,
+				19A1A89627DBABAD00040335 /* MaterialIcons.ttf */,
+			);
+			name = Fonts;
+			path = "../node_modules/react-native-vector-icons/Fonts";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {

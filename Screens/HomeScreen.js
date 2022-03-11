@@ -11,6 +11,7 @@ import {
   Keyboard,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  ScrollView,
 } from 'react-native';
 import {VStack} from 'native-base';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -218,6 +219,7 @@ const HomeScreen = ({navigation}) => {
                 </View>
               </TouchableOpacity>
             </View>
+
             <Video width={width} />
           </VStack>
         </Animated.View>
