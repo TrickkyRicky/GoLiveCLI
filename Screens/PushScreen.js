@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {View, Button, StyleSheet} from 'react-native';
+import {View, Button, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text} from 'native-base';
 import {NodeCameraView} from 'react-native-nodemediaclient';
+import Icon from 'react-native-vector-icons/AntDesign';
+import Icon2 from 'react-native-vector-icons/Ionicons';
 
 const StreamContent = props => {
   const [playerRef, setPlayerRef] = useState(null);
@@ -12,7 +15,7 @@ const StreamContent = props => {
   }, []);
 
   return (
-    <View style={{flex: 1, backgroundColor: '#333'}}>
+    <View style={{flex: 1, backgroundColor: '#1F1F1F'}}>
       <NodeCameraView
         style={{flex: 1}}
         ref={vb => {
@@ -25,7 +28,7 @@ const StreamContent = props => {
           preset: 1,
           bitrate: 500000,
           profile: 1,
-          fps: 15,
+          fps: 30,
           videoFrontMirror: false,
         }}
         smoothSkinLevel={3}
@@ -34,14 +37,59 @@ const StreamContent = props => {
           console.log('onStatus=' + code + ' msg=' + msg);
         }}
       />
-      <View style={{paddingBottom: 30}}>
-        <Button
-          onPress={() => {
-            playerRef.switchCamera();
-          }}
-          color="red"
-          title="Reverse Camera"
-        />
+
+      <Icon
+        name="leftcircleo"
+        size={30}
+        onPress={() => {
+          playerRef.stop();
+          props.navigation.goBack();
+        }}
+        color="#35C280"
+        style={{
+          padding: 12,
+          position: 'absolute',
+          top: 46,
+          left: 23,
+          zIndex: 2,
+        }}
+      />
+
+      <Icon2
+        name="camera-reverse-outline"
+        size={30}
+        onPress={() => {
+          playerRef.switchCamera();
+        }}
+        color="#35C280"
+        style={{
+          padding: 12,
+          position: 'absolute',
+          top: 46,
+          right: 23,
+          zIndex: 2,
+        }}
+      />
+
+      <TouchableOpacity
+        onPress={() => {
+          playerRef.start();
+        }}>
+        <View
+          style={{
+            padding: 12,
+            backgroundColor: 'rgba(50, 52, 50, 0.4)',
+            borderRadius: 15,
+            position: 'absolute',
+            bottom: 40,
+            zIndex: 2,
+            alignSelf: 'center',
+          }}>
+          <Text style={{color: '#fff', fontSize: 16}}>Start Streaming</Text>
+        </View>
+      </TouchableOpacity>
+
+      {/* <View style={{paddingBottom: 30}}>
         <Button
           onPress={() => {
             playerRef.start();
@@ -49,14 +97,7 @@ const StreamContent = props => {
           color="green"
           title="Publish"
         />
-        <Button
-          onPress={() => {
-            playerRef.stop();
-            props.navigation.goBack();
-          }}
-          title="Back"
-        />
-      </View>
+      </View> */}
     </View>
   );
 };

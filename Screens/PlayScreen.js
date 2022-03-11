@@ -34,12 +34,12 @@ const PlayStream = props => {
       />
 
       <Icon
-        name="leftcircle"
+        name="leftcircleo"
         size={30}
         onPress={() => {
           props.navigation.goBack();
         }}
-        color="#8FE0BA"
+        color="#35C280"
         style={{
           padding: 12,
           position: 'absolute',
