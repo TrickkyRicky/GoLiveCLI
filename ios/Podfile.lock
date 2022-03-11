@@ -360,6 +360,8 @@ PODS:
     - React-RCTImage
   - RNSVG (12.1.0):
     - React
+  - RNVectorIcons (9.1.0):
+    - React-Core
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -425,6 +427,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -520,6 +523,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -575,9 +580,10 @@ SPEC CHECKSUMS:
   RNGestureHandler: 68f660f1080d3300936a67ce5c6879bd8f26ecc2
   RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
+  RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 4b6d54b12b224f1226fc62d11f62af13ffe0ed53
+PODFILE CHECKSUM: e9b4a4b595d31183e49eb821307a0ec3d6669450
 
 COCOAPODS: 1.11.2

@@ -17,6 +17,7 @@ import { VStack } from "native-base";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Logo from "../assets/Logo.png";
 import Video from "../components/Video";
+import Ionicons from "react-native-vector-icons/Ionicons";
 // remember to create this file for you dev env.
 import { sPath, vPath } from "../utility/dev";
 
@@ -233,6 +234,7 @@ const HomeScreen = ({ navigation }) => {
                 </View>
               </TouchableOpacity>
             </View>
+            <Ionicons name="chevron-back-sharp" size={33} color="white" />
 
             <Video width={width} />
           </VStack>
