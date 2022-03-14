@@ -1,4 +1,5 @@
 import React from 'react';
+import {View, Dimensions} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -8,8 +9,11 @@ import PlayScreen from './Screens/PlayScreen';
 import PushScreen from './Screens/PushScreen';
 import SplashScreen from './Screens/SplashScreen';
 import HomeScreen from './Screens/HomeScreen';
+import Settings from './Screens/Settings';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Demo from './Screens/Demo';
 
+const width = Dimensions.get('window').width;
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +22,9 @@ function SplashStackNavigation() {
     <SafeAreaProvider>
       <NativeBaseProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Splash" headerMode="none">
+          <Stack.Navigator
+            initialRouteName="Splash"
+            screenOptions={{headerShown: false}}>
             <Stack.Screen name="Splash" component={SplashScreen} />
             <Stack.Screen
               name="Home"
@@ -34,7 +40,9 @@ function SplashStackNavigation() {
 
 const HomeStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Home" headerMode="none">
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="Play" component={PlayScreen} />
       <Stack.Screen name="Push" component={PushScreen} />
@@ -44,9 +52,46 @@ const HomeStackNavigator = () => {
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}}>
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={({route}) => ({
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: '#35C280',
+        tabBarInactiveTintColor: '#CCC',
+        // tabBarActiveBackgroundColor: '#1F1F1F',
+        // tabBarInactiveBackgroundColor: '#1F1F1F',
+        tabBarStyle: {
+          position: 'absolute',
+          bottom: 25,
+          backgroundColor: '#1F1F1F',
+          border: 'none',
+          borderColor: '#1F1F1F',
+          borderWidth: 0,
+          height: 50,
+          width: width * 0.9,
+          marginLeft: 20,
+          borderRadius: 20,
+          // alignSelf: 'center',
+        },
+
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+
+          if (route.name === 'Home') {
+            iconName = 'video-camera';
+          } else if (route.name === 'Settings') {
+            iconName = 'cog';
+          }
+          return (
+            <View style={{position: 'absolute', top: '50%'}}>
+              <Icon name={iconName} size={size} color={color} />
+            </View>
+          );
+        },
+      })}>
       <Tab.Screen name="Home" component={HomeStackNavigator} />
-      <Tab.Screen name="Demo" component={Demo} />
+      <Tab.Screen name="Settings" component={Settings} />
     </Tab.Navigator>
   );
 };
