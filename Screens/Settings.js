@@ -6,7 +6,7 @@ const Settings = () => {
     <View
       style={{
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#1F1F1F',
         justifyContent: 'center',
         alignItems: 'center',
       }}>

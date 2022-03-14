@@ -1,15 +1,16 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {
-  TextInput,
+  Image,
   View,
   Dimensions,
   Keyboard,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   FlatList,
+  ScrollView,
 } from 'react-native';
-import {VStack, Text, Heading} from 'native-base';
+import {VStack, Text, Heading, HStack, Center} from 'native-base';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Logo from '../assets/Logo.png';
 import Video from '../components/Video';
 // remember to create this file for you dev env.
 import {sPath, vPath} from '../utility/dev';
@@ -61,15 +62,18 @@ const HomeScreen = ({navigation}) => {
       style={{
         flex: 1,
         backgroundColor: '#1F1F1F',
-        padding: 10,
-        // paddingBottom: 30,
         zIndex: 1,
       }}>
       <SafeAreaView style={{paddingBottom: 50}}>
         <VStack>
-          <Heading size="2xl" color="#fff">
-            GoLive
-          </Heading>
+          <Image
+            source={Logo}
+            alt="logo"
+            style={{
+              alignSelf: 'center',
+              transform: [{scale: 0.8}],
+            }}
+          />
           {/* <Text style={{color: '#fff', fontSize: 18}}>
                 Please enter a stream name
               </Text>
@@ -91,69 +95,179 @@ const HomeScreen = ({navigation}) => {
                 />
               </View> */}
           {/* <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginBottom: 10,
-              }}>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('Play', {
-                    playserver: playserver,
-                    stream: stream,
-                  })
-                }>
-                <View
-                  style={{
-                    backgroundColor: '#585858',
-                    padding: 10,
-                    borderRadius: 10,
-                  }}>
-                  <Text style={{color: '#fff', fontSize: 16}}>Join Stream</Text>
-                </View>
-              </TouchableOpacity>
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              marginBottom: 10,
+            }}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('Play', {
+                  playserver: playserver,
+                  stream: stream,
+                })
+              }>
+              <View
+                style={{
+                  backgroundColor: '#585858',
+                  padding: 10,
+                  borderRadius: 10,
+                }}>
+                <Text style={{color: '#fff', fontSize: 16}}>Join Stream</Text>
+              </View>
+            </TouchableOpacity>
 
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('Push', {
+                  pushserver: pushserver,
+                  stream: stream,
+                })
+              }>
+              <View
+                style={{
+                  backgroundColor: '#585858',
+                  padding: 10,
+                  borderRadius: 10,
+                }}>
+                <Text style={{color: '#fff', fontSize: 16}}>
+                  Stream a Video
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View> */}
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <HStack
+              justifyContent={'space-between'}
+              alignItems="flex-end"
+              mt={3}
+              px={3}>
+              <Heading size="lg" color="#F5F4F4">
+                Streams
+              </Heading>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate('Push', {
-                    pushserver: pushserver,
-                    stream: stream,
+                  navigation.navigate('Discover', {
+                    width: width,
                   })
                 }>
-                <View
-                  style={{
-                    backgroundColor: '#585858',
-                    padding: 10,
-                    borderRadius: 10,
-                  }}>
-                  <Text style={{color: '#fff', fontSize: 16}}>
-                    Stream a Video
-                  </Text>
-                </View>
+                <Text color="#F5F4F4" fontSize="md">
+                  See More
+                </Text>
               </TouchableOpacity>
-            </View> */}
+            </HStack>
 
-          <FlatList
-            data={Data}
-            keyExtractor={item => item.id}
-            renderItem={({item}) => (
+            <FlatList
+              data={Data}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={item => item.id}
+              horizontal
+              renderItem={({item}) => (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Play', {
+                      playserver: playserver,
+                      stream: stream,
+                    })
+                  }>
+                  <Video
+                    width={width}
+                    streamName={item.streamName}
+                    streamerName={item.streamerName}
+                    views={item.views}
+                    image={item.image}
+                  />
+                </TouchableOpacity>
+              )}
+            />
+            <HStack
+              justifyContent={'space-between'}
+              alignItems="flex-end"
+              mt={3}
+              px={3}>
+              <Heading size="lg" color="#F5F4F4">
+                Videos
+              </Heading>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate('Play', {
-                    playserver: playserver,
-                    stream: stream,
+                  navigation.navigate('Discover', {
+                    width: width,
                   })
                 }>
-                <Video
-                  width={width}
-                  streamName={item.streamName}
-                  streamerName={item.streamerName}
-                  views={item.views}
-                  image={item.image}
-                />
+                <Text color="#F5F4F4" fontSize="md">
+                  See More
+                </Text>
               </TouchableOpacity>
-            )}
-          />
+            </HStack>
+
+            <FlatList
+              data={Data}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={item => item.id}
+              horizontal
+              renderItem={({item}) => (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Play', {
+                      playserver: playserver,
+                      stream: stream,
+                    })
+                  }>
+                  <Video
+                    width={width}
+                    streamName={item.streamName}
+                    streamerName={item.streamerName}
+                    views={item.views}
+                    image={item.image}
+                  />
+                </TouchableOpacity>
+              )}
+            />
+            <HStack
+              justifyContent={'space-between'}
+              alignItems="flex-end"
+              mt={3}
+              px={3}>
+              <Heading size="lg" color="#F5F4F4">
+                Clips
+              </Heading>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('Discover', {
+                    width: width,
+                  })
+                }>
+                <Text color="#F5F4F4" fontSize="md">
+                  See More
+                </Text>
+              </TouchableOpacity>
+            </HStack>
+
+            <FlatList
+              data={Data}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={item => item.id}
+              horizontal
+              renderItem={({item}) => (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Play', {
+                      playserver: playserver,
+                      stream: stream,
+                    })
+                  }>
+                  <Video
+                    width={width}
+                    streamName={item.streamName}
+                    streamerName={item.streamerName}
+                    views={item.views}
+                    image={item.image}
+                  />
+                </TouchableOpacity>
+              )}
+            />
+            <Center height={100} />
+          </ScrollView>
         </VStack>
       </SafeAreaView>
     </View>

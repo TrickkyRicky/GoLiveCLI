@@ -2,19 +2,19 @@ import {Text, Box, Image, HStack, VStack, Center} from 'native-base';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Video = ({width, streamName, streamerName, views, image}) => {
+const DiscoverVideo = ({width, streamName, streamerName, views, image}) => {
   return (
     <Box
       borderRadius={10}
       bg="#323432"
-      width={width * 0.75}
+      width={width * 0.95}
       my={2}
       mx={2}
       alignSelf="center">
       <Image
         source={image}
         alt="stream image"
-        height={150}
+        height={180}
         width={width}
         borderTopLeftRadius={10}
         borderTopRightRadius={10}
@@ -59,4 +59,4 @@ const Video = ({width, streamName, streamerName, views, image}) => {
   );
 };
 
-export default Video;
+export default DiscoverVideo;

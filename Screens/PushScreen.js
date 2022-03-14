@@ -81,7 +81,7 @@ const StreamContent = props => {
             backgroundColor: 'rgba(50, 52, 50, 0.4)',
             borderRadius: 15,
             position: 'absolute',
-            bottom: 40,
+            bottom: 80,
             zIndex: 2,
             alignSelf: 'center',
           }}>

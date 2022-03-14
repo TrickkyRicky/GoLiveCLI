@@ -10,6 +10,7 @@ import PushScreen from './Screens/PushScreen';
 import SplashScreen from './Screens/SplashScreen';
 import HomeScreen from './Screens/HomeScreen';
 import Settings from './Screens/Settings';
+import DiscoverScreen from './Screens/DiscoverScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Demo from './Screens/Demo';
 
@@ -41,9 +42,10 @@ function SplashStackNavigation() {
 const HomeStackNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeScreen"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="Discover" component={DiscoverScreen} />
       <Stack.Screen name="Play" component={PlayScreen} />
       <Stack.Screen name="Push" component={PushScreen} />
     </Stack.Navigator>
@@ -59,15 +61,14 @@ const TabNavigator = () => {
         tabBarShowLabel: false,
         tabBarActiveTintColor: '#35C280',
         tabBarInactiveTintColor: '#CCC',
-        // tabBarActiveBackgroundColor: '#1F1F1F',
-        // tabBarInactiveBackgroundColor: '#1F1F1F',
         tabBarStyle: {
           position: 'absolute',
           bottom: 25,
-          backgroundColor: '#1F1F1F',
+          left: 0,
+          backgroundColor: '#323432',
           border: 'none',
-          borderColor: '#1F1F1F',
           borderWidth: 0,
+          borderTopWidth: 0,
           height: 50,
           width: width * 0.9,
           marginLeft: 20,
