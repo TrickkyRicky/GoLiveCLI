@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Button, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import {Text} from 'native-base';
 import {NodeCameraView} from 'react-native-nodemediaclient';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -88,16 +88,6 @@ const StreamContent = props => {
           <Text style={{color: '#fff', fontSize: 16}}>Start Streaming</Text>
         </View>
       </TouchableOpacity>
-
-      {/* <View style={{paddingBottom: 30}}>
-        <Button
-          onPress={() => {
-            playerRef.start();
-          }}
-          color="green"
-          title="Publish"
-        />
-      </View> */}
     </View>
   );
 };

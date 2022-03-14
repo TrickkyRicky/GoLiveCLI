@@ -4,7 +4,8 @@ import React from 'react';
 import Warzone from '../assets/warzone.jpg';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Video = ({width, streamName, streamerName, views}) => {
+const Video = ({width, streamName, streamerName, views, image}) => {
+  console.log(image);
   return (
     <Box
       borderRadius={10}
@@ -13,7 +14,7 @@ const Video = ({width, streamName, streamerName, views}) => {
       my={2}
       alignSelf="center">
       <Image
-        source={Warzone}
+        source={image}
         alt="stream image"
         height={180}
         width={width * 0.95}

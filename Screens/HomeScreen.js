@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {
-  Text,
   TextInput,
   View,
   Platform,
@@ -12,8 +11,8 @@ import {
   TouchableWithoutFeedback,
   FlatList,
 } from 'react-native';
-import {VStack} from 'native-base';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {VStack, Text, Heading} from 'native-base';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import Logo from '../assets/Logo.png';
 import Video from '../components/Video';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -23,27 +22,31 @@ import {sPath, vPath} from '../utility/dev';
 const Data = [
   {
     id: 1,
-    streamName: 'Warzone Live',
-    streamerName: 'llamaLicker25',
-    views: '416K',
+    streamName: '...',
+    streamerName: '...',
+    views: '...',
+    image: require('../assets/placeholder.jpg'),
   },
   {
     id: 2,
-    streamName: 'Rebirth Resurgence Quads ',
-    streamerName: 'llamaLicker25',
-    views: '652K',
+    streamName: '... ',
+    streamerName: '...',
+    views: '...',
+    image: require('../assets/placeholder.jpg'),
   },
   {
     id: 3,
-    streamName: 'Come Chill Out',
-    streamerName: 'llamaLicker25',
-    views: '295K',
+    streamName: '... ',
+    streamerName: '...',
+    views: '...',
+    image: require('../assets/placeholder.jpg'),
   },
   {
     id: 4,
-    streamName: 'Warzone Live',
-    streamerName: 'llamaLicker25',
-    views: '6K',
+    streamName: '... ',
+    streamerName: '...',
+    views: '...',
+    image: require('../assets/placeholder.jpg'),
   },
 ];
 
@@ -102,8 +105,8 @@ const HomeScreen = ({navigation}) => {
         Animated.timing(startAnimation, {
           //for non safe area devices
           //uncomment to show logo header
-          toValue: -Dimensions.get('window').height + (edges.top + 65),
-          // toValue: -Dimensions.get('window').height,
+          // toValue: -Dimensions.get('window').height + (edges.top + 65),
+          toValue: -Dimensions.get('window').height,
           useNativeDriver: true,
         }),
         Animated.timing(scaleLogo, {
@@ -119,6 +122,10 @@ const HomeScreen = ({navigation}) => {
         }),
       ]).start();
     }, 1000);
+
+    setTimeout(() => {
+      navigation.navigate('Demo');
+    }, 1600);
 
     if (Platform.OS === 'android') {
       requestCameraPermission();
@@ -139,7 +146,7 @@ const HomeScreen = ({navigation}) => {
         style={{
           flex: 1,
           backgroundColor: '#1F1F1F',
-          zIndex: 1,
+          zIndex: 2,
           transform: [{translateY: startAnimation}],
         }}>
         <Animated.View
@@ -162,6 +169,7 @@ const HomeScreen = ({navigation}) => {
       </Animated.View>
 
       {/* CONTENT */}
+
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <Animated.View
           style={{
@@ -170,36 +178,38 @@ const HomeScreen = ({navigation}) => {
             bottom: 0,
             left: 0,
             right: 0,
-            marginTop: 100,
+            // marginTop: 100,
             backgroundColor: '#1F1F1F',
-            // borderColor: '#2B6FFF',
-            // borderWidth: 3,
             padding: 10,
-            paddingBottom: 170,
+            paddingBottom: 30,
             zIndex: 1,
           }}>
-          <VStack>
-            <Text style={{color: '#fff', fontSize: 18}}>
-              Please enter a stream name
-            </Text>
-            <View
-              style={{
-                borderWidth: 1,
-                borderColor: '#1B4332',
-                borderWidth: 2,
-                borderRadius: 10,
-                marginTop: 10,
-                marginBottom: 10,
-              }}>
-              <TextInput
-                style={{color: '#95D5B2', height: 40, padding: 10}}
-                placeholder="Write stream name here"
-                placeholderTextColor="#1B4332"
-                value={stream}
-                onChangeText={stream => setStream(stream)}
-              />
-            </View>
-            <View
+          <SafeAreaView style={{paddingBottom: 50}}>
+            <VStack>
+              <Heading size="2xl" color="#fff">
+                GoLive
+              </Heading>
+              {/* <Text style={{color: '#fff', fontSize: 18}}>
+                Please enter a stream name
+              </Text>
+              <View
+                style={{
+                  borderWidth: 1,
+                  borderColor: '#1B4332',
+                  borderWidth: 2,
+                  borderRadius: 10,
+                  marginTop: 10,
+                  marginBottom: 10,
+                }}>
+                <TextInput
+                  style={{color: '#95D5B2', height: 40, padding: 10}}
+                  placeholder="Write stream name here"
+                  placeholderTextColor="#1B4332"
+                  value={stream}
+                  onChangeText={stream => setStream(stream)}
+                />
+              </View> */}
+              {/* <View
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-around',
@@ -240,31 +250,34 @@ const HomeScreen = ({navigation}) => {
                   </Text>
                 </View>
               </TouchableOpacity>
-            </View>
+            </View> */}
 
-            <FlatList
-              data={Data}
-              keyExtractor={item => item.id}
-              renderItem={({item}) => (
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate('Play', {
-                      playserver: playserver,
-                      stream: stream,
-                    })
-                  }>
-                  <Video
-                    width={width}
-                    streamName={item.streamName}
-                    streamerName={item.streamerName}
-                    views={item.views}
-                  />
-                </TouchableOpacity>
-              )}
-            />
-          </VStack>
+              <FlatList
+                data={Data}
+                keyExtractor={item => item.id}
+                renderItem={({item}) => (
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate('Play', {
+                        playserver: playserver,
+                        stream: stream,
+                      })
+                    }>
+                    <Video
+                      width={width}
+                      streamName={item.streamName}
+                      streamerName={item.streamerName}
+                      views={item.views}
+                      image={item.image}
+                    />
+                  </TouchableOpacity>
+                )}
+              />
+            </VStack>
+          </SafeAreaView>
         </Animated.View>
       </TouchableWithoutFeedback>
+
       {/* CONTENT */}
     </View>
   );
