@@ -78,7 +78,7 @@ const StreamContent = props => {
         <View
           style={{
             padding: 12,
-            backgroundColor: 'rgba(50, 52, 50, 0.4)',
+            backgroundColor: 'rgba(10, 125, 10, 0.2)',
             borderRadius: 15,
             position: 'absolute',
             bottom: 80,

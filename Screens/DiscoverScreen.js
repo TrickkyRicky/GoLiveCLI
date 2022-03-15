@@ -12,7 +12,7 @@ const Data = [
     streamName: 'Warzone Live',
     streamerName: 'llamaLicker25',
     views: '416K',
-    image: require('../assets/warzone.jpg'),
+    image: require('../assets/warzone3.jpg'),
   },
   {
     id: 2,
@@ -26,14 +26,14 @@ const Data = [
     streamName: 'Come Chill Out',
     streamerName: 'llamaLicker25',
     views: '295K',
-    image: require('../assets/warzone.jpg'),
+    image: require('../assets/warzone2.jpg'),
   },
   {
     id: 4,
     streamName: 'Warzone Live',
     streamerName: 'llamaLicker25',
     views: '6K',
-    image: require('../assets/warzone.jpg'),
+    image: require('../assets/warzone4.jpg'),
   },
   {
     id: 5,
@@ -47,21 +47,21 @@ const Data = [
     streamName: 'Rebirth Resurgence Quads ',
     streamerName: 'llamaLicker25',
     views: '652K',
-    image: require('../assets/warzone.jpg'),
+    image: require('../assets/warzone2.jpg'),
   },
   {
     id: 7,
     streamName: 'Come Chill Out',
     streamerName: 'llamaLicker25',
     views: '295K',
-    image: require('../assets/warzone.jpg'),
+    image: require('../assets/warzone3.jpg'),
   },
   {
     id: 8,
     streamName: 'Warzone Live',
     streamerName: 'llamaLicker25',
     views: '6K',
-    image: require('../assets/warzone.jpg'),
+    image: require('../assets/warzone4.jpg'),
   },
 ];
 
@@ -79,7 +79,7 @@ const DiscoverScreen = ({navigation}) => {
               color="#CCC"
               onPress={() => navigation.goBack()}
             />
-            <Heading color="#8FE0BA" size="2xl">
+            <Heading color="#35C280" size="2xl">
               Discover
             </Heading>
           </HStack>

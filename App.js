@@ -3,8 +3,8 @@ import {
   StatusBar,
   Animated,
   View,
+  Platform,
   Dimensions,
-  TouchableOpacity,
   Image,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
@@ -20,7 +20,6 @@ import Settings from './Screens/Settings';
 import DiscoverScreen from './Screens/DiscoverScreen';
 import StreamScreen from './Screens/StreamScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import plus from './assets/plus.png';
 import Demo from './Screens/Demo';
 
 const width = Dimensions.get('window').width;
@@ -53,6 +52,8 @@ function SplashStackNavigation() {
               component={TabNavigator}
               options={{animationEnabled: false, gestureEnabled: false}}
             />
+            <Stack.Screen name="Play" component={PlayScreen} />
+            <Stack.Screen name="Push" component={PushScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </NativeBaseProvider>
@@ -67,8 +68,6 @@ const HomeStackNavigator = () => {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="Discover" component={DiscoverScreen} />
-      <Stack.Screen name="Play" component={PlayScreen} />
-      <Stack.Screen name="Push" component={PushScreen} />
     </Stack.Navigator>
   );
 };
@@ -97,21 +96,37 @@ const TabNavigator = () => {
             height: 50,
             width: width * 0.9,
             marginLeft: 20,
-            borderRadius: 20,
-            // alignSelf: 'center',
+            borderRadius: 30,
           },
 
           tabBarIcon: ({focused, color, size}) => {
             let iconName;
 
             if (route.name === 'Home') {
-              iconName = 'video-camera';
+              iconName = 'compass';
             } else if (route.name === 'Settings') {
               iconName = 'cog';
+            } else if (route.name === 'Stream') {
+              return (
+                <View
+                  style={{
+                    width: 55,
+                    height: 55,
+                    backgroundColor: '#35C280',
+                    borderRadius: 30,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginBottom: Platform.OS == 'android' ? 50 : 20,
+                    zIndex: 2,
+                  }}>
+                  <Icon name="video-camera" size={25} color="#fff" />
+                </View>
+              );
             }
+
             return (
               <View style={{position: 'absolute', top: '50%'}}>
-                <Icon name={iconName} size={size} color={color} />
+                <Icon name={iconName} size={30} color={color} />
               </View>
             );
           },
@@ -128,36 +143,7 @@ const TabNavigator = () => {
             },
           })}
         />
-        <Tab.Screen
-          name="ActionButton"
-          component={StreamScreen}
-          options={{
-            tabBarIcon: ({focused}) => (
-              <TouchableOpacity onPress={() => null}>
-                <View
-                  style={{
-                    width: 55,
-                    height: 55,
-                    backgroundColor: '#35C280',
-                    borderRadius: 30,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginBottom: 20,
-                    // marginBottom: Platform.OS == 'android' ? 50 : 30,
-                  }}>
-                  <Image
-                    source={plus}
-                    style={{
-                      width: 22,
-                      height: 22,
-                      tintColor: 'white',
-                    }}
-                  />
-                </View>
-              </TouchableOpacity>
-            ),
-          }}
-        />
+        <Tab.Screen name="Stream" component={StreamScreen} />
         <Tab.Screen
           name="Settings"
           component={Settings}

@@ -12,37 +12,6 @@ import Logo from '../assets/Logo.png';
 // remember to create this file for you dev env.
 import {sPath, vPath} from '../utility/dev';
 
-const Data = [
-  {
-    id: 1,
-    streamName: '...',
-    streamerName: '...',
-    views: '...',
-    image: require('../assets/placeholder.jpg'),
-  },
-  {
-    id: 2,
-    streamName: '... ',
-    streamerName: '...',
-    views: '...',
-    image: require('../assets/placeholder.jpg'),
-  },
-  {
-    id: 3,
-    streamName: '... ',
-    streamerName: '...',
-    views: '...',
-    image: require('../assets/placeholder.jpg'),
-  },
-  {
-    id: 4,
-    streamName: '... ',
-    streamerName: '...',
-    views: '...',
-    image: require('../assets/placeholder.jpg'),
-  },
-];
-
 const requestCameraPermission = async () => {
   try {
     const granted = await PermissionsAndroid.requestMultiple(

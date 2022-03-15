@@ -18,7 +18,7 @@ const Settings = () => {
           </Text>
 
           <TouchableOpacity onPress={() => null}>
-            <Box bg="#414141" h={50} justifyContent="center" px={3} py={1}>
+            <Box bg="#323432" h={50} justifyContent="center" px={3} py={1}>
               <HStack
                 alignItems="center"
                 justifyContent={'space-between'}
@@ -34,9 +34,9 @@ const Settings = () => {
               </HStack>
             </Box>
           </TouchableOpacity>
-          <Divider w={'100%'} bg="#323432" />
+          <Divider w={'100%'} bg="#1F1F1F" />
           <TouchableOpacity onPress={() => null}>
-            <Box bg="#414141" h={50} justifyContent="center" px={3} py={1}>
+            <Box bg="#323432" h={50} justifyContent="center" px={3} py={1}>
               <HStack
                 alignItems="center"
                 justifyContent={'space-between'}
@@ -58,7 +58,7 @@ const Settings = () => {
           </Text>
 
           <TouchableOpacity onPress={() => null}>
-            <Box bg="#414141" h={50} justifyContent="center" px={3} py={1}>
+            <Box bg="#323432" h={50} justifyContent="center" px={3} py={1}>
               <HStack
                 alignItems="center"
                 justifyContent={'space-between'}
@@ -74,9 +74,9 @@ const Settings = () => {
               </HStack>
             </Box>
           </TouchableOpacity>
-          <Divider w={'100%'} bg="#323432" />
+          <Divider w={'100%'} bg="#1F1F1F" />
           <TouchableOpacity onPress={() => null}>
-            <Box bg="#414141" h={50} justifyContent="center" px={3} py={1}>
+            <Box bg="#323432" h={50} justifyContent="center" px={3} py={1}>
               <HStack
                 alignItems="center"
                 justifyContent={'space-between'}
@@ -98,7 +98,7 @@ const Settings = () => {
           </Text>
 
           <TouchableOpacity onPress={() => null}>
-            <Box bg="#414141" h={50} justifyContent="center" px={3} py={1}>
+            <Box bg="#323432" h={50} justifyContent="center" px={3} py={1}>
               <HStack
                 alignItems="center"
                 justifyContent={'space-between'}
@@ -114,9 +114,9 @@ const Settings = () => {
               </HStack>
             </Box>
           </TouchableOpacity>
-          <Divider w={'100%'} bg="#323432" />
+          <Divider w={'100%'} bg="#1F1F1F" />
           <TouchableOpacity onPress={() => null}>
-            <Box bg="#414141" h={50} justifyContent="center" px={3} py={1}>
+            <Box bg="#323432" h={50} justifyContent="center" px={3} py={1}>
               <HStack
                 alignItems="center"
                 justifyContent={'space-between'}
@@ -138,7 +138,7 @@ const Settings = () => {
           </Text>
 
           <TouchableOpacity onPress={() => null}>
-            <Box bg="#414141" h={50} justifyContent="center" px={3} py={1}>
+            <Box bg="#323432" h={50} justifyContent="center" px={3} py={1}>
               <HStack
                 alignItems="center"
                 justifyContent={'space-between'}
@@ -160,7 +160,7 @@ const Settings = () => {
           </Text>
 
           <TouchableOpacity onPress={() => null}>
-            <Box bg="#414141" h={50} justifyContent="center" px={3} py={1}>
+            <Box bg="#323432" h={50} justifyContent="center" px={3} py={1}>
               <HStack
                 alignItems="center"
                 justifyContent={'space-between'}
@@ -176,9 +176,9 @@ const Settings = () => {
               </HStack>
             </Box>
           </TouchableOpacity>
-          <Divider w={'100%'} bg="#323432" />
+          <Divider w={'100%'} bg="#1F1F1F" />
           <TouchableOpacity onPress={() => null}>
-            <Box bg="#414141" h={50} justifyContent="center" px={3} py={1}>
+            <Box bg="#323432" h={50} justifyContent="center" px={3} py={1}>
               <HStack
                 alignItems="center"
                 justifyContent={'space-between'}
