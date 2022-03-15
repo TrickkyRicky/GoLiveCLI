@@ -3,7 +3,7 @@ import {
   Image,
   View,
   Dimensions,
-  Keyboard,
+  StatusBar,
   TouchableOpacity,
   FlatList,
   ScrollView,
@@ -65,6 +65,13 @@ const HomeScreen = ({navigation}) => {
         zIndex: 1,
       }}>
       <SafeAreaView style={{paddingBottom: 50}}>
+        <StatusBar
+          animated={true}
+          backgroundColor="#61dafb"
+          barStyle={'light-content'}
+          showHideTransition={'fade'}
+          hidden={false}
+        />
         <VStack>
           <Image
             source={Logo}

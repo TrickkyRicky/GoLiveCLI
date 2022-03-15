@@ -1,5 +1,12 @@
-import React from 'react';
-import {View, Dimensions} from 'react-native';
+import React, {useRef} from 'react';
+import {
+  StatusBar,
+  Animated,
+  View,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -11,10 +18,24 @@ import SplashScreen from './Screens/SplashScreen';
 import HomeScreen from './Screens/HomeScreen';
 import Settings from './Screens/Settings';
 import DiscoverScreen from './Screens/DiscoverScreen';
+import StreamScreen from './Screens/StreamScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import plus from './assets/plus.png';
 import Demo from './Screens/Demo';
 
 const width = Dimensions.get('window').width;
+
+function getWidth() {
+  let width = Dimensions.get('window').width;
+
+  // Horizontal Padding = 20...
+  width = width - 80;
+
+  // Total five Tabs...
+  return width / 5;
+  // return width / 3;
+}
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +49,7 @@ function SplashStackNavigation() {
             screenOptions={{headerShown: false}}>
             <Stack.Screen name="Splash" component={SplashScreen} />
             <Stack.Screen
-              name="Home"
+              name="HomeTab"
               component={TabNavigator}
               options={{animationEnabled: false, gestureEnabled: false}}
             />
@@ -53,47 +74,117 @@ const HomeStackNavigator = () => {
 };
 
 const TabNavigator = () => {
+  // Animated Tab Indicator...
+  const tabOffsetValue = useRef(new Animated.Value(0)).current;
+
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={({route}) => ({
-        headerShown: false,
-        tabBarShowLabel: false,
-        tabBarActiveTintColor: '#35C280',
-        tabBarInactiveTintColor: '#CCC',
-        tabBarStyle: {
+    <>
+      <Tab.Navigator
+        initialRouteName="Home"
+        screenOptions={({route}) => ({
+          headerShown: false,
+          tabBarShowLabel: false,
+          tabBarActiveTintColor: '#35C280',
+          tabBarInactiveTintColor: '#CCC',
+          tabBarStyle: {
+            position: 'absolute',
+            bottom: 25,
+            left: 0,
+            backgroundColor: '#323432',
+            border: 'none',
+            borderWidth: 0,
+            borderTopWidth: 0,
+            height: 50,
+            width: width * 0.9,
+            marginLeft: 20,
+            borderRadius: 20,
+            // alignSelf: 'center',
+          },
+
+          tabBarIcon: ({focused, color, size}) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = 'video-camera';
+            } else if (route.name === 'Settings') {
+              iconName = 'cog';
+            }
+            return (
+              <View style={{position: 'absolute', top: '50%'}}>
+                <Icon name={iconName} size={size} color={color} />
+              </View>
+            );
+          },
+        })}>
+        <Tab.Screen
+          name="Home"
+          component={HomeStackNavigator}
+          listeners={({navigation, route}) => ({
+            tabPress: e => {
+              Animated.spring(tabOffsetValue, {
+                toValue: 0,
+                useNativeDriver: true,
+              }).start();
+            },
+          })}
+        />
+        <Tab.Screen
+          name="ActionButton"
+          component={StreamScreen}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <TouchableOpacity onPress={() => null}>
+                <View
+                  style={{
+                    width: 55,
+                    height: 55,
+                    backgroundColor: '#35C280',
+                    borderRadius: 30,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginBottom: 20,
+                    // marginBottom: Platform.OS == 'android' ? 50 : 30,
+                  }}>
+                  <Image
+                    source={plus}
+                    style={{
+                      width: 22,
+                      height: 22,
+                      tintColor: 'white',
+                    }}
+                  />
+                </View>
+              </TouchableOpacity>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={Settings}
+          listeners={({navigation, route}) => ({
+            tabPress: e => {
+              Animated.spring(tabOffsetValue, {
+                toValue: getWidth() * 3.75,
+                useNativeDriver: true,
+              }).start();
+            },
+          })}
+        />
+      </Tab.Navigator>
+      <Animated.View
+        style={{
+          width: width * 0.15,
+          height: 2,
+          backgroundColor: '#35C280',
           position: 'absolute',
-          bottom: 25,
-          left: 0,
-          backgroundColor: '#323432',
-          border: 'none',
-          borderWidth: 0,
-          borderTopWidth: 0,
-          height: 50,
-          width: width * 0.9,
-          marginLeft: 20,
+          bottom: 75,
+          // Horizontal Padding = 20...
+          left: 47,
           borderRadius: 20,
-          // alignSelf: 'center',
-        },
-
-        tabBarIcon: ({focused, color, size}) => {
-          let iconName;
-
-          if (route.name === 'Home') {
-            iconName = 'video-camera';
-          } else if (route.name === 'Settings') {
-            iconName = 'cog';
-          }
-          return (
-            <View style={{position: 'absolute', top: '50%'}}>
-              <Icon name={iconName} size={size} color={color} />
-            </View>
-          );
-        },
-      })}>
-      <Tab.Screen name="Home" component={HomeStackNavigator} />
-      <Tab.Screen name="Settings" component={Settings} />
-    </Tab.Navigator>
+          transform: [{translateX: tabOffsetValue}],
+        }}
+      />
+    </>
   );
 };
 

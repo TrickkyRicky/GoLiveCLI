@@ -1,21 +1,14 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {
-  TextInput,
+  StatusBar,
   View,
   Platform,
   PermissionsAndroid,
   Animated,
   Dimensions,
-  Keyboard,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  FlatList,
 } from 'react-native';
-import {VStack, Text, Heading} from 'native-base';
-import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Logo from '../assets/Logo.png';
-import Video from '../components/Video';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 // remember to create this file for you dev env.
 import {sPath, vPath} from '../utility/dev';
 
@@ -117,7 +110,7 @@ const SplashScreen = ({navigation}) => {
     }, 1000);
 
     setTimeout(() => {
-      navigation.navigate('Home');
+      navigation.navigate('HomeTab');
     }, 1050);
 
     if (Platform.OS === 'android') {
@@ -148,6 +141,13 @@ const SplashScreen = ({navigation}) => {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
+          <StatusBar
+            animated={true}
+            backgroundColor="#61dafb"
+            barStyle={'light-content'}
+            showHideTransition={'fade'}
+            hidden={true}
+          />
           <Animated.Image
             source={Logo}
             style={{
