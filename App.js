@@ -20,7 +20,6 @@ import Settings from './Screens/Settings';
 import DiscoverScreen from './Screens/DiscoverScreen';
 import StreamScreen from './Screens/StreamScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Demo from './Screens/Demo';
 
 const width = Dimensions.get('window').width;
 
