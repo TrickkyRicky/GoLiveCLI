@@ -1,17 +1,11 @@
-import {View, Image, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Box, VStack, HStack, Text, Heading, Button, Center} from 'native-base';
+import {Box, VStack, HStack, Text, Heading, Center} from 'native-base';
 import LottieView from 'lottie-react-native';
-import {sPath, vPath} from '../utility/dev';
-
 const StreamScreen = ({navigation}) => {
-  // Example: "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
-  const [playserver, setPlayserver] = useState(vPath);
-  // Example: "rtmp://4.tcp.ngrok.io:13824/live/"
-  const [pushserver, setPushserver] = useState(sPath);
+  const [streamTitle, setStreamTitle] = useState('');
 
-  const [stream, setStream] = useState('STREAM_NAME');
   return (
     <Box bg="#1F1F1f" flex={1} justifyContent="flex-end">
       <SafeAreaView>
@@ -26,18 +20,8 @@ const StreamScreen = ({navigation}) => {
               }}
             />
           </Center>
-          {/* <Heading size="2xl" mt={3} color="#fff" ml={2} alignSelf="center">
-            Go Live in 5
-          </Heading> */}
-          {/* <Text color="#fff">Lets Get start with starting a live stream</Text> */}
 
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('Push', {
-                pushserver: pushserver,
-                stream: stream,
-              })
-            }>
+          <TouchableOpacity onPress={() => navigation.navigate('Form')}>
             <Box
               bg="#414141"
               p={3}

@@ -1,10 +1,11 @@
 import {FlatList, TouchableOpacity, Dimensions, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Box, VStack, Text, Heading, HStack} from 'native-base';
+import {Box, VStack, Text, Heading, HStack, Input} from 'native-base';
 import DiscoverVideo from '../components/DiscoverVideo';
 import Video from '../components/Video';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {sPath, vPath} from '../utility/dev';
 
 const Data = [
   {
@@ -68,20 +69,56 @@ const Data = [
 const width = Dimensions.get('window').width;
 
 const DiscoverScreen = ({navigation}) => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleChange = text => {
+    setSearchValue(text);
+  };
+
+  // Example: "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
+  const [playserver, setPlayserver] = useState(vPath);
+  // Example: "rtmp://4.tcp.ngrok.io:13824/live/"
+  const [pushserver, setPushserver] = useState(sPath);
+
+  const [stream, setStream] = useState('STREAM_NAME');
+
   return (
     <Box flex={1} bg="#1F1F1f">
       <SafeAreaView style={{padding: 10}}>
         <VStack>
-          <HStack justifyContent={'space-between'} alignItems="center">
+          <HStack
+            mb={2}
+            width={width * 0.9}
+            justifyContent={'space-between'}
+            alignItems="center">
             <Icon
-              name="left"
-              size={25}
-              color="#CCC"
+              name="leftcircle"
+              size={30}
+              color="#35C280"
               onPress={() => navigation.goBack()}
             />
-            <Heading color="#35C280" size="2xl">
-              Discover
-            </Heading>
+
+            <Input
+              ml={5}
+              placeholder="Search"
+              bg="#414141"
+              borderColor="#414141"
+              color="#CCC"
+              fontSize="sm"
+              borderRadius={10}
+              w={'90%'}
+              onChangeText={() => handleChange()}
+              value={searchValue}
+              // maxWidth="300px"
+              InputLeftElement={
+                <Icon
+                  name="search1"
+                  size={15}
+                  color="#CCC"
+                  style={{marginLeft: 15}}
+                />
+              }
+            />
           </HStack>
 
           <FlatList

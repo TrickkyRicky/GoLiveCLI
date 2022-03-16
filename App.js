@@ -19,6 +19,7 @@ import HomeScreen from './Screens/HomeScreen';
 import Settings from './Screens/Settings';
 import DiscoverScreen from './Screens/DiscoverScreen';
 import StreamScreen from './Screens/StreamScreen';
+import StreamFormScreen from './Screens/StreamFormScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const width = Dimensions.get('window').width;
@@ -67,6 +68,16 @@ const HomeStackNavigator = () => {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="Discover" component={DiscoverScreen} />
+    </Stack.Navigator>
+  );
+};
+const StreamStackNavigator = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="CreateStream"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="CreateStream" component={StreamScreen} />
+      <Stack.Screen name="Form" component={StreamFormScreen} />
     </Stack.Navigator>
   );
 };
@@ -142,7 +153,7 @@ const TabNavigator = () => {
             },
           })}
         />
-        <Tab.Screen name="Stream" component={StreamScreen} />
+        <Tab.Screen name="Stream" component={StreamStackNavigator} />
         <Tab.Screen
           name="Settings"
           component={Settings}
