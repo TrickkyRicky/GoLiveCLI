@@ -1,5 +1,11 @@
-import {FlatList, TouchableOpacity, Dimensions, View} from 'react-native';
-import React, {useState} from 'react';
+import {
+  FlatList,
+  TouchableOpacity,
+  Dimensions,
+  View,
+  Animated,
+} from 'react-native';
+import React, {useRef, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Box, VStack, Text, Heading, HStack, Input} from 'native-base';
 import DiscoverVideo from '../components/DiscoverVideo';
@@ -67,13 +73,13 @@ const Data = [
 ];
 
 const width = Dimensions.get('window').width;
+const ITEM_SIZE = 250;
+//130
 
 const DiscoverScreen = ({navigation}) => {
   const [searchValue, setSearchValue] = useState('');
 
-  const handleChange = text => {
-    setSearchValue(text);
-  };
+  const scrollY = useRef(new Animated.Value(0)).current;
 
   // Example: "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
   const [playserver, setPlayserver] = useState(vPath);
@@ -107,7 +113,7 @@ const DiscoverScreen = ({navigation}) => {
               fontSize="sm"
               borderRadius={10}
               w={'90%'}
-              onChangeText={() => handleChange()}
+              onChangeText={e => setSearchValue(e)}
               value={searchValue}
               // maxWidth="300px"
               InputLeftElement={
@@ -121,28 +127,65 @@ const DiscoverScreen = ({navigation}) => {
             />
           </HStack>
 
-          <FlatList
+          <Animated.FlatList
             data={Data}
             showsVerticalScrollIndicator={false}
+            onScroll={Animated.event(
+              [{nativeEvent: {contentOffset: {y: scrollY}}}],
+              {useNativeDriver: true},
+            )}
             keyExtractor={item => item.id}
             numColumns={1}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('Play', {
-                    playserver: playserver,
-                    stream: stream,
-                  })
-                }>
-                <DiscoverVideo
-                  width={width}
-                  streamName={item.streamName}
-                  streamerName={item.streamerName}
-                  views={item.views}
-                  image={item.image}
-                />
-              </TouchableOpacity>
-            )}
+            renderItem={({item, index}) => {
+              const inputRange = [
+                -1,
+                0,
+                ITEM_SIZE * index,
+                ITEM_SIZE * (index + 2),
+              ];
+
+              const opacityInputRange = [
+                -1,
+                0,
+                ITEM_SIZE * index,
+                ITEM_SIZE * (index + 0.8), //change this for opacity
+              ];
+
+              const scale = scrollY.interpolate({
+                inputRange,
+                outputRange: [1, 1, 1, 0],
+              });
+
+              const opacity = scrollY.interpolate({
+                inputRange: opacityInputRange,
+                outputRange: [1, 1, 1, 0],
+              });
+
+              return (
+                <TouchableOpacity
+                  activeOpacity={0.9}
+                  onPress={() =>
+                    navigation.navigate('Play', {
+                      playserver: playserver,
+                      stream: stream,
+                    })
+                  }>
+                  <Animated.View
+                    style={{
+                      opacity,
+                      transform: [{scale}],
+                    }}>
+                    <DiscoverVideo
+                      width={width}
+                      streamName={item.streamName}
+                      streamerName={item.streamerName}
+                      views={item.views}
+                      image={item.image}
+                    />
+                  </Animated.View>
+                </TouchableOpacity>
+              );
+            }}
             ListFooterComponent={<View style={{height: 120}} />}
           />
         </VStack>

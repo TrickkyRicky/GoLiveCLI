@@ -171,6 +171,7 @@ const HomeScreen = ({navigation}) => {
               horizontal
               renderItem={({item}) => (
                 <TouchableOpacity
+                  activeOpacity={0.9}
                   onPress={() =>
                     navigation.navigate('Play', {
                       playserver: playserver,
@@ -214,6 +215,7 @@ const HomeScreen = ({navigation}) => {
               horizontal
               renderItem={({item}) => (
                 <TouchableOpacity
+                  activeOpacity={0.9}
                   onPress={() =>
                     navigation.navigate('Play', {
                       playserver: playserver,
@@ -257,6 +259,7 @@ const HomeScreen = ({navigation}) => {
               horizontal
               renderItem={({item}) => (
                 <TouchableOpacity
+                  activeOpacity={0.9}
                   onPress={() =>
                     navigation.navigate('Play', {
                       playserver: playserver,

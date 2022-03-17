@@ -13,6 +13,7 @@ import {
   VStack,
   Text,
   HStack,
+  Heading,
   Input,
   Select,
   KeyboardAvoidingView,
@@ -28,9 +29,13 @@ const StreamFormScreen = ({navigation}) => {
   const [category, setCategory] = useState('');
   const [streamTitle, setStreamTitle] = useState('');
 
-  const handleChange = text => {
-    setSearchValue(text);
-  };
+  // Example: "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
+  const [playserver, setPlayserver] = useState(vPath);
+  // Example: "rtmp://4.tcp.ngrok.io:13824/live/"
+  const [pushserver, setPushserver] = useState(sPath);
+
+  const [stream, setStream] = useState('STREAM_NAME');
+
   return (
     <Box flex={1} bg="#1F1F1f">
       <SafeAreaView style={{padding: 10}}>
@@ -51,10 +56,10 @@ const StreamFormScreen = ({navigation}) => {
                 />
               </HStack>
 
-              <Box w="100%" h={60} px={4} justifyContent="center">
-                <Text fontSize="16" color="#fff">
+              <Box w="100%" h={60} ml={3.5} justifyContent="center">
+                <Heading size="2xl" color="#F5F4F4">
                   Create a Stream
-                </Text>
+                </Heading>
               </Box>
 
               <Text color="#CCC" ml={2.5} mb={1} alignSelf="flex-start">
@@ -100,34 +105,70 @@ const StreamFormScreen = ({navigation}) => {
                 <Select.Item
                   _text={{color: '#F5F4F4'}}
                   _pressed={{background: '#1F1F1F'}}
-                  label="UX Research"
-                  value="ux"
+                  label="Art"
+                  value="Art"
                 />
                 <Select.Item
                   _text={{color: '#F5F4F4'}}
                   _pressed={{background: '#1F1F1F'}}
-                  label="Web Development"
-                  value="web"
+                  label="Beauty"
+                  value="Beauty"
                 />
                 <Select.Item
                   _text={{color: '#F5F4F4'}}
                   _pressed={{background: '#1F1F1F'}}
-                  label="Cross Platform Development"
-                  value="cross"
+                  label="Chatting"
+                  value="Chatting"
                 />
                 <Select.Item
                   _text={{color: '#F5F4F4'}}
                   _pressed={{background: '#1F1F1F'}}
-                  label="UI Designing"
-                  value="ui"
+                  label="Education"
+                  value="Education"
                 />
                 <Select.Item
                   _text={{color: '#F5F4F4'}}
                   _pressed={{background: '#1F1F1F'}}
-                  label="Backend Development"
-                  value="backend"
+                  label="Gaming"
+                  value="Gaming"
+                />
+                <Select.Item
+                  _text={{color: '#F5F4F4'}}
+                  _pressed={{background: '#1F1F1F'}}
+                  label="Music"
+                  value="Music"
+                />
+                <Select.Item
+                  _text={{color: '#F5F4F4'}}
+                  _pressed={{background: '#1F1F1F'}}
+                  label="Sports"
+                  value="Sports"
+                />
+                <Select.Item
+                  _text={{color: '#F5F4F4'}}
+                  _pressed={{background: '#1F1F1F'}}
+                  label="Vlogs"
+                  value="Vlogs"
                 />
               </Select>
+
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('Push', {
+                    pushserver: pushserver,
+                    stream: stream,
+                  })
+                }>
+                <Box w="95%" bg="#35C280" borderRadius={10} p={3}>
+                  <Text
+                    fontSize="md"
+                    fontWeight={'medium'}
+                    color="#fff"
+                    alignSelf="center">
+                    Start Streaming
+                  </Text>
+                </Box>
+              </TouchableOpacity>
             </VStack>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>

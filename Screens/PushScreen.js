@@ -71,7 +71,7 @@ const StreamContent = props => {
         }}
       />
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={() => {
           playerRef.start();
         }}>
@@ -87,7 +87,7 @@ const StreamContent = props => {
           }}>
           <Text style={{color: '#fff', fontSize: 16}}>Start Streaming</Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };
