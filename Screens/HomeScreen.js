@@ -8,7 +8,7 @@ import {
   FlatList,
   ScrollView,
 } from 'react-native';
-import {VStack, Text, Heading, HStack, Center} from 'native-base';
+import {VStack, Text, Heading, HStack, Center, Box} from 'native-base';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Logo from '../assets/Logo.png';
 import Video from '../components/Video';
@@ -25,7 +25,7 @@ const Data = [
   },
   {
     id: 2,
-    streamName: 'Rebirth Resurgence Quads ',
+    streamName: 'Rebirth Resurgence Quads',
     streamerName: 'llamaLicker25',
     views: '652K',
     image: require('../assets/warzone3.jpg'),
@@ -58,12 +58,7 @@ const HomeScreen = ({navigation}) => {
 
   //Going to move up like nav bar
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#1F1F1F',
-        zIndex: 1,
-      }}>
+    <Box flex={1} bg="#1F1F1F" zIndex={1}>
       <SafeAreaView style={{paddingBottom: 50}}>
         <StatusBar
           animated={true}
@@ -169,24 +164,30 @@ const HomeScreen = ({navigation}) => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={item => item.id}
               horizontal
-              renderItem={({item}) => (
-                <TouchableOpacity
-                  activeOpacity={0.9}
-                  onPress={() =>
-                    navigation.navigate('Play', {
-                      playserver: playserver,
-                      stream: stream,
-                    })
-                  }>
-                  <Video
-                    width={width}
-                    streamName={item.streamName}
-                    streamerName={item.streamerName}
-                    views={item.views}
-                    image={item.image}
-                  />
-                </TouchableOpacity>
-              )}
+              renderItem={({item}) => {
+                var randomColor = Math.floor(Math.random() * 16777215).toString(
+                  16,
+                );
+                return (
+                  <TouchableOpacity
+                    activeOpacity={0.9}
+                    onPress={() =>
+                      navigation.navigate('Play', {
+                        playserver: playserver,
+                        stream: stream,
+                      })
+                    }>
+                    <Video
+                      width={width}
+                      streamName={item.streamName}
+                      streamerName={item.streamerName}
+                      views={item.views}
+                      image={item.image}
+                      bgColor={randomColor}
+                    />
+                  </TouchableOpacity>
+                );
+              }}
             />
             <HStack
               justifyContent={'space-between'}
@@ -213,24 +214,30 @@ const HomeScreen = ({navigation}) => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={item => item.id}
               horizontal
-              renderItem={({item}) => (
-                <TouchableOpacity
-                  activeOpacity={0.9}
-                  onPress={() =>
-                    navigation.navigate('Play', {
-                      playserver: playserver,
-                      stream: stream,
-                    })
-                  }>
-                  <Video
-                    width={width}
-                    streamName={item.streamName}
-                    streamerName={item.streamerName}
-                    views={item.views}
-                    image={item.image}
-                  />
-                </TouchableOpacity>
-              )}
+              renderItem={({item}) => {
+                var randomColor = Math.floor(Math.random() * 16777215).toString(
+                  16,
+                );
+                return (
+                  <TouchableOpacity
+                    activeOpacity={0.9}
+                    onPress={() =>
+                      navigation.navigate('Play', {
+                        playserver: playserver,
+                        stream: stream,
+                      })
+                    }>
+                    <Video
+                      width={width}
+                      streamName={item.streamName}
+                      streamerName={item.streamerName}
+                      views={item.views}
+                      image={item.image}
+                      bgColor={randomColor}
+                    />
+                  </TouchableOpacity>
+                );
+              }}
             />
             <HStack
               justifyContent={'space-between'}
@@ -257,30 +264,36 @@ const HomeScreen = ({navigation}) => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={item => item.id}
               horizontal
-              renderItem={({item}) => (
-                <TouchableOpacity
-                  activeOpacity={0.9}
-                  onPress={() =>
-                    navigation.navigate('Play', {
-                      playserver: playserver,
-                      stream: stream,
-                    })
-                  }>
-                  <Video
-                    width={width}
-                    streamName={item.streamName}
-                    streamerName={item.streamerName}
-                    views={item.views}
-                    image={item.image}
-                  />
-                </TouchableOpacity>
-              )}
+              renderItem={({item}) => {
+                var randomColor = Math.floor(Math.random() * 16777215).toString(
+                  16,
+                );
+                return (
+                  <TouchableOpacity
+                    activeOpacity={0.9}
+                    onPress={() =>
+                      navigation.navigate('Play', {
+                        playserver: playserver,
+                        stream: stream,
+                      })
+                    }>
+                    <Video
+                      width={width}
+                      streamName={item.streamName}
+                      streamerName={item.streamerName}
+                      views={item.views}
+                      image={item.image}
+                      bgColor={randomColor}
+                    />
+                  </TouchableOpacity>
+                );
+              }}
             />
-            <Center height={100} />
+            <Center height={140} />
           </ScrollView>
         </VStack>
       </SafeAreaView>
-    </View>
+    </Box>
   );
 };
 

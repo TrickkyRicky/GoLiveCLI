@@ -70,6 +70,20 @@ const Data = [
     views: '6K',
     image: require('../assets/warzone4.jpg'),
   },
+  {
+    id: 9,
+    streamName: 'Come Chill Out',
+    streamerName: 'llamaLicker25',
+    views: '295K',
+    image: require('../assets/warzone.jpg'),
+  },
+  {
+    id: 10,
+    streamName: 'Warzone Live',
+    streamerName: 'llamaLicker25',
+    views: '6K',
+    image: require('../assets/warzone2.jpg'),
+  },
 ];
 
 const width = Dimensions.get('window').width;
@@ -153,7 +167,7 @@ const DiscoverScreen = ({navigation}) => {
 
               const scale = scrollY.interpolate({
                 inputRange,
-                outputRange: [1, 1, 1, 0],
+                outputRange: [1, 1, 1, 0.5], //change this for scale
               });
 
               const opacity = scrollY.interpolate({

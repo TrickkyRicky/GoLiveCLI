@@ -36,7 +36,13 @@ const StreamScreen = ({navigation}) => {
             </Box>
           </TouchableOpacity>
 
-          <Text color="#CCC" fontSize={9} px={2} mb={20} width={'100%'}>
+          <Text
+            color="#CCC"
+            fontSize={9}
+            px={2}
+            mb={20}
+            width={'95%'}
+            alignSelf="center">
             By starting a live stream, you agree to the{' '}
             <Text onPress={() => null} color="#35C280" fontSize={9}>
               GoLive Community Guidelines

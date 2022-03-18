@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   Box,
@@ -16,6 +16,7 @@ import {
   Heading,
   Input,
   Select,
+  FormControl,
   KeyboardAvoidingView,
 } from 'native-base';
 import DiscoverVideo from '../components/DiscoverVideo';
@@ -35,6 +36,10 @@ const StreamFormScreen = ({navigation}) => {
   const [pushserver, setPushserver] = useState(sPath);
 
   const [stream, setStream] = useState('STREAM_NAME');
+
+  useEffect(() => {
+    console.log(`\nstreamTitle: ${streamTitle} \ncategory: ${category}`);
+  }, [streamTitle]);
 
   return (
     <Box flex={1} bg="#1F1F1f">
@@ -62,95 +67,95 @@ const StreamFormScreen = ({navigation}) => {
                 </Heading>
               </Box>
 
-              <Text color="#CCC" ml={2.5} mb={1} alignSelf="flex-start">
-                Stream Title
-              </Text>
-              <Input
-                mb={3}
-                placeholder="Title"
-                bg="#414141"
-                borderColor="#414141"
-                color="#CCC"
-                fontSize="sm"
-                borderRadius={10}
-                w={'95%'}
-                onChangeText={text => setStreamTitle(text)}
-                value={streamTitle}
-                // maxWidth="300px"
-                // InputLeftElement={
-                //   <Icon
-                //     name="search1"
-                //     size={15}
-                //     color="#CCC"
-                //     style={{marginLeft: 15}}
-                //   />
-                // }
-              />
+              <FormControl alignItems="center">
+                <Text color="#CCC" ml={2.5} mb={1} alignSelf="flex-start">
+                  Stream Title
+                </Text>
+                <Input
+                  isRequired
+                  mb={3}
+                  placeholder="Title"
+                  bg="#414141"
+                  borderColor="#414141"
+                  color="#CCC"
+                  fontSize="sm"
+                  borderRadius={10}
+                  w={'95%'}
+                  h={10}
+                  onChangeText={text => setStreamTitle(text)}
+                  value={streamTitle}
+                />
 
-              <Text color="#CCC" ml={2.5} mb={1} alignSelf="flex-start">
-                Category
-              </Text>
-              <Select
-                mb={3}
-                w={'95%'}
-                placeholder="Choose Category"
-                bg="#414141"
-                fontSize="sm"
-                color="#F5F4F4"
-                borderColor="#414141"
-                borderRadius={10}
-                _actionSheetContent={{backgroundColor: '#414141'}}
-                selectedValue={category}
-                onValueChange={selectedItem => setCategory(selectedItem)}>
-                <Select.Item
-                  _text={{color: '#F5F4F4'}}
-                  _pressed={{background: '#1F1F1F'}}
-                  label="Art"
-                  value="Art"
-                />
-                <Select.Item
-                  _text={{color: '#F5F4F4'}}
-                  _pressed={{background: '#1F1F1F'}}
-                  label="Beauty"
-                  value="Beauty"
-                />
-                <Select.Item
-                  _text={{color: '#F5F4F4'}}
-                  _pressed={{background: '#1F1F1F'}}
-                  label="Chatting"
-                  value="Chatting"
-                />
-                <Select.Item
-                  _text={{color: '#F5F4F4'}}
-                  _pressed={{background: '#1F1F1F'}}
-                  label="Education"
-                  value="Education"
-                />
-                <Select.Item
-                  _text={{color: '#F5F4F4'}}
-                  _pressed={{background: '#1F1F1F'}}
-                  label="Gaming"
-                  value="Gaming"
-                />
-                <Select.Item
-                  _text={{color: '#F5F4F4'}}
-                  _pressed={{background: '#1F1F1F'}}
-                  label="Music"
-                  value="Music"
-                />
-                <Select.Item
-                  _text={{color: '#F5F4F4'}}
-                  _pressed={{background: '#1F1F1F'}}
-                  label="Sports"
-                  value="Sports"
-                />
-                <Select.Item
-                  _text={{color: '#F5F4F4'}}
-                  _pressed={{background: '#1F1F1F'}}
-                  label="Vlogs"
-                  value="Vlogs"
-                />
-              </Select>
+                <Text color="#CCC" ml={2.5} mb={1} alignSelf="flex-start">
+                  Category
+                </Text>
+                <Select
+                  isRequired
+                  w={'95%'}
+                  h={10}
+                  placeholder="Choose Category"
+                  bg="#414141"
+                  fontSize="sm"
+                  color="#F5F4F4"
+                  borderColor="#414141"
+                  borderRadius={10}
+                  _actionSheetContent={{backgroundColor: '#414141'}}
+                  selectedValue={category}
+                  onValueChange={selectedItem => setCategory(selectedItem)}>
+                  <Select.Item
+                    _text={{color: '#F5F4F4'}}
+                    _pressed={{background: '#1F1F1F'}}
+                    label="Art"
+                    value="Art"
+                  />
+                  <Select.Item
+                    _text={{color: '#F5F4F4'}}
+                    _pressed={{background: '#1F1F1F'}}
+                    label="Beauty"
+                    value="Beauty"
+                  />
+                  <Select.Item
+                    _text={{color: '#F5F4F4'}}
+                    _pressed={{background: '#1F1F1F'}}
+                    label="Chatting"
+                    value="Chatting"
+                  />
+                  <Select.Item
+                    _text={{color: '#F5F4F4'}}
+                    _pressed={{background: '#1F1F1F'}}
+                    label="Education"
+                    value="Education"
+                  />
+                  <Select.Item
+                    _text={{color: '#F5F4F4'}}
+                    _pressed={{background: '#1F1F1F'}}
+                    label="Gaming"
+                    value="Gaming"
+                  />
+                  <Select.Item
+                    _text={{color: '#F5F4F4'}}
+                    _pressed={{background: '#1F1F1F'}}
+                    label="Music"
+                    value="Music"
+                  />
+                  <Select.Item
+                    _text={{color: '#F5F4F4'}}
+                    _pressed={{background: '#1F1F1F'}}
+                    label="Sports"
+                    value="Sports"
+                  />
+                  <Select.Item
+                    _text={{color: '#F5F4F4'}}
+                    _pressed={{background: '#1F1F1F'}}
+                    label="Vlogs"
+                    value="Vlogs"
+                  />
+                </Select>
+                <FormControl.ErrorMessage
+                  leftIcon={<Icon name="warning" color="#dc2626" size={20} />}>
+                  Please make a selection!
+                </FormControl.ErrorMessage>
+              </FormControl>
 
               <TouchableOpacity
                 onPress={() =>
@@ -159,7 +164,7 @@ const StreamFormScreen = ({navigation}) => {
                     stream: stream,
                   })
                 }>
-                <Box w="95%" bg="#35C280" borderRadius={10} p={3}>
+                <Box w="95%" bg="#35C280" borderRadius={10} mt={5} p={3}>
                   <Text
                     fontSize="md"
                     fontWeight={'medium'}

@@ -2,39 +2,55 @@ import {Text, Box, Image, HStack, VStack, Center} from 'native-base';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Video = ({width, streamName, streamerName, views, image}) => {
+const Video = ({width, streamName, streamerName, views, image, bgColor}) => {
   return (
-    <Box
-      borderRadius={10}
-      bg="#323432"
-      width={width * 0.75}
-      my={2}
-      mx={2}
-      alignSelf="center">
+    <Box borderRadius={10} width={width * 0.7} m={2}>
       <Image
         source={image}
         alt="stream image"
-        height={150}
+        height={160}
         width={width}
-        borderTopLeftRadius={10}
-        borderTopRightRadius={10}
+        borderRadius={5}
         style={{resizeMode: 'cover'}}
       />
 
-      <HStack
-        py="2"
-        px="3.5"
-        justifyContent="space-between"
-        alignItems="center">
+      <Box
+        bg="#000"
+        opacity={0.7}
+        width="25%"
+        h={6}
+        borderRadius={30}
+        position="absolute"
+        bottom={16}
+        left={3}>
+        <HStack
+          p={1}
+          space={1}
+          ml={1}
+          alignItems="center"
+          justifyContent="center">
+          <Icon name="eye" size={14} color="#CCC" />
+          <Text fontSize="xs" color="#CCC">
+            {views}
+          </Text>
+        </HStack>
+      </Box>
+
+      <HStack py="2" justifyContent="space-between" alignItems="center">
         <HStack>
-          <Center bg="#35C280" width={10} height={10} borderRadius={100} />
+          <Center
+            bg={`#${bgColor}`}
+            width={10}
+            height={10}
+            borderRadius={100}
+          />
           <VStack ml={2}>
             <Text
               color="#fff"
               fontSize="sm"
               fontWeight="bold"
               isTruncated={true}
-              width={width * 0.4}>
+              width={width * 0.55}>
               {streamName}
             </Text>
             <Text
@@ -42,17 +58,10 @@ const Video = ({width, streamName, streamerName, views, image}) => {
               fontSize="xs"
               fontWeight="light"
               isTruncated={true}
-              width={width * 0.4}>
+              width={width * 0.55}>
               {streamerName}
             </Text>
           </VStack>
-        </HStack>
-
-        <HStack justifyContent="center" alignItems="center" sapce={5}>
-          <Icon name="eye" size={15} color="#CCC" />
-          <Text ml={1} color="#fff">
-            {views}
-          </Text>
         </HStack>
       </HStack>
     </Box>
