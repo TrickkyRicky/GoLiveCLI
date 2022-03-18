@@ -21,6 +21,7 @@ import DiscoverScreen from './Screens/DiscoverScreen';
 import StreamScreen from './Screens/StreamScreen';
 import StreamFormScreen from './Screens/StreamFormScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import 'react-native-reanimated';
 
 const width = Dimensions.get('window').width;
 

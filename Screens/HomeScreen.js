@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {
   Image,
-  View,
   Dimensions,
   StatusBar,
   TouchableOpacity,
@@ -14,6 +13,8 @@ import Logo from '../assets/Logo.png';
 import Video from '../components/Video';
 // remember to create this file for you dev env.
 import {sPath, vPath} from '../utility/dev';
+
+import {MotiView} from 'moti';
 
 const Data = [
   {
@@ -62,21 +63,24 @@ const HomeScreen = ({navigation}) => {
       <SafeAreaView style={{paddingBottom: 50}}>
         <StatusBar
           animated={true}
-          backgroundColor="#61dafb"
           barStyle={'light-content'}
           showHideTransition={'fade'}
           hidden={false}
         />
-        <VStack>
-          <Image
-            source={Logo}
-            alt="logo"
-            style={{
-              alignSelf: 'center',
-              transform: [{scale: 0.8}],
-            }}
-          />
-          {/* <Text style={{color: '#fff', fontSize: 18}}>
+        <MotiView
+          from={{opacity: 0}}
+          animate={{opacity: 1}}
+          transition={{type: 'timing'}}>
+          <VStack>
+            <Image
+              source={Logo}
+              alt="logo"
+              style={{
+                alignSelf: 'center',
+                transform: [{scale: 0.8}],
+              }}
+            />
+            {/* <Text style={{color: '#fff', fontSize: 18}}>
                 Please enter a stream name
               </Text>
               <View
@@ -96,7 +100,7 @@ const HomeScreen = ({navigation}) => {
                   onChangeText={stream => setStream(stream)}
                 />
               </View> */}
-          {/* <View
+            {/* <View
             style={{
               flexDirection: 'row',
               justifyContent: 'space-around',
@@ -138,160 +142,163 @@ const HomeScreen = ({navigation}) => {
               </View>
             </TouchableOpacity>
           </View> */}
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <HStack
-              justifyContent={'space-between'}
-              alignItems="flex-end"
-              mt={3}
-              px={3}>
-              <Heading size="lg" color="#F5F4F4">
-                Streams
-              </Heading>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('Discover', {
-                    width: width,
-                  })
-                }>
-                <Text color="#F5F4F4" fontSize="md">
-                  See More
-                </Text>
-              </TouchableOpacity>
-            </HStack>
 
-            <FlatList
-              data={Data}
-              showsHorizontalScrollIndicator={false}
-              keyExtractor={item => item.id}
-              horizontal
-              renderItem={({item}) => {
-                var randomColor = Math.floor(Math.random() * 16777215).toString(
-                  16,
-                );
-                return (
-                  <TouchableOpacity
-                    activeOpacity={0.9}
-                    onPress={() =>
-                      navigation.navigate('Play', {
-                        playserver: playserver,
-                        stream: stream,
-                      })
-                    }>
-                    <Video
-                      width={width}
-                      streamName={item.streamName}
-                      streamerName={item.streamerName}
-                      views={item.views}
-                      image={item.image}
-                      bgColor={randomColor}
-                    />
-                  </TouchableOpacity>
-                );
-              }}
-            />
-            <HStack
-              justifyContent={'space-between'}
-              alignItems="flex-end"
-              mt={3}
-              px={3}>
-              <Heading size="lg" color="#F5F4F4">
-                Videos
-              </Heading>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('Discover', {
-                    width: width,
-                  })
-                }>
-                <Text color="#F5F4F4" fontSize="md">
-                  See More
-                </Text>
-              </TouchableOpacity>
-            </HStack>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <HStack
+                justifyContent={'space-between'}
+                alignItems="flex-end"
+                mt={3}
+                px={3}>
+                <Heading size="lg" color="#F5F4F4">
+                  Streams
+                </Heading>
 
-            <FlatList
-              data={Data}
-              showsHorizontalScrollIndicator={false}
-              keyExtractor={item => item.id}
-              horizontal
-              renderItem={({item}) => {
-                var randomColor = Math.floor(Math.random() * 16777215).toString(
-                  16,
-                );
-                return (
-                  <TouchableOpacity
-                    activeOpacity={0.9}
-                    onPress={() =>
-                      navigation.navigate('Play', {
-                        playserver: playserver,
-                        stream: stream,
-                      })
-                    }>
-                    <Video
-                      width={width}
-                      streamName={item.streamName}
-                      streamerName={item.streamerName}
-                      views={item.views}
-                      image={item.image}
-                      bgColor={randomColor}
-                    />
-                  </TouchableOpacity>
-                );
-              }}
-            />
-            <HStack
-              justifyContent={'space-between'}
-              alignItems="flex-end"
-              mt={3}
-              px={3}>
-              <Heading size="lg" color="#F5F4F4">
-                Clips
-              </Heading>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('Discover', {
-                    width: width,
-                  })
-                }>
-                <Text color="#F5F4F4" fontSize="md">
-                  See More
-                </Text>
-              </TouchableOpacity>
-            </HStack>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Discover', {
+                      width: width,
+                    })
+                  }>
+                  <Text color="#F5F4F4" fontSize="md">
+                    See More
+                  </Text>
+                </TouchableOpacity>
+              </HStack>
 
-            <FlatList
-              data={Data}
-              showsHorizontalScrollIndicator={false}
-              keyExtractor={item => item.id}
-              horizontal
-              renderItem={({item}) => {
-                var randomColor = Math.floor(Math.random() * 16777215).toString(
-                  16,
-                );
-                return (
-                  <TouchableOpacity
-                    activeOpacity={0.9}
-                    onPress={() =>
-                      navigation.navigate('Play', {
-                        playserver: playserver,
-                        stream: stream,
-                      })
-                    }>
-                    <Video
-                      width={width}
-                      streamName={item.streamName}
-                      streamerName={item.streamerName}
-                      views={item.views}
-                      image={item.image}
-                      bgColor={randomColor}
-                    />
-                  </TouchableOpacity>
-                );
-              }}
-            />
-            <Center height={140} />
-          </ScrollView>
-        </VStack>
+              <FlatList
+                data={Data}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.id}
+                horizontal
+                renderItem={({item}) => {
+                  var randomColor = Math.floor(
+                    Math.random() * 16777215,
+                  ).toString(16);
+                  return (
+                    <TouchableOpacity
+                      activeOpacity={0.9}
+                      onPress={() =>
+                        navigation.navigate('Play', {
+                          playserver: playserver,
+                          stream: stream,
+                        })
+                      }>
+                      <Video
+                        width={width}
+                        streamName={item.streamName}
+                        streamerName={item.streamerName}
+                        views={item.views}
+                        image={item.image}
+                        bgColor={randomColor}
+                      />
+                    </TouchableOpacity>
+                  );
+                }}
+              />
+              <HStack
+                justifyContent={'space-between'}
+                alignItems="flex-end"
+                mt={3}
+                px={3}>
+                <Heading size="lg" color="#F5F4F4">
+                  Videos
+                </Heading>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Discover', {
+                      width: width,
+                    })
+                  }>
+                  <Text color="#F5F4F4" fontSize="md">
+                    See More
+                  </Text>
+                </TouchableOpacity>
+              </HStack>
+
+              <FlatList
+                data={Data}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.id}
+                horizontal
+                renderItem={({item}) => {
+                  var randomColor = Math.floor(
+                    Math.random() * 16777215,
+                  ).toString(16);
+                  return (
+                    <TouchableOpacity
+                      activeOpacity={0.9}
+                      onPress={() =>
+                        navigation.navigate('Play', {
+                          playserver: playserver,
+                          stream: stream,
+                        })
+                      }>
+                      <Video
+                        width={width}
+                        streamName={item.streamName}
+                        streamerName={item.streamerName}
+                        views={item.views}
+                        image={item.image}
+                        bgColor={randomColor}
+                      />
+                    </TouchableOpacity>
+                  );
+                }}
+              />
+              <HStack
+                justifyContent={'space-between'}
+                alignItems="flex-end"
+                mt={3}
+                px={3}>
+                <Heading size="lg" color="#F5F4F4">
+                  Clips
+                </Heading>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Discover', {
+                      width: width,
+                    })
+                  }>
+                  <Text color="#F5F4F4" fontSize="md">
+                    See More
+                  </Text>
+                </TouchableOpacity>
+              </HStack>
+
+              <FlatList
+                data={Data}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.id}
+                horizontal
+                renderItem={({item}) => {
+                  var randomColor = Math.floor(
+                    Math.random() * 16777215,
+                  ).toString(16);
+                  return (
+                    <TouchableOpacity
+                      activeOpacity={0.9}
+                      onPress={() =>
+                        navigation.navigate('Play', {
+                          playserver: playserver,
+                          stream: stream,
+                        })
+                      }>
+                      <Video
+                        width={width}
+                        streamName={item.streamName}
+                        streamerName={item.streamerName}
+                        views={item.views}
+                        image={item.image}
+                        bgColor={randomColor}
+                      />
+                    </TouchableOpacity>
+                  );
+                }}
+              />
+              <Center height={140} />
+            </ScrollView>
+          </VStack>
+        </MotiView>
       </SafeAreaView>
     </Box>
   );
