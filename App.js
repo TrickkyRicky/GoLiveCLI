@@ -100,14 +100,14 @@ const TabNavigator = () => {
             position: 'absolute',
             bottom: 25,
             left: 0,
-            backgroundColor: '#323432',
+            backgroundColor: '#495057',
             border: 'none',
             borderWidth: 0,
             borderTopWidth: 0,
             height: 50,
             width: width * 0.9,
             marginLeft: 20,
-            borderRadius: 30,
+            borderRadius: 10,
           },
 
           tabBarIcon: ({focused, color, size}) => {

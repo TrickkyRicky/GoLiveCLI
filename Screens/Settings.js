@@ -8,7 +8,7 @@ import Icon2 from 'react-native-vector-icons/Ionicons';
 
 const Settings = () => {
   return (
-    <VStack bg="#1f1f1f" flex={1}>
+    <VStack bg="#212529" flex={1}>
       <SafeAreaView>
         <ScrollView
           showsVerticalScrollIndicator={false}

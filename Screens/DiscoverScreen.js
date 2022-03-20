@@ -103,7 +103,7 @@ const DiscoverScreen = ({navigation}) => {
   const [stream, setStream] = useState('STREAM_NAME');
 
   return (
-    <Box flex={1} bg="#1F1F1f">
+    <Box flex={1} bg="#212529">
       <SafeAreaView style={{padding: 10}}>
         <VStack>
           <HStack
