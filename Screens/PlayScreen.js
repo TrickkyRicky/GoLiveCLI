@@ -4,7 +4,8 @@ import {Box, HStack, Text, VStack, Center} from 'native-base';
 import {NodePlayerView} from 'react-native-nodemediaclient';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/AntDesign';
-
+import ShareIcon from 'react-native-vector-icons/Ionicons';
+import Share from 'react-native-share';
 import {MotiView, AnimatePresence} from 'moti';
 
 const PlayStream = props => {
@@ -18,6 +19,19 @@ const PlayStream = props => {
       if (playerRef) playerRef.stop();
     };
   }, []);
+
+  const shareTest = async () => {
+    const shareOptions = {
+      message: 'This is the sample test message.',
+    };
+
+    try {
+      const ShareResponse = await Share.open(shareOptions);
+      console.log(JSON.stringify(ShareResponse));
+    } catch (error) {
+      console.log('Error => ', error);
+    }
+  };
 
   return (
     <Box flex={1} bg="#000">
@@ -74,11 +88,6 @@ const PlayStream = props => {
                     size={50}
                     color="#fff"
                     onPress={() => console.log('play button pressed')}
-                    // style={{
-                    //   position: 'absolute',
-                    //   top: '50%',
-                    //   left: '50%',
-                    // }}
                   />
                 </MotiView>
               ) : null}
@@ -115,6 +124,12 @@ const PlayStream = props => {
                     {streamerName}
                   </Text>
                 </VStack>
+                <ShareIcon
+                  name="ios-share-outline"
+                  size={30}
+                  color="#35C280"
+                  onPress={() => shareTest()}
+                />
               </HStack>
             </HStack>
           </VStack>
