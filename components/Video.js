@@ -104,8 +104,6 @@ const Video = ({width, streamName, streamerName, views, image, bgColor}) => {
 
           <Actionsheet.Item
             onPress={() => onClose()}
-            // bg="coolGreay.500"
-            // w="90%"
             justifyContent="center"
             _pressed={{background: '#212529'}}>
             <Text color="#DEE2E6" fontWeight={800} fontSize="md">

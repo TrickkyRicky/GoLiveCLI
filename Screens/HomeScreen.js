@@ -27,7 +27,7 @@ const Data = [
   },
   {
     id: 2,
-    streamName: 'Rebirth Resurgence Quads gdfvbngsgnvhfgdtradgn',
+    streamName: 'Rebirth Resurgence Quads',
     streamerName: 'llamaLicker25',
     views: '652K',
     image: require('../assets/warzone3.jpg'),
@@ -93,7 +93,6 @@ const HomeScreen = ({navigation}) => {
 
   const [stream, setStream] = useState('STREAM_NAME');
 
-  //Going to move up like nav bar
   return (
     <Box flex={1} bg="#212529" zIndex={1}>
       <SafeAreaView style={{paddingBottom: 50}}>
@@ -117,7 +116,7 @@ const HomeScreen = ({navigation}) => {
               }}
             />
             <ScrollView showsVerticalScrollIndicator={false}>
-              <Heading color="#F5F4F4" size="2xl" px="3" mb={2}>
+              <Heading color="#E9ECEF" size="2xl" px="3" mb={5}>
                 Browse
               </Heading>
 
@@ -126,11 +125,11 @@ const HomeScreen = ({navigation}) => {
                 showsHorizontalScrollIndicator={false}
                 horizontal
                 keyExtractor={item => item.id}
+                ListHeaderComponent={<Box width={4}></Box>}
                 renderItem={({item}) => {
                   return (
                     <TouchableOpacity
                       activeOpacity={0.4}
-                      style={{marginLeft: 10}}
                       onPress={() =>
                         navigation.navigate('Discover', {
                           width: width,
@@ -138,10 +137,10 @@ const HomeScreen = ({navigation}) => {
                       }>
                       <Box
                         w={width * 0.23}
-                        h={7}
+                        h={8}
                         bg="#495057"
                         borderRadius={12}
-                        mr={0.5}
+                        mr={2.5}
                         justifyContent="center"
                         alignItems="center">
                         <Text color="#fff" fontSize="sm" fontWeight="bold">
@@ -195,6 +194,10 @@ const HomeScreen = ({navigation}) => {
                         navigation.navigate('Play', {
                           playserver: playserver,
                           stream: stream,
+                          streamName: item.streamName,
+                          streamerName: item.streamerName,
+                          bgColor: randomColor,
+                          width: width,
                         })
                       }>
                       <Video

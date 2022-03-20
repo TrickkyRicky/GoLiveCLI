@@ -62,7 +62,7 @@ const StreamFormScreen = ({navigation}) => {
               </HStack>
 
               <Box w="100%" h={60} ml={3.5} justifyContent="center">
-                <Heading size="2xl" color="#F5F4F4">
+                <Heading size="2xl" color="#E9ECEF">
                   Create a Stream
                 </Heading>
               </Box>

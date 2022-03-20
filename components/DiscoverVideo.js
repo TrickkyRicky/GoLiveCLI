@@ -6,7 +6,7 @@ const DiscoverVideo = ({width, streamName, streamerName, views, image}) => {
   return (
     <Box
       borderRadius={10}
-      bg="#323432"
+      bg="#343A40"
       width={width * 0.95}
       my={2}
       mx={2}

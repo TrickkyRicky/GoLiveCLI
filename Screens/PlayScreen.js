@@ -1,10 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {View, Button} from 'react-native';
+import {ScrollView, TouchableWithoutFeedback} from 'react-native';
+import {Box, HStack, Text, VStack, Center} from 'native-base';
 import {NodePlayerView} from 'react-native-nodemediaclient';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/AntDesign';
+
+import {MotiView, AnimatePresence} from 'moti';
 
 const PlayStream = props => {
   const [playerRef, setPlayerRef] = useState(null);
+  const [showControls, setShowControls] = useState(false);
+
+  const {streamName, streamerName, bgColor, width} = props.route.params;
 
   useEffect(() => {
     return () => {
@@ -13,27 +20,8 @@ const PlayStream = props => {
   }, []);
 
   return (
-    <View style={{flex: 1}}>
-      <NodePlayerView
-        style={{flex: 1, backgroundColor: '#1F1F1F'}}
-        ref={vp => {
-          setPlayerRef(vp);
-        }}
-        inputUrl={
-          props.route.params.playserver +
-          props.route.params.stream +
-          '/index.m3u8'
-        }
-        scaleMode={'ScaleAspectFill'}
-        bufferTime={300}
-        maxBufferTime={1000}
-        autoplay={true}
-        onStatus={(code, msg) => {
-          console.log('onStatus=' + code + ' msg=' + msg);
-        }}
-      />
-
-      <Icon
+    <Box flex={1} bg="#000">
+      {/* <Icon
         name="leftcircleo"
         size={30}
         onPress={() => {
@@ -47,8 +35,92 @@ const PlayStream = props => {
           left: 23,
           zIndex: 2,
         }}
-      />
-    </View>
+      /> */}
+      <SafeAreaView style={{paddingBottom: 50}}>
+        <TouchableWithoutFeedback
+          onPress={() => setShowControls(!showControls)}>
+          <Box h={'25%'}>
+            <NodePlayerView
+              style={{height: '100%', backgroundColor: '#1F1F1F'}}
+              // ref={vp => {
+              //   setPlayerRef(vp);
+              // }}
+              // inputUrl={
+              //   props.route.params.playserver +
+              //   props.route.params.stream +
+              //   '/index.m3u8'
+              // }
+              scaleMode={'ScaleAspectFill'}
+              bufferTime={300}
+              maxBufferTime={1000}
+              autoplay={true}
+              onStatus={(code, msg) => {
+                console.log('onStatus=' + code + ' msg=' + msg);
+              }}
+            />
+            <AnimatePresence>
+              {showControls ? (
+                <MotiView
+                  style={{
+                    position: 'absolute',
+                    top: '40%',
+                    left: '45%',
+                  }}
+                  from={{opacity: 0}}
+                  animate={{opacity: 1}}
+                  exit={{opacity: 0}}>
+                  <Icon
+                    name="play"
+                    size={50}
+                    color="#fff"
+                    onPress={() => console.log('play button pressed')}
+                    // style={{
+                    //   position: 'absolute',
+                    //   top: '50%',
+                    //   left: '50%',
+                    // }}
+                  />
+                </MotiView>
+              ) : null}
+            </AnimatePresence>
+          </Box>
+        </TouchableWithoutFeedback>
+        <ScrollView
+          style={{height: '100%', backgroundColor: '#212529'}}
+          showsVerticalScrollIndicator={false}>
+          <VStack p={2} mt={2}>
+            <HStack>
+              <Center
+                bg={`#${bgColor}`}
+                width={10}
+                height={10}
+                borderRadius={100}
+              />
+              <HStack>
+                <VStack ml={2} mr={3.5}>
+                  <Text
+                    color="#fff"
+                    fontSize="sm"
+                    fontWeight="bold"
+                    isTruncated={true}
+                    width={width * 0.5}>
+                    {streamName}
+                  </Text>
+                  <Text
+                    color="#fff"
+                    fontSize="xs"
+                    fontWeight="light"
+                    isTruncated={true}
+                    width={width * 0.5}>
+                    {streamerName}
+                  </Text>
+                </VStack>
+              </HStack>
+            </HStack>
+          </VStack>
+        </ScrollView>
+      </SafeAreaView>
+    </Box>
   );
 };
 

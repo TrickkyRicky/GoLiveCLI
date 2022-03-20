@@ -119,6 +119,7 @@ const DiscoverScreen = ({navigation}) => {
             />
 
             <Input
+              keyboardAppearance="dark"
               ml={5}
               placeholder="Search"
               bg="#495057"

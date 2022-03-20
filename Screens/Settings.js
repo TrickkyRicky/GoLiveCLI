@@ -51,19 +51,21 @@ const Settings = () => {
                     llamalicker25
                   </Text>
 
-                  <Box
-                    bg="#35C280"
-                    h={10}
-                    w={width * 0.35}
-                    borderRadius={30}
-                    justifyContent="center">
-                    <HStack justifyContent="center" alignItems="center">
-                      <Text color="#fff" fontSize="md" mr={2}>
-                        Edit Profile
-                      </Text>
-                      <Arrow name="right" size={17} color="#fff" />
-                    </HStack>
-                  </Box>
+                  <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
+                    <Box
+                      bg="#35C280"
+                      h={10}
+                      w={width * 0.35}
+                      borderRadius={30}
+                      justifyContent="center">
+                      <HStack justifyContent="center" alignItems="center">
+                        <Text color="#fff" fontSize="md" mr={2}>
+                          Edit Profile
+                        </Text>
+                        <Arrow name="right" size={17} color="#fff" />
+                      </HStack>
+                    </Box>
+                  </TouchableOpacity>
                 </VStack>
               </Box>
 
