@@ -100,7 +100,7 @@ const SplashScreen = ({navigation}) => {
       <Animated.View
         style={{
           flex: 1,
-          backgroundColor: '#1F1F1F',
+          backgroundColor: '#212529',
           zIndex: 2,
           transform: [{translateY: startAnimation}],
         }}>
@@ -138,7 +138,7 @@ const SplashScreen = ({navigation}) => {
           bottom: 0,
           left: 0,
           right: 0,
-          backgroundColor: '#1F1F1F',
+          backgroundColor: '#212529',
           padding: 10,
           paddingBottom: 30,
           zIndex: 1,

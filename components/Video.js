@@ -91,19 +91,21 @@ const Video = ({width, streamName, streamerName, views, image, bgColor}) => {
             startIcon={<Icon name="ban" size={30} color="#ef4444" />}
             _pressed={{background: '#212529'}}
             _text={{
-              color: 'red.500',
+              color: '#ef4444',
               fontWeight: 'bold',
             }}>{`Block ${streamerName}`}</Actionsheet.Item>
           <Actionsheet.Item
             startIcon={<Icon name="warning" size={27} color="#ef4444" />}
             _pressed={{background: '#212529'}}
             _text={{
-              color: 'red.500',
+              color: '#ef4444',
               fontWeight: 'bold',
             }}>{`Report ${streamerName}`}</Actionsheet.Item>
 
           <Actionsheet.Item
             onPress={() => onClose()}
+            // bg="coolGreay.500"
+            // w="90%"
             justifyContent="center"
             _pressed={{background: '#212529'}}>
             <Text color="#DEE2E6" fontWeight={800} fontSize="md">

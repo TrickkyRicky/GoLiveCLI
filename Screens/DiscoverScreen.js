@@ -121,8 +121,8 @@ const DiscoverScreen = ({navigation}) => {
             <Input
               ml={5}
               placeholder="Search"
-              bg="#414141"
-              borderColor="#414141"
+              bg="#495057"
+              borderColor="#495057"
               color="#CCC"
               fontSize="sm"
               borderRadius={10}

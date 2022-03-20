@@ -100,7 +100,7 @@ const TabNavigator = () => {
             position: 'absolute',
             bottom: 25,
             left: 0,
-            backgroundColor: '#495057',
+            backgroundColor: '#343A40',
             border: 'none',
             borderWidth: 0,
             borderTopWidth: 0,

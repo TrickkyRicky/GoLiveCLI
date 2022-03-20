@@ -170,7 +170,7 @@ const HomeScreen = ({navigation}) => {
                     })
                   }>
                   <HStack alignItems="center" justifyContent="center" space={1}>
-                    <Text color="#F5F4F4" fontSize="sm">
+                    <Text letterSpacing={1.5} color="#F5F4F4" fontSize="sm">
                       SEE ALL
                     </Text>
                     <Icon name="right" size={14} color="#CCC" />
@@ -226,7 +226,7 @@ const HomeScreen = ({navigation}) => {
                     })
                   }>
                   <HStack alignItems="center" justifyContent="center" space={1}>
-                    <Text color="#F5F4F4" fontSize="sm">
+                    <Text letterSpacing={1.5} color="#F5F4F4" fontSize="sm">
                       SEE ALL
                     </Text>
                     <Icon name="right" size={14} color="#CCC" />
@@ -282,7 +282,7 @@ const HomeScreen = ({navigation}) => {
                     })
                   }>
                   <HStack alignItems="center" justifyContent="center" space={1}>
-                    <Text color="#F5F4F4" fontSize="sm">
+                    <Text letterSpacing={1.5} color="#F5F4F4" fontSize="sm">
                       SEE ALL
                     </Text>
                     <Icon name="right" size={14} color="#CCC" />

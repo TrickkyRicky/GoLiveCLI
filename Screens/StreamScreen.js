@@ -7,7 +7,7 @@ const StreamScreen = ({navigation}) => {
   const [streamTitle, setStreamTitle] = useState('');
 
   return (
-    <Box bg="#1F1F1f" flex={1} justifyContent="flex-end">
+    <Box bg="#212529" flex={1} justifyContent="flex-end">
       <SafeAreaView>
         <VStack>
           <Center mb={75}>
@@ -23,7 +23,7 @@ const StreamScreen = ({navigation}) => {
 
           <TouchableOpacity onPress={() => navigation.navigate('Form')}>
             <Box
-              bg="#414141"
+              bg="#495057"
               p={3}
               // h={25}
               w={'90%'}

@@ -42,7 +42,7 @@ const StreamFormScreen = ({navigation}) => {
   }, [streamTitle]);
 
   return (
-    <Box flex={1} bg="#1F1F1f">
+    <Box flex={1} bg="#212529">
       <SafeAreaView style={{padding: 10}}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -54,7 +54,7 @@ const StreamFormScreen = ({navigation}) => {
                 justifyContent={'space-between'}
                 alignItems="center">
                 <Icon
-                  name="leftcircle"
+                  name="leftcircleo"
                   size={30}
                   color="#35C280"
                   onPress={() => navigation.goBack()}
@@ -68,17 +68,19 @@ const StreamFormScreen = ({navigation}) => {
               </Box>
 
               <FormControl alignItems="center">
-                <Text color="#CCC" ml={2.5} mb={1} alignSelf="flex-start">
+                <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
                   Stream Title
                 </Text>
                 <Input
                   isRequired
+                  keyboardAppearance="dark"
                   mb={3}
                   placeholder="Title"
-                  bg="#414141"
-                  borderColor="#414141"
-                  color="#CCC"
+                  bg="#343A40"
+                  borderColor="#343A40"
+                  color="#CED4DA"
                   fontSize="sm"
+                  fontWeight={600}
                   borderRadius={10}
                   w={'95%'}
                   h={10}
@@ -86,7 +88,7 @@ const StreamFormScreen = ({navigation}) => {
                   value={streamTitle}
                 />
 
-                <Text color="#CCC" ml={2.5} mb={1} alignSelf="flex-start">
+                <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
                   Category
                 </Text>
                 <Select
@@ -94,17 +96,18 @@ const StreamFormScreen = ({navigation}) => {
                   w={'95%'}
                   h={10}
                   placeholder="Choose Category"
-                  bg="#414141"
+                  bg="#343A40"
                   fontSize="sm"
-                  color="#F5F4F4"
-                  borderColor="#414141"
+                  fontWeight={600}
+                  color="#CED4DA"
+                  borderColor="#343A40"
                   borderRadius={10}
-                  _actionSheetContent={{backgroundColor: '#414141'}}
+                  _actionSheetContent={{backgroundColor: '#343A40'}}
                   selectedValue={category}
                   onValueChange={selectedItem => setCategory(selectedItem)}>
                   <Select.Item
                     _text={{color: '#F5F4F4'}}
-                    _pressed={{background: '#1F1F1F'}}
+                    _pressed={{background: '#212529'}}
                     label="Art"
                     value="Art"
                   />
