@@ -6,6 +6,16 @@
 	<string>GoLive requires access to your phone’s camera.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>GoLiverequires access to your phone’s Microphone.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>whatsapp</string>
+		<string>mailto</string>
+		<string>instagram</string>
+		<string>instagram-stories</string>
+		<string>fb</string>
+		<string>facebook-stories</string>
+		<string>messages</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

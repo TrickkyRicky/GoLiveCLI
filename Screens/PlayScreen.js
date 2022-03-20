@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView, TouchableWithoutFeedback} from 'react-native';
+import {ScrollView, TouchableWithoutFeedback, Share} from 'react-native';
 import {Box, HStack, Text, VStack, Center} from 'native-base';
 import {NodePlayerView} from 'react-native-nodemediaclient';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ShareIcon from 'react-native-vector-icons/Ionicons';
-import Share from 'react-native-share';
+// import Share from 'react-native-share';
 import {MotiView, AnimatePresence} from 'moti';
 
 const PlayStream = props => {
@@ -21,15 +21,21 @@ const PlayStream = props => {
   }, []);
 
   const shareTest = async () => {
-    const shareOptions = {
-      message: 'This is the sample test message.',
-    };
-
     try {
-      const ShareResponse = await Share.open(shareOptions);
-      console.log(JSON.stringify(ShareResponse));
+      const result = await Share.share({
+        message: 'Check out this livestream',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
     } catch (error) {
-      console.log('Error => ', error);
+      console.log(error);
     }
   };
 
