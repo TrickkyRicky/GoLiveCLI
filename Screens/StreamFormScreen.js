@@ -37,10 +37,6 @@ const StreamFormScreen = ({navigation}) => {
 
   const [stream, setStream] = useState('STREAM_NAME');
 
-  useEffect(() => {
-    console.log(`\nstreamTitle: ${streamTitle} \ncategory: ${category}`);
-  }, [streamTitle]);
-
   return (
     <Box flex={1} bg="#212529">
       <SafeAreaView style={{padding: 10}}>

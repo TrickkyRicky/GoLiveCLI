@@ -254,6 +254,10 @@ const HomeScreen = ({navigation}) => {
                         navigation.navigate('Play', {
                           playserver: playserver,
                           stream: stream,
+                          streamName: item.streamName,
+                          streamerName: item.streamerName,
+                          bgColor: randomColor,
+                          width: width,
                         })
                       }>
                       <Video
@@ -310,6 +314,10 @@ const HomeScreen = ({navigation}) => {
                         navigation.navigate('Play', {
                           playserver: playserver,
                           stream: stream,
+                          streamName: item.streamName,
+                          streamerName: item.streamerName,
+                          bgColor: randomColor,
+                          width: width,
                         })
                       }>
                       <Video

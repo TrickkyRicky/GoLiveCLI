@@ -1,4 +1,4 @@
-import {ScrollView, Dimensions, TouchableOpacity} from 'react-native';
+import {ScrollView, Dimensions, TouchableOpacity, Platform} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {
   HStack,
@@ -16,20 +16,50 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 import Arrow from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Ionicons';
+import FingerprintScanner from 'react-native-fingerprint-scanner';
 
 const width = Dimensions.get('window').width;
 
-const Settings = () => {
+const Settings = ({navigation}) => {
   const [useFaceID, setUseFaceID] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [typeOfBiometric, setTypeOfBiometric] = useState(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    console.log(`Username: ${username}`);
-    console.log(`Username: ${password}`);
-  }, [username, password]);
+    FingerprintScanner.isSensorAvailable()
+      .then(biometryType => {
+        setTypeOfBiometric(biometryType);
+      })
+      .catch(error => console.log('isSensorAvailable error => ', error));
+
+    showAuthenticationDialog = () => {
+      if (typeOfBiometric !== null && typeOfBiometric !== undefined) {
+        FingerprintScanner.authenticate({
+          description: getMessage(),
+        })
+          .then(() => {
+            //you can write your logic here to what will happen on successful authentication
+            console.log('successful signin');
+          })
+          .catch(error => {
+            console.log('Authentication error is => ', error);
+          });
+      } else {
+        console.log('biometric authentication is not available');
+      }
+    };
+  }, []);
+
+  const getMessage = () => {
+    if (typeOfBiometric == 'Face ID') {
+      return 'Scan your Face on the device to continue';
+    } else {
+      return 'Scan your Fingerprint on the device scanner to continue';
+    }
+  };
 
   return (
     <VStack bg="#212529" flex={1}>
@@ -51,7 +81,9 @@ const Settings = () => {
                     llamalicker25
                   </Text>
 
-                  <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={() => navigation.navigate('Profile')}>
                     <Box
                       bg="#35C280"
                       h={10}
@@ -304,6 +336,35 @@ const Settings = () => {
                     Create one now{' '}
                   </Text>
                 </Text>
+
+                <HStack mt={10} px={2} justifyContent="space-between">
+                  <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
+                    <Text fontSize="sm" color="green.400">
+                      Forgot Username?
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
+                    <Text fontSize="sm" color="green.400">
+                      Forgot Password?
+                    </Text>
+                  </TouchableOpacity>
+                </HStack>
+
+                {false ? (
+                  <TouchableOpacity onPress={() => showAuthenticationDialog()}>
+                    <Center
+                      mt={10}
+                      p={4}
+                      borderRadius={20}
+                      bg="coolGray.700"
+                      justifyContent="center"
+                      alignItems="center">
+                      <Text color="#fff" fontSize="xl">
+                        Authenticate
+                      </Text>
+                    </Center>
+                  </TouchableOpacity>
+                ) : null}
               </VStack>
             </>
           )}

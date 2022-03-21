@@ -13,6 +13,7 @@ import Settings from './Screens/Settings';
 import DiscoverScreen from './Screens/DiscoverScreen';
 import StreamScreen from './Screens/StreamScreen';
 import StreamFormScreen from './Screens/StreamFormScreen';
+import ProfileSettings from './Screens/ProfileSettings';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import 'react-native-reanimated';
 
@@ -48,6 +49,11 @@ function SplashStackNavigation() {
             />
             <Stack.Screen name="Play" component={PlayScreen} />
             <Stack.Screen name="Push" component={PushScreen} />
+            <Stack.Screen
+              name="Profile"
+              component={ProfileSettings}
+              options={{presentation: 'modal'}}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </NativeBaseProvider>
@@ -75,6 +81,17 @@ const StreamStackNavigator = () => {
     </Stack.Navigator>
   );
 };
+
+// const SettingsStackNavigator = () => {
+//   return (
+//     <Stack.Navigator
+//       initialRouteName="MainSettings"
+//       screenOptions={{headerShown: false}}>
+//       <Stack.Screen name="MainSettings" component={Settings} />
+
+//     </Stack.Navigator>
+//   );
+// };
 
 const TabNavigator = () => {
   // Animated Tab Indicator...

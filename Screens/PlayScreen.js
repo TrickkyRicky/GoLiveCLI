@@ -23,7 +23,7 @@ const PlayStream = props => {
   const shareTest = async () => {
     try {
       const result = await Share.share({
-        message: 'Check out this livestream',
+        message: 'Check out this livestream https://www.dummyurl.com',
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
