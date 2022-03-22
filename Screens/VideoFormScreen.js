@@ -3,7 +3,7 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
   Keyboard,
-  KeyboardAvoidingView,
+  Image,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -16,22 +16,46 @@ import {
   Input,
   Select,
   FormControl,
+  KeyboardAvoidingView,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {sPath, vPath} from '../utility/dev';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 const width = Dimensions.get('window').width;
 
-const StreamFormScreen = ({navigation}) => {
+const VideoFormScreen = ({navigation}) => {
   const [category, setCategory] = useState('');
   const [streamTitle, setStreamTitle] = useState('');
+  //   const [fileData, setFileData] = useState('');
+  const [fileUri, setFileUri] = useState(''); //file path
 
-  // Example: "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
-  const [playserver, setPlayserver] = useState(vPath);
-  // Example: "rtmp://4.tcp.ngrok.io:13824/live/"
-  const [pushserver, setPushserver] = useState(sPath);
+  // const dispatch = useDispatch();
 
-  const [stream, setStream] = useState('STREAM_NAME');
+  const selectAVideo = () => {
+    const options = {
+      mediaType: 'video',
+      storageOptions: {
+        skipBackup: true,
+        waitUntilSaved: true,
+      },
+    };
+
+    launchImageLibrary(options, response => {
+      //   console.log(response.assets[0].fileName);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        //   const source = {uri: response.uri};
+        setFileUri(response.assets[0].uri);
+      }
+    });
+  };
 
   return (
     <Box flex={1} bg="#212529">
@@ -55,13 +79,13 @@ const StreamFormScreen = ({navigation}) => {
 
               <Box w="100%" h={60} ml={3.5} justifyContent="center">
                 <Heading size="2xl" color="#E9ECEF">
-                  Create a Stream
+                  Upload a Video
                 </Heading>
               </Box>
 
               <FormControl alignItems="center">
                 <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
-                  Stream Title
+                  Video Title
                 </Text>
                 <Input
                   isRequired
@@ -152,23 +176,26 @@ const StreamFormScreen = ({navigation}) => {
                 </FormControl.ErrorMessage>
               </FormControl>
 
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('Push', {
-                    pushserver: pushserver,
-                    stream: stream,
-                  })
-                }>
+              <TouchableOpacity onPress={() => selectAVideo()}>
                 <Box w="95%" bg="#35C280" borderRadius={10} mt={5} p={3}>
                   <Text
                     fontSize="md"
                     fontWeight={'medium'}
                     color="#fff"
                     alignSelf="center">
-                    Start Streaming
+                    Choose a Video
                   </Text>
                 </Box>
               </TouchableOpacity>
+
+              {fileUri ? (
+                <Image
+                  source={{
+                    uri: fileUri,
+                  }}
+                  style={{height: 300, width: 300}}
+                />
+              ) : null}
             </VStack>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
@@ -177,4 +204,4 @@ const StreamFormScreen = ({navigation}) => {
   );
 };
 
-export default StreamFormScreen;
+export default VideoFormScreen;

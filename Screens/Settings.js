@@ -92,7 +92,7 @@ const Settings = ({navigation}) => {
                       bg="#35C280"
                       h={10}
                       w={width * 0.35}
-                      borderRadius={30}
+                      borderRadius={10}
                       justifyContent="center">
                       <HStack justifyContent="center" alignItems="center">
                         <Text color="#fff" fontSize="md" mr={2}>
@@ -122,11 +122,7 @@ const Settings = ({navigation}) => {
                     justifyContent={'space-between'}
                     width={'100%'}>
                     <HStack alignItems="center" space={4} ml={2}>
-                      <Icon2
-                        name="mail-unread-outline"
-                        size={25}
-                        color="#35C280"
-                      />
+                      <Icon2 name="folder-outline" size={25} color="#35C280" />
                       <Text fontSize="lg" color="#F4F4F4">
                         My Videos
                       </Text>
@@ -318,6 +314,14 @@ const Settings = ({navigation}) => {
                     h={10}
                     onChangeText={text => setUsername(text)}
                     value={username}
+                    InputLeftElement={
+                      <Icon2
+                        name="person"
+                        size={18}
+                        color="#CED4DA"
+                        style={{marginLeft: 10}}
+                      />
+                    }
                   />
                   <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
                     Password
@@ -338,6 +342,14 @@ const Settings = ({navigation}) => {
                     h={10}
                     onChangeText={text => setPassword(text)}
                     value={password}
+                    InputLeftElement={
+                      <Icon2
+                        name="lock-open"
+                        size={18}
+                        color="#CED4DA"
+                        style={{marginLeft: 10}}
+                      />
+                    }
                   />
                 </FormControl>
 
@@ -386,7 +398,7 @@ const Settings = ({navigation}) => {
                   </TouchableOpacity>
                 </HStack>
 
-                {true ? (
+                {useFaceID ? (
                   <TouchableOpacity onPress={() => showAuthenticationDialog()}>
                     <Center
                       mt={10}

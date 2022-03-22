@@ -280,6 +280,8 @@ PODS:
     - glog
   - react-native-fingerprint-scanner (6.0.0):
     - React
+  - react-native-image-picker (4.7.3):
+    - React-Core
   - react-native-nodemediaclient (0.2.18):
     - NodeMediaClient (= 2.9.8)
     - React
@@ -451,6 +453,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-fingerprint-scanner (from `../node_modules/react-native-fingerprint-scanner`)
+  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-nodemediaclient (from `../node_modules/react-native-nodemediaclient`)
   - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
@@ -537,6 +540,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-fingerprint-scanner:
     :path: "../node_modules/react-native-fingerprint-scanner"
+  react-native-image-picker:
+    :path: "../node_modules/react-native-image-picker"
   react-native-nodemediaclient:
     :path: "../node_modules/react-native-nodemediaclient"
   react-native-onesignal:
@@ -624,6 +629,7 @@ SPEC CHECKSUMS:
   React-jsinspector: d0374f7509d407d2264168b6d0fad0b54e300b85
   React-logger: 933f80c97c633ee8965d609876848148e3fef438
   react-native-fingerprint-scanner: ac6656f18c8e45a7459302b84da41a44ad96dbbe
+  react-native-image-picker: 4e6008ad8c2321622affa2c85432a5ebd02d480c
   react-native-nodemediaclient: 59d49a2115afd788a5bd97a523f5e468e609d2e0
   react-native-onesignal: 7643517fe655b94cfda8e697ec16f9b9135648b8
   react-native-pager-view: 7f00d63688f7df9fad86dfb0154814419cc5eb8d

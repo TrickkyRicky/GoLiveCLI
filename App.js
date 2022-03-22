@@ -13,6 +13,7 @@ import Settings from './Screens/Settings';
 import DiscoverScreen from './Screens/DiscoverScreen';
 import StreamScreen from './Screens/StreamScreen';
 import StreamFormScreen from './Screens/StreamFormScreen';
+import VideoFormScreen from './Screens/VideoFormScreen';
 import ProfileSettings from './Screens/ProfileSettings';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import 'react-native-reanimated';
@@ -79,6 +80,7 @@ const StreamStackNavigator = () => {
       initialRouteName="CreateStream"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="CreateStream" component={StreamScreen} />
+      <Stack.Screen name="VideoForm" component={VideoFormScreen} />
       <Stack.Screen name="Form" component={StreamFormScreen} />
     </Stack.Navigator>
   );

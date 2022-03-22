@@ -21,13 +21,25 @@ const StreamScreen = ({navigation}) => {
             />
           </Center>
 
+          <TouchableOpacity onPress={() => navigation.navigate('VideoForm')}>
+            <Box
+              bg="#495057"
+              p={3}
+              w={'90%'}
+              mt={30}
+              borderRadius={10}
+              alignSelf="center">
+              <Heading color="#fff">Upload a Video</Heading>
+              <Text color="#fff">Upload a video or short clip</Text>
+            </Box>
+          </TouchableOpacity>
+
           <TouchableOpacity onPress={() => navigation.navigate('Form')}>
             <Box
               bg="#495057"
               p={3}
-              // h={25}
               w={'90%'}
-              mt={75}
+              mt={3}
               mb={25}
               borderRadius={10}
               alignSelf="center">
@@ -43,7 +55,7 @@ const StreamScreen = ({navigation}) => {
             mb={20}
             width={'95%'}
             alignSelf="center">
-            By starting a live stream, you agree to the{' '}
+            By starting a live stream and/or uploading a video, you agree to the{' '}
             <Text onPress={() => null} color="#35C280" fontSize={9}>
               GoLive Community Guidelines
             </Text>

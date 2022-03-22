@@ -6,7 +6,6 @@ import {
   VStack,
   Center,
   Actionsheet,
-  Button,
   useDisclose,
 } from 'native-base';
 import React from 'react';
