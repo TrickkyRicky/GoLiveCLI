@@ -398,7 +398,7 @@ const Settings = ({navigation}) => {
                   </TouchableOpacity>
                 </HStack>
 
-                {useFaceID ? (
+                {/* {useFaceID ? (
                   <TouchableOpacity onPress={() => showAuthenticationDialog()}>
                     <Center
                       mt={10}
@@ -412,7 +412,7 @@ const Settings = ({navigation}) => {
                       </Text>
                     </Center>
                   </TouchableOpacity>
-                ) : null}
+                ) : null} */}
               </VStack>
             </>
           )}
