@@ -68,7 +68,7 @@ const StreamContent = props => {
           opacity={0.5}
           borderRadius={50}>
           <Icon
-            name="leftcircleo"
+            name="close"
             size={30}
             onPress={() => {
               // playerRef.stop();
@@ -77,9 +77,6 @@ const StreamContent = props => {
             color="#35C280"
           />
         </Center>
-        <Text letterSpacing={1.6} color="#fff" opacity={0.6}>
-          BACK
-        </Text>
       </VStack>
 
       <VStack

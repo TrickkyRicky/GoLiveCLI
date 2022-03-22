@@ -397,9 +397,7 @@ const Settings = ({navigation}) => {
                         }}>
                         Cancel
                       </Button>
-                      {/* <TouchableOpacity>
-                        <Text color="#CED4DA">Cancel</Text>
-                      </TouchableOpacity> */}
+
                       <Button
                         bg="#6C757D"
                         _text={{color: '#fff'}}
@@ -419,7 +417,7 @@ const Settings = ({navigation}) => {
               <Heading mb={18} color="#CED4DA" size="3xl">
                 Sign In
               </Heading>
-              <FormControl alignItems="center">
+              <VStack alignItems="center">
                 <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
                   Username
                 </Text>
@@ -475,7 +473,7 @@ const Settings = ({navigation}) => {
                     />
                   }
                 />
-              </FormControl>
+              </VStack>
 
               <TouchableOpacity
                 activeOpacity={0.8}
@@ -502,9 +500,12 @@ const Settings = ({navigation}) => {
                   )}
                 </Box>
               </TouchableOpacity>
-              <Text alignSelf="center" fontSize="sm" color="#ADB5BD">
+              <Text alignSelf="center" mt={2.5} fontSize="sm" color="#ADB5BD">
                 Dont have an Account?{' '}
-                <Text fontSize="sm" color="green.400" onPress={() => null}>
+                <Text
+                  fontSize="sm"
+                  color="green.400"
+                  onPress={() => navigation.navigate('Register')}>
                   Create one now{' '}
                 </Text>
               </Text>

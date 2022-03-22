@@ -15,6 +15,7 @@ import StreamScreen from './Screens/StreamScreen';
 import StreamFormScreen from './Screens/StreamFormScreen';
 import VideoFormScreen from './Screens/VideoFormScreen';
 import ProfileSettings from './Screens/ProfileSettings';
+import RegistrationScreen from './Screens/RegistrationScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import 'react-native-reanimated';
 
@@ -55,6 +56,11 @@ function SplashStackNavigation() {
             <Stack.Screen
               name="Profile"
               component={ProfileSettings}
+              options={{presentation: 'modal'}}
+            />
+            <Stack.Screen
+              name="Register"
+              component={RegistrationScreen}
               options={{presentation: 'modal'}}
             />
           </Stack.Navigator>
