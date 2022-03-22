@@ -24,6 +24,7 @@ const Settings = ({navigation}) => {
   const [useFaceID, setUseFaceID] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [disableBiometric, setDisablebiometric] = useState(false);
   const [typeOfBiometric, setTypeOfBiometric] = useState(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -33,7 +34,10 @@ const Settings = ({navigation}) => {
       .then(biometryType => {
         setTypeOfBiometric(biometryType);
       })
-      .catch(error => setUseFaceID(false));
+      .catch(error => {
+        setDisablebiometric(true);
+        setUseFaceID(false);
+      });
 
     showAuthenticationDialog = () => {
       if (typeOfBiometric !== null && typeOfBiometric !== undefined) {
@@ -213,7 +217,7 @@ const Settings = ({navigation}) => {
                   <Switch
                     value={useFaceID}
                     onToggle={() => setUseFaceID(!useFaceID)}
-                    isDisabled={useFaceID == false ? true : false}
+                    isDisabled={disableBiometric == true ? true : false}
                     size="md"
                     onTrackColor="#35C280"
                   />

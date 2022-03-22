@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import {Text} from 'native-base';
+import {Center, Text, VStack} from 'native-base';
 import {NodeCameraView} from 'react-native-nodemediaclient';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Ionicons';
@@ -38,7 +38,7 @@ const StreamContent = props => {
         }}
       />
 
-      <Icon
+      {/* <Icon
         name="leftcircleo"
         size={30}
         onPress={() => {
@@ -53,23 +53,60 @@ const StreamContent = props => {
           left: 23,
           zIndex: 2,
         }}
-      />
+      /> */}
 
-      <Icon2
-        name="camera-reverse-outline"
-        size={30}
-        onPress={() => {
-          playerRef.switchCamera();
-        }}
-        color="#35C280"
-        style={{
-          padding: 12,
-          position: 'absolute',
-          top: 46,
-          right: 23,
-          zIndex: 2,
-        }}
-      />
+      <VStack
+        justifyContent="center"
+        alignItems="center"
+        position="absolute"
+        top={46}
+        right={23}>
+        <Center
+          bg="black"
+          width={12}
+          height={12}
+          opacity={0.5}
+          borderRadius={50}>
+          <Icon
+            name="leftcircleo"
+            size={30}
+            onPress={() => {
+              // playerRef.stop();
+              props.navigation.goBack();
+            }}
+            color="#35C280"
+          />
+        </Center>
+        <Text letterSpacing={1.6} color="#fff" opacity={0.6}>
+          BACK
+        </Text>
+      </VStack>
+
+      <VStack
+        justifyContent="center"
+        alignItems="center"
+        position="absolute"
+        bottom={150}
+        right={23}>
+        <Center
+          bg="black"
+          width={12}
+          height={12}
+          opacity={0.5}
+          borderRadius={50}>
+          <Icon2
+            name="camera-reverse-outline"
+            size={30}
+            onPress={() => {
+              playerRef.switchCamera();
+            }}
+            color="#35C280"
+          />
+        </Center>
+        <Text letterSpacing={1.6} color="#fff" opacity={0.6}>
+          FLIP
+        </Text>
+      </VStack>
 
       {/* <TouchableOpacity
         onPress={() => {
