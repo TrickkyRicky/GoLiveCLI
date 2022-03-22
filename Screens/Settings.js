@@ -11,6 +11,8 @@ import {
   Input,
   Heading,
   Spinner,
+  Modal,
+  Button,
 } from 'native-base';
 import {SafeAreaView} from 'react-native-safe-area-context';
 // import Icon from 'react-native-vector-icons/FontAwesome';
@@ -28,6 +30,9 @@ const Settings = ({navigation}) => {
   const [typeOfBiometric, setTypeOfBiometric] = useState(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [showPasswordText, setShowPasswordText] = useState(true);
 
   useEffect(() => {
     FingerprintScanner.isSensorAvailable()
@@ -173,7 +178,7 @@ const Settings = ({navigation}) => {
                 SECURITY SETTINGS
               </Text>
 
-              <TouchableOpacity onPress={() => null}>
+              <TouchableOpacity onPress={() => setShowModal(true)}>
                 <Box bg="#212529" h={50} justifyContent="center" px={3} py={1}>
                   <HStack
                     alignItems="center"
@@ -288,117 +293,236 @@ const Settings = ({navigation}) => {
                   </Text>
                 </Box>
               </TouchableOpacity>
+
+              <Modal
+                avoidKeyboard
+                bottom="20"
+                _backdrop={{bg: '#000'}}
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}>
+                <Modal.Content w={width * 0.9} bg="#343A40">
+                  <Modal.CloseButton />
+                  <Modal.Header
+                    borderBottomColor="#495057"
+                    _text={{color: '#DEE2E6'}}>
+                    Reset Password
+                  </Modal.Header>
+
+                  <Modal.Body alignItems="center">
+                    <Text
+                      color="#CED4DA"
+                      ml={2.5}
+                      mb={1}
+                      alignSelf="flex-start">
+                      Password
+                    </Text>
+                    <Input
+                      isRequired
+                      keyboardAppearance="dark"
+                      secureTextEntry={showPasswordText}
+                      mb={3}
+                      placeholder="Password"
+                      bg="#495057"
+                      borderColor="#495057"
+                      color="#CED4DA"
+                      fontSize="sm"
+                      fontWeight={600}
+                      borderRadius={10}
+                      w={'95%'}
+                      h={10}
+                      onChangeText={text => setPassword(text)}
+                      value={password}
+                      _focus={{borderColor: '#ADB5BD'}}
+                      InputLeftElement={
+                        <Icon2
+                          name="lock-open"
+                          size={18}
+                          color="#CED4DA"
+                          style={{marginLeft: 10}}
+                        />
+                      }
+                      InputRightElement={
+                        <Icon2
+                          name="eye"
+                          size={18}
+                          color="#CED4DA"
+                          onPress={() => setShowPasswordText(!showPasswordText)}
+                          style={{marginRight: 10}}
+                        />
+                      }
+                    />
+                    <Text
+                      color="#CED4DA"
+                      ml={2.5}
+                      mb={1}
+                      alignSelf="flex-start">
+                      Confirm Password
+                    </Text>
+                    <Input
+                      isRequired
+                      keyboardAppearance="dark"
+                      secureTextEntry={true}
+                      mb={3}
+                      placeholder="Confirm Password"
+                      bg="#495057"
+                      borderColor="#495057"
+                      color="#CED4DA"
+                      fontSize="sm"
+                      fontWeight={600}
+                      borderRadius={10}
+                      w={'95%'}
+                      h={10}
+                      onChangeText={text => setConfirmPassword(text)}
+                      value={confirmPassword}
+                      _focus={{borderColor: '#ADB5BD'}}
+                      InputLeftElement={
+                        <Icon2
+                          name="lock-open"
+                          size={18}
+                          color="#CED4DA"
+                          style={{marginLeft: 10}}
+                        />
+                      }
+                    />
+                  </Modal.Body>
+
+                  <Modal.Footer bg="#343A40">
+                    <Button.Group space={2}>
+                      <Button
+                        variant="ghost"
+                        _text={{color: '#CED4DA'}}
+                        _pressed={{bg: '#343A40'}}
+                        onPress={() => {
+                          setShowModal(false);
+                        }}>
+                        Cancel
+                      </Button>
+                      {/* <TouchableOpacity>
+                        <Text color="#CED4DA">Cancel</Text>
+                      </TouchableOpacity> */}
+                      <Button
+                        bg="#6C757D"
+                        _text={{color: '#fff'}}
+                        _pressed={{bg: '#343A40'}}
+                        onPress={() => {
+                          null;
+                        }}>
+                        Save
+                      </Button>
+                    </Button.Group>
+                  </Modal.Footer>
+                </Modal.Content>
+              </Modal>
             </>
           ) : (
-            <>
-              <VStack p={3}>
-                <Heading mb={18} color="#CED4DA" size="3xl">
-                  Sign In
-                </Heading>
-                <FormControl alignItems="center">
-                  <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
-                    Username
-                  </Text>
-                  <Input
-                    isRequired
-                    keyboardAppearance="dark"
-                    mb={3}
-                    placeholder="Username"
-                    bg="#343A40"
-                    borderColor="#343A40"
-                    color="#CED4DA"
-                    fontSize="sm"
-                    fontWeight={600}
-                    borderRadius={10}
-                    w={'95%'}
-                    h={10}
-                    onChangeText={text => setUsername(text)}
-                    value={username}
-                    InputLeftElement={
-                      <Icon2
-                        name="person"
-                        size={18}
-                        color="#CED4DA"
-                        style={{marginLeft: 10}}
-                      />
-                    }
-                  />
-                  <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
-                    Password
-                  </Text>
-                  <Input
-                    isRequired
-                    keyboardAppearance="dark"
-                    secureTextEntry={true}
-                    mb={3}
-                    placeholder="Password"
-                    bg="#343A40"
-                    borderColor="#343A40"
-                    color="#CED4DA"
-                    fontSize="sm"
-                    fontWeight={600}
-                    borderRadius={10}
-                    w={'95%'}
-                    h={10}
-                    onChangeText={text => setPassword(text)}
-                    value={password}
-                    InputLeftElement={
-                      <Icon2
-                        name="lock-open"
-                        size={18}
-                        color="#CED4DA"
-                        style={{marginLeft: 10}}
-                      />
-                    }
-                  />
-                </FormControl>
-
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={() => {
-                    setIsLoading(true);
-                    setTimeout(() => {
-                      setIsLoading(false);
-                      setIsSignedIn(true);
-                    }, 2000);
-                  }}>
-                  <Box
-                    bg="#495057"
-                    m={4}
-                    py={3}
-                    borderRadius={10}
-                    justifyContent="center"
-                    alignItems="center">
-                    {isLoading ? (
-                      <Spinner color="emerald.500" />
-                    ) : (
-                      <Text color="#fff" fontSize="lg" fontWeight="bold">
-                        Sign In
-                      </Text>
-                    )}
-                  </Box>
-                </TouchableOpacity>
-                <Text alignSelf="center" fontSize="sm" color="#ADB5BD">
-                  Dont have an Account?{' '}
-                  <Text fontSize="sm" color="green.400" onPress={() => null}>
-                    Create one now{' '}
-                  </Text>
+            <VStack p={3}>
+              <Heading mb={18} color="#CED4DA" size="3xl">
+                Sign In
+              </Heading>
+              <FormControl alignItems="center">
+                <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
+                  Username
                 </Text>
+                <Input
+                  isRequired
+                  keyboardAppearance="dark"
+                  mb={3}
+                  placeholder="Username"
+                  bg="#343A40"
+                  borderColor="#343A40"
+                  color="#CED4DA"
+                  fontSize="sm"
+                  fontWeight={600}
+                  borderRadius={10}
+                  w={'95%'}
+                  h={10}
+                  onChangeText={text => setUsername(text)}
+                  value={username}
+                  InputLeftElement={
+                    <Icon2
+                      name="person"
+                      size={18}
+                      color="#CED4DA"
+                      style={{marginLeft: 10}}
+                    />
+                  }
+                />
+                <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
+                  Password
+                </Text>
+                <Input
+                  isRequired
+                  keyboardAppearance="dark"
+                  secureTextEntry={true}
+                  mb={3}
+                  placeholder="Password"
+                  bg="#343A40"
+                  borderColor="#343A40"
+                  color="#CED4DA"
+                  fontSize="sm"
+                  fontWeight={600}
+                  borderRadius={10}
+                  w={'95%'}
+                  h={10}
+                  onChangeText={text => setPassword(text)}
+                  value={password}
+                  InputLeftElement={
+                    <Icon2
+                      name="lock-open"
+                      size={18}
+                      color="#CED4DA"
+                      style={{marginLeft: 10}}
+                    />
+                  }
+                />
+              </FormControl>
 
-                <HStack mt={10} px={2} justifyContent="space-between">
-                  <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
-                    <Text fontSize="sm" color="green.400">
-                      Forgot Username?
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => {
+                  setIsLoading(true);
+                  setTimeout(() => {
+                    setIsLoading(false);
+                    setIsSignedIn(true);
+                  }, 2000);
+                }}>
+                <Box
+                  bg="#495057"
+                  m={4}
+                  py={3}
+                  borderRadius={10}
+                  justifyContent="center"
+                  alignItems="center">
+                  {isLoading ? (
+                    <Spinner color="emerald.500" />
+                  ) : (
+                    <Text color="#fff" fontSize="lg" fontWeight="bold">
+                      Sign In
                     </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
-                    <Text fontSize="sm" color="green.400">
-                      Forgot Password?
-                    </Text>
-                  </TouchableOpacity>
-                </HStack>
+                  )}
+                </Box>
+              </TouchableOpacity>
+              <Text alignSelf="center" fontSize="sm" color="#ADB5BD">
+                Dont have an Account?{' '}
+                <Text fontSize="sm" color="green.400" onPress={() => null}>
+                  Create one now{' '}
+                </Text>
+              </Text>
 
-                {/* {useFaceID ? (
+              <HStack mt={10} px={2} justifyContent="space-between">
+                <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
+                  <Text fontSize="sm" color="green.400">
+                    Forgot Username?
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
+                  <Text fontSize="sm" color="green.400">
+                    Forgot Password?
+                  </Text>
+                </TouchableOpacity>
+              </HStack>
+
+              {/* {useFaceID ? (
                   <TouchableOpacity onPress={() => showAuthenticationDialog()}>
                     <Center
                       mt={10}
@@ -413,8 +537,7 @@ const Settings = ({navigation}) => {
                     </Center>
                   </TouchableOpacity>
                 ) : null} */}
-              </VStack>
-            </>
+            </VStack>
           )}
           <Box h={100} />
         </ScrollView>
