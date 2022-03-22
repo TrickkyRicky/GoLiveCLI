@@ -17,6 +17,8 @@ import ProfileSettings from './Screens/ProfileSettings';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import 'react-native-reanimated';
 
+import OneSignal from 'react-native-onesignal';
+
 const width = Dimensions.get('window').width;
 
 function getWidth() {
@@ -81,17 +83,6 @@ const StreamStackNavigator = () => {
     </Stack.Navigator>
   );
 };
-
-// const SettingsStackNavigator = () => {
-//   return (
-//     <Stack.Navigator
-//       initialRouteName="MainSettings"
-//       screenOptions={{headerShown: false}}>
-//       <Stack.Screen name="MainSettings" component={Settings} />
-
-//     </Stack.Navigator>
-//   );
-// };
 
 const TabNavigator = () => {
   // Animated Tab Indicator...
@@ -196,5 +187,36 @@ const TabNavigator = () => {
 };
 
 export default function App() {
+  //OneSignal Init Code
+  OneSignal.setLogLevel(6, 0);
+  OneSignal.setAppId('789bc4ec-59bd-4d8e-88aa-e5cc1f1a89b6');
+  //END OneSignal Init Code
+
+  //Prompt for push on iOS
+  OneSignal.promptForPushNotificationsWithUserResponse(response => {
+    console.log('Prompt response:', response);
+  });
+
+  //Method for handling notifications received while app in foreground
+  OneSignal.setNotificationWillShowInForegroundHandler(
+    notificationReceivedEvent => {
+      console.log(
+        'OneSignal: notification will show in foreground:',
+        notificationReceivedEvent,
+      );
+      let notification = notificationReceivedEvent.getNotification();
+      console.log('notification: ', notification);
+      const data = notification.additionalData;
+      console.log('additionalData: ', data);
+      // Complete with null means don't show a notification.
+      notificationReceivedEvent.complete(notification);
+    },
+  );
+
+  //Method for handling notifications opened
+  OneSignal.setNotificationOpenedHandler(notification => {
+    console.log('OneSignal: notification opened:', notification);
+  });
+
   return <SplashStackNavigation />;
 }

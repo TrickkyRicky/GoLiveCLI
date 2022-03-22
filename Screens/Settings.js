@@ -21,7 +21,7 @@ import FingerprintScanner from 'react-native-fingerprint-scanner';
 const width = Dimensions.get('window').width;
 
 const Settings = ({navigation}) => {
-  const [useFaceID, setUseFaceID] = useState(false);
+  const [useFaceID, setUseFaceID] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [typeOfBiometric, setTypeOfBiometric] = useState(null);
@@ -33,7 +33,7 @@ const Settings = ({navigation}) => {
       .then(biometryType => {
         setTypeOfBiometric(biometryType);
       })
-      .catch(error => console.log('isSensorAvailable error => ', error));
+      .catch(error => setUseFaceID(false));
 
     showAuthenticationDialog = () => {
       if (typeOfBiometric !== null && typeOfBiometric !== undefined) {
@@ -101,6 +101,37 @@ const Settings = ({navigation}) => {
                 </VStack>
               </Box>
 
+              <Text
+                color="#ADB5BD"
+                bg="#343A40"
+                letterSpacing={1.5}
+                fontSize="sm"
+                py={2.5}
+                px={3}>
+                CONTENT
+              </Text>
+
+              <TouchableOpacity onPress={() => null}>
+                <Box bg="#212529" h={50} justifyContent="center" px={3} py={1}>
+                  <HStack
+                    alignItems="center"
+                    justifyContent={'space-between'}
+                    width={'100%'}>
+                    <HStack alignItems="center" space={4} ml={2}>
+                      <Icon2
+                        name="mail-unread-outline"
+                        size={25}
+                        color="#35C280"
+                      />
+                      <Text fontSize="lg" color="#F4F4F4">
+                        My Videos
+                      </Text>
+                    </HStack>
+
+                    <Arrow name="right" size={20} color="#CCC" />
+                  </HStack>
+                </Box>
+              </TouchableOpacity>
               <Text
                 color="#ADB5BD"
                 bg="#343A40"
@@ -182,6 +213,7 @@ const Settings = ({navigation}) => {
                   <Switch
                     value={useFaceID}
                     onToggle={() => setUseFaceID(!useFaceID)}
+                    isDisabled={useFaceID == false ? true : false}
                     size="md"
                     onTrackColor="#35C280"
                   />
@@ -350,7 +382,7 @@ const Settings = ({navigation}) => {
                   </TouchableOpacity>
                 </HStack>
 
-                {false ? (
+                {true ? (
                   <TouchableOpacity onPress={() => showAuthenticationDialog()}>
                     <Center
                       mt={10}
@@ -368,6 +400,7 @@ const Settings = ({navigation}) => {
               </VStack>
             </>
           )}
+          <Box h={100} />
         </ScrollView>
       </SafeAreaView>
     </VStack>

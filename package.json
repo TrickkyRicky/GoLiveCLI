@@ -30,6 +30,7 @@
     "react-native-fingerprint-scanner": "^6.0.0",
     "react-native-gesture-handler": "^2.3.0",
     "react-native-nodemediaclient": "^0.2.18",
+    "react-native-onesignal": "^4.3.7",
     "react-native-pager-view": "^5.4.11",
     "react-native-reanimated": "^2.4.1",
     "react-native-safe-area-context": "^3.1.9",

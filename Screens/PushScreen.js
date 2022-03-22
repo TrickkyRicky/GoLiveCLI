@@ -15,13 +15,13 @@ const StreamContent = props => {
   }, []);
 
   return (
-    <View style={{flex: 1, backgroundColor: '#1F1F1F'}}>
+    <View style={{flex: 1, backgroundColor: '#212529'}}>
       <NodeCameraView
         style={{flex: 1}}
         ref={vb => {
           setPlayerRef(vb);
         }}
-        outputUrl={props.route.params.pushserver + props.route.params.stream}
+        // outputUrl={props.route.params.pushserver + props.route.params.stream}
         camera={{cameraId: 1, cameraFrontMirror: true}}
         audio={{bitrate: 32000, profile: 1, samplerate: 44100}}
         video={{
@@ -42,7 +42,7 @@ const StreamContent = props => {
         name="leftcircleo"
         size={30}
         onPress={() => {
-          playerRef.stop();
+          // playerRef.stop();
           props.navigation.goBack();
         }}
         color="#35C280"
