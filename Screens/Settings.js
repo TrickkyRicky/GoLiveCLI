@@ -305,16 +305,18 @@ const Settings = ({navigation}) => {
                   <Modal.Header
                     borderBottomColor="#495057"
                     _text={{color: '#DEE2E6'}}>
-                    Reset Password
+                    Password Reset
                   </Modal.Header>
 
                   <Modal.Body alignItems="center">
                     <Text
-                      color="#CED4DA"
+                      color="#6C757D"
                       ml={2.5}
-                      mb={1}
+                      fontSize="md"
+                      fontWeight={500}
+                      my={2}
                       alignSelf="flex-start">
-                      Password
+                      Enter the new password
                     </Text>
                     <Input
                       isRequired
@@ -324,65 +326,54 @@ const Settings = ({navigation}) => {
                       placeholder="Password"
                       bg="#495057"
                       borderColor="#495057"
+                      borderWidth={2}
                       color="#CED4DA"
-                      fontSize="sm"
+                      fontSize="md"
                       fontWeight={600}
                       borderRadius={10}
                       w={'95%'}
-                      h={10}
+                      h={16}
+                      px={5}
+                      mt={3}
                       onChangeText={text => setPassword(text)}
                       value={password}
                       _focus={{borderColor: '#ADB5BD'}}
-                      InputLeftElement={
-                        <Icon2
-                          name="lock-open"
-                          size={18}
-                          color="#CED4DA"
-                          style={{marginLeft: 10}}
-                        />
-                      }
                       InputRightElement={
                         <Icon2
                           name="eye"
                           size={18}
-                          color="#CED4DA"
+                          color="#6C757D"
                           onPress={() => setShowPasswordText(!showPasswordText)}
                           style={{marginRight: 10}}
                         />
                       }
                     />
-                    <Text
+                    {/* <Text
                       color="#CED4DA"
                       ml={2.5}
                       mb={1}
                       alignSelf="flex-start">
                       Confirm Password
-                    </Text>
+                    </Text> */}
                     <Input
                       isRequired
                       keyboardAppearance="dark"
                       secureTextEntry={true}
-                      mb={3}
+                      // mb={1}
                       placeholder="Confirm Password"
                       bg="#495057"
                       borderColor="#495057"
+                      borderWidth={2}
                       color="#CED4DA"
-                      fontSize="sm"
+                      fontSize="md"
                       fontWeight={600}
                       borderRadius={10}
                       w={'95%'}
-                      h={10}
+                      h={16}
+                      px={5}
                       onChangeText={text => setConfirmPassword(text)}
                       value={confirmPassword}
                       _focus={{borderColor: '#ADB5BD'}}
-                      InputLeftElement={
-                        <Icon2
-                          name="lock-open"
-                          size={18}
-                          color="#CED4DA"
-                          style={{marginLeft: 10}}
-                        />
-                      }
                     />
                   </Modal.Body>
 
@@ -390,7 +381,7 @@ const Settings = ({navigation}) => {
                     <Button.Group space={2}>
                       <Button
                         variant="ghost"
-                        _text={{color: '#CED4DA'}}
+                        _text={{color: '#CED4DA', fontSize: 'md'}}
                         _pressed={{bg: '#343A40'}}
                         onPress={() => {
                           setShowModal(false);
@@ -401,7 +392,7 @@ const Settings = ({navigation}) => {
                       <Button
                         bg="#6C757D"
                         _text={{color: '#fff'}}
-                        _pressed={{bg: '#343A40'}}
+                        _pressed={{bg: '#343A40', fontSize: 'md'}}
                         onPress={() => {
                           null;
                         }}>
@@ -413,63 +404,64 @@ const Settings = ({navigation}) => {
               </Modal>
             </>
           ) : (
-            <VStack p={3}>
-              <Heading mb={18} color="#CED4DA" size="3xl">
-                Sign In
+            <VStack p={4}>
+              <Heading
+                mt={4}
+                mb={2}
+                color="#CED4DA"
+                size="2xl"
+                fontWeight={700}>
+                Let's sign you in.
+              </Heading>
+              <Heading mb={10} color="#CED4DA" size="xl" fontWeight={400}>
+                {`Welcome back.\nYou've been missed.`}
               </Heading>
               <VStack alignItems="center">
-                <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
-                  Username
-                </Text>
                 <Input
                   isRequired
                   keyboardAppearance="dark"
                   mb={3}
+                  px={5}
                   placeholder="Username"
                   bg="#343A40"
-                  borderColor="#343A40"
+                  borderColor="#495057"
+                  borderWidth={2}
                   color="#CED4DA"
-                  fontSize="sm"
+                  fontSize="md"
                   fontWeight={600}
                   borderRadius={10}
+                  _focus={{borderColor: '#ADB5BD'}}
                   w={'95%'}
-                  h={10}
+                  h="16"
                   onChangeText={text => setUsername(text)}
                   value={username}
-                  InputLeftElement={
-                    <Icon2
-                      name="person"
-                      size={18}
-                      color="#CED4DA"
-                      style={{marginLeft: 10}}
-                    />
-                  }
                 />
-                <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
-                  Password
-                </Text>
+
                 <Input
                   isRequired
                   keyboardAppearance="dark"
                   secureTextEntry={true}
                   mb={3}
+                  px={5}
                   placeholder="Password"
                   bg="#343A40"
-                  borderColor="#343A40"
+                  borderColor="#495057"
+                  borderWidth={2}
                   color="#CED4DA"
-                  fontSize="sm"
+                  fontSize="md"
                   fontWeight={600}
                   borderRadius={10}
+                  _focus={{borderColor: '#ADB5BD'}}
                   w={'95%'}
-                  h={10}
+                  h={16}
                   onChangeText={text => setPassword(text)}
                   value={password}
-                  InputLeftElement={
+                  InputRightElement={
                     <Icon2
                       name="lock-open"
                       size={18}
-                      color="#CED4DA"
-                      style={{marginLeft: 10}}
+                      color="#495057"
+                      style={{marginRight: 12}}
                     />
                   }
                 />

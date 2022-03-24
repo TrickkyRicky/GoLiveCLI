@@ -142,13 +142,13 @@ const HomeScreen = ({navigation}) => {
                       }>
                       <Box
                         px={5}
-                        h={8}
+                        h={10}
                         bg="#495057"
                         borderRadius={12}
                         mr={3}
                         justifyContent="center"
                         alignItems="center">
-                        <Text color="#fff" fontSize="sm" fontWeight="bold">
+                        <Text color="#fff" fontSize="md" fontWeight="600">
                           {item.category}
                         </Text>
                       </Box>

@@ -145,17 +145,11 @@ const ProfileSettings = ({navigation}) => {
                 fontWeight={600}
                 borderRadius={10}
                 w={'100%'}
-                h={10}
+                h={16}
+                px={5}
+                _focus={{borderColor: '#ADB5BD'}}
                 onChangeText={text => setUsername(text)}
                 value={username}
-                InputLeftElement={
-                  <Icon
-                    name="person"
-                    size={18}
-                    color="#CED4DA"
-                    style={{marginLeft: 10}}
-                  />
-                }
               />
 
               <Text color="#CED4DA" ml={1} alignSelf="flex-start">
@@ -173,17 +167,11 @@ const ProfileSettings = ({navigation}) => {
                 fontWeight={600}
                 borderRadius={10}
                 w={'100%'}
-                h={10}
+                h={16}
+                px={5}
+                _focus={{borderColor: '#ADB5BD'}}
                 onChangeText={text => setEmail(text)}
                 value={email}
-                InputLeftElement={
-                  <Icon
-                    name="mail"
-                    size={18}
-                    color="#CED4DA"
-                    style={{marginLeft: 10}}
-                  />
-                }
               />
 
               <TouchableOpacity

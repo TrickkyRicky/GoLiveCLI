@@ -123,6 +123,8 @@ const VideoFormScreen = ({navigation}) => {
                   isRequired
                   keyboardAppearance="dark"
                   mb={3}
+                  px={5}
+                  _focus={{borderColor: '#ADB5BD'}}
                   placeholder="Title"
                   bg="#343A40"
                   borderColor="#343A40"
@@ -131,7 +133,7 @@ const VideoFormScreen = ({navigation}) => {
                   fontWeight={600}
                   borderRadius={10}
                   w={'95%'}
-                  h={10}
+                  h={16}
                   onChangeText={text => setStreamTitle(text)}
                   value={streamTitle}
                 />
@@ -147,7 +149,9 @@ const VideoFormScreen = ({navigation}) => {
                 <Select
                   isRequired
                   w={'95%'}
-                  h={10}
+                  h={16}
+                  px={5}
+                  _focus={{borderColor: '#ADB5BD'}}
                   placeholder="Choose Category"
                   bg="#343A40"
                   fontSize="md"
