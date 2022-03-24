@@ -30,16 +30,17 @@ const RegistrationScreen = ({navigation}) => {
         justifyContent: 'flex-start',
       }}>
       <VStack justifyContent="center" p={4}>
+        <Center
+          w={50}
+          h={1.5}
+          my={2}
+          borderRadius={20}
+          bg="#ADB5BD"
+          alignSelf="center"
+        />
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{height: '100%'}}>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            activeOpacity={0.8}>
-            <Text color="#fff" fontSize="lg">
-              Cancel
-            </Text>
-          </TouchableOpacity>
           <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <Box py={5}>
               <VStack space={3} justifyContent="center" alignItems="center">

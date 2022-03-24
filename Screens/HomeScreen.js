@@ -102,32 +102,37 @@ const HomeScreen = ({navigation}) => {
           showHideTransition={'fade'}
           hidden={false}
         />
-        <MotiView
+        {/* <MotiView
           from={{opacity: 0}}
           animate={{opacity: 1}}
-          transition={{type: 'timing'}}>
-          <VStack>
-            <Image
-              source={Logo}
-              alt="logo"
-              style={{
-                alignSelf: 'center',
-                transform: [{scale: 0.8}],
-              }}
-            />
-            <ScrollView showsVerticalScrollIndicator={false}>
-              <Heading color="#E9ECEF" size="2xl" px="3" mb={5}>
-                Browse
-              </Heading>
+          transition={{type: 'timing'}}> */}
+        <VStack>
+          <Image
+            source={Logo}
+            alt="logo"
+            style={{
+              alignSelf: 'center',
+              transform: [{scale: 0.8}],
+            }}
+          />
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Heading color="#E9ECEF" size="2xl" px="3" mb={5}>
+              Browse
+            </Heading>
 
-              <FlatList
-                data={CATEGORIES}
-                showsHorizontalScrollIndicator={false}
-                horizontal
-                keyExtractor={item => item.id}
-                ListHeaderComponent={<Box width={4}></Box>}
-                renderItem={({item}) => {
-                  return (
+            <FlatList
+              data={CATEGORIES}
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              keyExtractor={item => item.id}
+              ListHeaderComponent={<Box width={4}></Box>}
+              renderItem={({item, index}) => {
+                return (
+                  <MotiView
+                    from={{opacity: 0, translateX: 100}}
+                    animate={{opacity: 1, translateX: 0}}
+                    delay={index * 350}
+                    transition={{type: 'timing'}}>
                     <TouchableOpacity
                       activeOpacity={0.4}
                       onPress={() =>
@@ -136,11 +141,11 @@ const HomeScreen = ({navigation}) => {
                         })
                       }>
                       <Box
-                        w={width * 0.23}
+                        px={5}
                         h={8}
                         bg="#495057"
                         borderRadius={12}
-                        mr={2.5}
+                        mr={3}
                         justifyContent="center"
                         alignItems="center">
                         <Text color="#fff" fontSize="sm" fontWeight="bold">
@@ -148,45 +153,51 @@ const HomeScreen = ({navigation}) => {
                         </Text>
                       </Box>
                     </TouchableOpacity>
-                  );
-                }}
-              />
+                  </MotiView>
+                );
+              }}
+            />
 
-              <HStack
-                justifyContent={'space-between'}
-                alignItems="flex-end"
-                mt={4}
-                mb={2}
-                px={3}>
-                <Heading size="md" color="#F5F4F4">
-                  Trending Streams
-                </Heading>
+            <HStack
+              justifyContent={'space-between'}
+              alignItems="flex-end"
+              mt={4}
+              mb={2}
+              px={3}>
+              <Heading size="md" color="#F5F4F4">
+                Trending Streams
+              </Heading>
 
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate('Discover', {
-                      width: width,
-                    })
-                  }>
-                  <HStack alignItems="center" justifyContent="center" space={1}>
-                    <Text letterSpacing={1.5} color="#F5F4F4" fontSize="sm">
-                      SEE ALL
-                    </Text>
-                    <Icon name="right" size={14} color="#CCC" />
-                  </HStack>
-                </TouchableOpacity>
-              </HStack>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('Discover', {
+                    width: width,
+                  })
+                }>
+                <HStack alignItems="center" justifyContent="center" space={1}>
+                  <Text letterSpacing={1.5} color="#F5F4F4" fontSize="sm">
+                    SEE ALL
+                  </Text>
+                  <Icon name="right" size={14} color="#CCC" />
+                </HStack>
+              </TouchableOpacity>
+            </HStack>
 
-              <FlatList
-                data={Data}
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.id}
-                horizontal
-                renderItem={({item}) => {
-                  var randomColor = Math.floor(
-                    Math.random() * 16777215,
-                  ).toString(16);
-                  return (
+            <FlatList
+              data={Data}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={item => item.id}
+              horizontal
+              renderItem={({item, index}) => {
+                var randomColor = Math.floor(Math.random() * 16777215).toString(
+                  16,
+                );
+                return (
+                  <MotiView
+                    from={{opacity: 0, translateX: 100}}
+                    animate={{opacity: 1, translateX: 0}}
+                    delay={index * 300}
+                    transition={{type: 'spring'}}>
                     <TouchableOpacity
                       style={{marginLeft: 5}}
                       activeOpacity={0.9}
@@ -209,44 +220,50 @@ const HomeScreen = ({navigation}) => {
                         bgColor={randomColor}
                       />
                     </TouchableOpacity>
-                  );
-                }}
-              />
-              <HStack
-                justifyContent={'space-between'}
-                alignItems="flex-end"
-                mt={2}
-                mb={2}
-                px={3}>
-                <Heading size="md" color="#F5F4F4">
-                  Recorded Streams
-                </Heading>
+                  </MotiView>
+                );
+              }}
+            />
+            <HStack
+              justifyContent={'space-between'}
+              alignItems="flex-end"
+              mt={2}
+              mb={2}
+              px={3}>
+              <Heading size="md" color="#F5F4F4">
+                Recorded Streams
+              </Heading>
 
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate('Discover', {
-                      width: width,
-                    })
-                  }>
-                  <HStack alignItems="center" justifyContent="center" space={1}>
-                    <Text letterSpacing={1.5} color="#F5F4F4" fontSize="sm">
-                      SEE ALL
-                    </Text>
-                    <Icon name="right" size={14} color="#CCC" />
-                  </HStack>
-                </TouchableOpacity>
-              </HStack>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('Discover', {
+                    width: width,
+                  })
+                }>
+                <HStack alignItems="center" justifyContent="center" space={1}>
+                  <Text letterSpacing={1.5} color="#F5F4F4" fontSize="sm">
+                    SEE ALL
+                  </Text>
+                  <Icon name="right" size={14} color="#CCC" />
+                </HStack>
+              </TouchableOpacity>
+            </HStack>
 
-              <FlatList
-                data={Data}
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.id}
-                horizontal
-                renderItem={({item}) => {
-                  var randomColor = Math.floor(
-                    Math.random() * 16777215,
-                  ).toString(16);
-                  return (
+            <FlatList
+              data={Data}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={item => item.id}
+              horizontal
+              renderItem={({item, index}) => {
+                var randomColor = Math.floor(Math.random() * 16777215).toString(
+                  16,
+                );
+                return (
+                  <MotiView
+                    from={{opacity: 0, translateX: 100}}
+                    animate={{opacity: 1, translateX: 0}}
+                    delay={index * 300}
+                    transition={{type: 'spring'}}>
                     <TouchableOpacity
                       style={{marginLeft: 5}}
                       activeOpacity={0.9}
@@ -269,44 +286,50 @@ const HomeScreen = ({navigation}) => {
                         bgColor={randomColor}
                       />
                     </TouchableOpacity>
-                  );
-                }}
-              />
-              <HStack
-                justifyContent={'space-between'}
-                alignItems="flex-end"
-                mt={2}
-                mb={2}
-                px={3}>
-                <Heading size="md" color="#F5F4F4">
-                  Past Clips
-                </Heading>
+                  </MotiView>
+                );
+              }}
+            />
+            <HStack
+              justifyContent={'space-between'}
+              alignItems="flex-end"
+              mt={2}
+              mb={2}
+              px={3}>
+              <Heading size="md" color="#F5F4F4">
+                Past Clips
+              </Heading>
 
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate('Discover', {
-                      width: width,
-                    })
-                  }>
-                  <HStack alignItems="center" justifyContent="center" space={1}>
-                    <Text letterSpacing={1.5} color="#F5F4F4" fontSize="sm">
-                      SEE ALL
-                    </Text>
-                    <Icon name="right" size={14} color="#CCC" />
-                  </HStack>
-                </TouchableOpacity>
-              </HStack>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('Discover', {
+                    width: width,
+                  })
+                }>
+                <HStack alignItems="center" justifyContent="center" space={1}>
+                  <Text letterSpacing={1.5} color="#F5F4F4" fontSize="sm">
+                    SEE ALL
+                  </Text>
+                  <Icon name="right" size={14} color="#CCC" />
+                </HStack>
+              </TouchableOpacity>
+            </HStack>
 
-              <FlatList
-                data={Data}
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.id}
-                horizontal
-                renderItem={({item}) => {
-                  var randomColor = Math.floor(
-                    Math.random() * 16777215,
-                  ).toString(16);
-                  return (
+            <FlatList
+              data={Data}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={item => item.id}
+              horizontal
+              renderItem={({item, index}) => {
+                var randomColor = Math.floor(Math.random() * 16777215).toString(
+                  16,
+                );
+                return (
+                  <MotiView
+                    from={{opacity: 0, translateX: 100}}
+                    animate={{opacity: 1, translateX: 0}}
+                    delay={index * 300}
+                    transition={{type: 'spring'}}>
                     <TouchableOpacity
                       style={{marginLeft: 5}}
                       activeOpacity={0.9}
@@ -329,13 +352,14 @@ const HomeScreen = ({navigation}) => {
                         bgColor={randomColor}
                       />
                     </TouchableOpacity>
-                  );
-                }}
-              />
-              <Center height={180} />
-            </ScrollView>
-          </VStack>
-        </MotiView>
+                  </MotiView>
+                );
+              }}
+            />
+            <Center height={180} />
+          </ScrollView>
+        </VStack>
+        {/* </MotiView> */}
       </SafeAreaView>
     </Box>
   );

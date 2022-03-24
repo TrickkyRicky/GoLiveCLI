@@ -70,13 +70,15 @@ const ProfileSettings = ({navigation}) => {
       }}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <VStack justifyContent="center" p={4}>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            activeOpacity={0.8}>
-            <Text color="#fff" fontSize="lg">
-              Cancel
-            </Text>
-          </TouchableOpacity>
+          <Center
+            w={50}
+            h={1.5}
+            mt={2}
+            mb={4}
+            borderRadius={20}
+            bg="#ADB5BD"
+            alignSelf="center"
+          />
 
           <Box py={5}>
             <VStack space={3} justifyContent="center" alignItems="center">

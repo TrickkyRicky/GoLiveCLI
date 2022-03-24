@@ -3,9 +3,8 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
   Keyboard,
-  Image,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   Box,
@@ -15,10 +14,12 @@ import {
   Heading,
   Input,
   Select,
+  useToast,
   FormControl,
   KeyboardAvoidingView,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/AntDesign';
+import UploadIcon from 'react-native-vector-icons/Ionicons';
 import {sPath, vPath} from '../utility/dev';
 import {launchImageLibrary} from 'react-native-image-picker';
 
@@ -27,8 +28,10 @@ const width = Dimensions.get('window').width;
 const VideoFormScreen = ({navigation}) => {
   const [category, setCategory] = useState('');
   const [streamTitle, setStreamTitle] = useState('');
-  //   const [fileData, setFileData] = useState('');
+  const [fileData, setFileData] = useState(null); //file name
   const [fileUri, setFileUri] = useState(''); //file path
+  const toast = useToast();
+  const toastIdRef = useRef();
 
   // const dispatch = useDispatch();
 
@@ -42,8 +45,6 @@ const VideoFormScreen = ({navigation}) => {
     };
 
     launchImageLibrary(options, response => {
-      //   console.log(response.assets[0].fileName);
-
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
@@ -51,8 +52,31 @@ const VideoFormScreen = ({navigation}) => {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        //   const source = {uri: response.uri};
         setFileUri(response.assets[0].uri);
+        setFileData(response.assets[0].fileName);
+        toast.show({
+          duration: 2000,
+          render: () => {
+            return (
+              <Box
+                bg="#495057"
+                px={4}
+                py={3}
+                rounded="sm"
+                mb={16}
+                flexDirection="row"
+                justifyContent="center"
+                alignItems="center">
+                <HStack space={3}>
+                  <UploadIcon name="cloud-upload" size={30} color="#fff" />
+                  <Text color="#fff" fontSize="lg" fontWeight={600}>
+                    Uploading Video...
+                  </Text>
+                </HStack>
+              </Box>
+            );
+          },
+        });
       }
     });
   };
@@ -77,14 +101,22 @@ const VideoFormScreen = ({navigation}) => {
                 />
               </HStack>
 
-              <Box w="100%" h={60} ml={3.5} justifyContent="center">
-                <Heading size="2xl" color="#E9ECEF">
+              <Box w="100%" h={60} ml={3.5} mb={12} justifyContent="center">
+                <Heading size="2xl" fontWeight={600} color="#E9ECEF">
                   Upload a Video
+                </Heading>
+                <Heading size="md" fontWeight={400} color="#E9ECEF">
+                  Post videos for others to watch.
                 </Heading>
               </Box>
 
               <FormControl alignItems="center">
-                <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
+                <Text
+                  fontSize="md"
+                  color="#CED4DA"
+                  ml={2.5}
+                  mb={1}
+                  alignSelf="flex-start">
                   Video Title
                 </Text>
                 <Input
@@ -95,7 +127,7 @@ const VideoFormScreen = ({navigation}) => {
                   bg="#343A40"
                   borderColor="#343A40"
                   color="#CED4DA"
-                  fontSize="sm"
+                  fontSize="md"
                   fontWeight={600}
                   borderRadius={10}
                   w={'95%'}
@@ -104,7 +136,12 @@ const VideoFormScreen = ({navigation}) => {
                   value={streamTitle}
                 />
 
-                <Text color="#CED4DA" ml={2.5} mb={1} alignSelf="flex-start">
+                <Text
+                  color="#CED4DA"
+                  fontSize="md"
+                  ml={2.5}
+                  mb={1}
+                  alignSelf="flex-start">
                   Category
                 </Text>
                 <Select
@@ -113,7 +150,7 @@ const VideoFormScreen = ({navigation}) => {
                   h={10}
                   placeholder="Choose Category"
                   bg="#343A40"
-                  fontSize="sm"
+                  fontSize="md"
                   fontWeight={600}
                   color="#CED4DA"
                   borderColor="#343A40"
@@ -176,26 +213,27 @@ const VideoFormScreen = ({navigation}) => {
                 </FormControl.ErrorMessage>
               </FormControl>
 
-              <TouchableOpacity onPress={() => selectAVideo()}>
-                <Box w="95%" bg="#35C280" borderRadius={10} mt={5} p={3}>
+              <TouchableOpacity
+                activeOpacity={0.9}
+                onPress={() => {
+                  selectAVideo();
+                }}>
+                <Box
+                  w={width * 0.9}
+                  bg="#35C280"
+                  borderRadius={10}
+                  mt={5}
+                  p={3}
+                  _pressed={{bg: '#000'}}>
                   <Text
                     fontSize="md"
                     fontWeight={'medium'}
                     color="#fff"
                     alignSelf="center">
-                    Choose a Video
+                    Upload a Video
                   </Text>
                 </Box>
               </TouchableOpacity>
-
-              {fileUri ? (
-                <Image
-                  source={{
-                    uri: fileUri,
-                  }}
-                  style={{height: 300, width: 300}}
-                />
-              ) : null}
             </VStack>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>

@@ -12,6 +12,7 @@ import DiscoverVideo from '../components/DiscoverVideo';
 import Video from '../components/Video';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {sPath, vPath} from '../utility/dev';
+import {MotiView} from 'moti';
 
 const Data = [
   {
@@ -130,7 +131,6 @@ const DiscoverScreen = ({navigation}) => {
               w={'90%'}
               onChangeText={e => setSearchValue(e)}
               value={searchValue}
-              // maxWidth="300px"
               InputLeftElement={
                 <Icon
                   name="search1"
@@ -185,19 +185,25 @@ const DiscoverScreen = ({navigation}) => {
                       stream: stream,
                     })
                   }>
-                  <Animated.View
-                    style={{
-                      opacity,
-                      transform: [{scale}],
-                    }}>
-                    <DiscoverVideo
-                      width={width}
-                      streamName={item.streamName}
-                      streamerName={item.streamerName}
-                      views={item.views}
-                      image={item.image}
-                    />
-                  </Animated.View>
+                  <MotiView
+                    from={{opacity: 0, translateY: 100}}
+                    animate={{opacity: 1, translateY: 0}}
+                    delay={index * 250}
+                    transition={{type: 'spring'}}>
+                    <Animated.View
+                      style={{
+                        opacity,
+                        transform: [{scale}],
+                      }}>
+                      <DiscoverVideo
+                        width={width}
+                        streamName={item.streamName}
+                        streamerName={item.streamerName}
+                        views={item.views}
+                        image={item.image}
+                      />
+                    </Animated.View>
+                  </MotiView>
                 </TouchableOpacity>
               );
             }}

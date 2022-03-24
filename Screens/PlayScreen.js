@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import ShareIcon from 'react-native-vector-icons/Ionicons';
 // import Share from 'react-native-share';
 import {MotiView, AnimatePresence} from 'moti';
+import {sPath, vPath} from '../utility/dev';
 
 const PlayStream = props => {
   const [playerRef, setPlayerRef] = useState(null);
@@ -14,16 +15,25 @@ const PlayStream = props => {
 
   const {streamName, streamerName, bgColor, width} = props.route.params;
 
+  // Example: "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
+  const [playserver, setPlayserver] = useState(vPath);
+  // Example: "rtmp://4.tcp.ngrok.io:13824/live/"
+  const [pushserver, setPushserver] = useState(sPath);
+
+  const [stream, setStream] = useState('STREAM_NAME');
+
   useEffect(() => {
     return () => {
       if (playerRef) playerRef.stop();
     };
   }, []);
 
+  let streamKey = 'g4hs6f6tds5';
+
   const shareTest = async () => {
     try {
       const result = await Share.share({
-        message: 'Check out this livestream https://www.dummyurl.com',
+        message: `Check out this livestream https://www.dummyurl.com/live/${streamKey}`,
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
