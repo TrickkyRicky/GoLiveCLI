@@ -9,7 +9,6 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   Box,
   VStack,
@@ -23,7 +22,7 @@ import {
   Spinner,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {launchImageLibrary} from 'react-native-image-picker';
+import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 
 const width = Dimensions.get('window').width;
 
@@ -52,6 +51,30 @@ const ProfileSettings = ({navigation}) => {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         onClose();
+        setFileUri(response.assets[0].uri);
+      }
+    });
+  };
+
+  const uploadFromCamera = () => {
+    let options = {
+      mediaType: 'photo',
+      saveToPhotos: true,
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    launchCamera(options, response => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
         setFileUri(response.assets[0].uri);
       }
     });
@@ -145,7 +168,7 @@ const ProfileSettings = ({navigation}) => {
                 fontWeight={600}
                 borderRadius={10}
                 w={'100%'}
-                h={16}
+                h={12}
                 px={5}
                 _focus={{borderColor: '#ADB5BD'}}
                 onChangeText={text => setUsername(text)}
@@ -167,7 +190,7 @@ const ProfileSettings = ({navigation}) => {
                 fontWeight={600}
                 borderRadius={10}
                 w={'100%'}
-                h={16}
+                h={12}
                 px={5}
                 _focus={{borderColor: '#ADB5BD'}}
                 onChangeText={text => setEmail(text)}
@@ -216,6 +239,20 @@ const ProfileSettings = ({navigation}) => {
                     _pressed={{background: '#212529'}}>
                     <Text color="#CED4DA" fontWeight={700} fontSize="md">
                       Choose from Camera Roll
+                    </Text>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item
+                    onPress={() => uploadFromCamera()}
+                    startIcon={
+                      <Icon
+                        name="ios-camera-outline"
+                        size={30}
+                        color="#CED4DA"
+                      />
+                    }
+                    _pressed={{background: '#212529'}}>
+                    <Text color="#CED4DA" fontWeight={700} fontSize="md">
+                      Capture from Camera
                     </Text>
                   </Actionsheet.Item>
                   <Actionsheet.Item

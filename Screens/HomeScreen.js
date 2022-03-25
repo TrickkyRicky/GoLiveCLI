@@ -131,7 +131,7 @@ const HomeScreen = ({navigation}) => {
                   <MotiView
                     from={{opacity: 0, translateX: 100}}
                     animate={{opacity: 1, translateX: 0}}
-                    delay={index * 350}
+                    delay={index * 250}
                     transition={{type: 'timing'}}>
                     <TouchableOpacity
                       activeOpacity={0.4}
@@ -193,34 +193,34 @@ const HomeScreen = ({navigation}) => {
                   16,
                 );
                 return (
-                  <MotiView
-                    from={{opacity: 0, translateX: 100}}
-                    animate={{opacity: 1, translateX: 0}}
-                    delay={index * 300}
-                    transition={{type: 'spring'}}>
-                    <TouchableOpacity
-                      style={{marginLeft: 5}}
-                      activeOpacity={0.9}
-                      onPress={() =>
-                        navigation.navigate('Play', {
-                          playserver: playserver,
-                          stream: stream,
-                          streamName: item.streamName,
-                          streamerName: item.streamerName,
-                          bgColor: randomColor,
-                          width: width,
-                        })
-                      }>
-                      <Video
-                        width={width}
-                        streamName={item.streamName}
-                        streamerName={item.streamerName}
-                        views={item.views}
-                        image={item.image}
-                        bgColor={randomColor}
-                      />
-                    </TouchableOpacity>
-                  </MotiView>
+                  // <MotiView
+                  //   from={{opacity: 0, translateX: 100}}
+                  //   animate={{opacity: 1, translateX: 0}}
+                  //   delay={index * 300}
+                  //   transition={{type: 'spring'}}>
+                  <TouchableOpacity
+                    style={{marginLeft: 5}}
+                    activeOpacity={0.9}
+                    onPress={() =>
+                      navigation.navigate('Play', {
+                        playserver: playserver,
+                        stream: stream,
+                        streamName: item.streamName,
+                        streamerName: item.streamerName,
+                        bgColor: randomColor,
+                        width: width,
+                      })
+                    }>
+                    <Video
+                      width={width}
+                      streamName={item.streamName}
+                      streamerName={item.streamerName}
+                      views={item.views}
+                      image={item.image}
+                      bgColor={randomColor}
+                    />
+                  </TouchableOpacity>
+                  // </MotiView>
                 );
               }}
             />
@@ -259,34 +259,34 @@ const HomeScreen = ({navigation}) => {
                   16,
                 );
                 return (
-                  <MotiView
-                    from={{opacity: 0, translateX: 100}}
-                    animate={{opacity: 1, translateX: 0}}
-                    delay={index * 300}
-                    transition={{type: 'spring'}}>
-                    <TouchableOpacity
-                      style={{marginLeft: 5}}
-                      activeOpacity={0.9}
-                      onPress={() =>
-                        navigation.navigate('Play', {
-                          playserver: playserver,
-                          stream: stream,
-                          streamName: item.streamName,
-                          streamerName: item.streamerName,
-                          bgColor: randomColor,
-                          width: width,
-                        })
-                      }>
-                      <Video
-                        width={width}
-                        streamName={item.streamName}
-                        streamerName={item.streamerName}
-                        views={item.views}
-                        image={item.image}
-                        bgColor={randomColor}
-                      />
-                    </TouchableOpacity>
-                  </MotiView>
+                  // <MotiView
+                  //   from={{opacity: 0, translateX: 100}}
+                  //   animate={{opacity: 1, translateX: 0}}
+                  //   delay={index * 300}
+                  //   transition={{type: 'spring'}}>
+                  <TouchableOpacity
+                    style={{marginLeft: 5}}
+                    activeOpacity={0.9}
+                    onPress={() =>
+                      navigation.navigate('Play', {
+                        playserver: playserver,
+                        stream: stream,
+                        streamName: item.streamName,
+                        streamerName: item.streamerName,
+                        bgColor: randomColor,
+                        width: width,
+                      })
+                    }>
+                    <Video
+                      width={width}
+                      streamName={item.streamName}
+                      streamerName={item.streamerName}
+                      views={item.views}
+                      image={item.image}
+                      bgColor={randomColor}
+                    />
+                  </TouchableOpacity>
+                  // {/* </MotiView> */}
                 );
               }}
             />
@@ -325,34 +325,34 @@ const HomeScreen = ({navigation}) => {
                   16,
                 );
                 return (
-                  <MotiView
-                    from={{opacity: 0, translateX: 100}}
-                    animate={{opacity: 1, translateX: 0}}
-                    delay={index * 300}
-                    transition={{type: 'spring'}}>
-                    <TouchableOpacity
-                      style={{marginLeft: 5}}
-                      activeOpacity={0.9}
-                      onPress={() =>
-                        navigation.navigate('Play', {
-                          playserver: playserver,
-                          stream: stream,
-                          streamName: item.streamName,
-                          streamerName: item.streamerName,
-                          bgColor: randomColor,
-                          width: width,
-                        })
-                      }>
-                      <Video
-                        width={width}
-                        streamName={item.streamName}
-                        streamerName={item.streamerName}
-                        views={item.views}
-                        image={item.image}
-                        bgColor={randomColor}
-                      />
-                    </TouchableOpacity>
-                  </MotiView>
+                  // <MotiView
+                  //   from={{opacity: 0, translateX: 100}}
+                  //   animate={{opacity: 1, translateX: 0}}
+                  //   delay={index * 300}
+                  //   transition={{type: 'spring'}}>
+                  <TouchableOpacity
+                    style={{marginLeft: 5}}
+                    activeOpacity={0.9}
+                    onPress={() =>
+                      navigation.navigate('Play', {
+                        playserver: playserver,
+                        stream: stream,
+                        streamName: item.streamName,
+                        streamerName: item.streamerName,
+                        bgColor: randomColor,
+                        width: width,
+                      })
+                    }>
+                    <Video
+                      width={width}
+                      streamName={item.streamName}
+                      streamerName={item.streamerName}
+                      views={item.views}
+                      image={item.image}
+                      bgColor={randomColor}
+                    />
+                  </TouchableOpacity>
+                  // </MotiView>
                 );
               }}
             />

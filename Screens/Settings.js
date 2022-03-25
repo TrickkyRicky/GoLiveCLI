@@ -332,7 +332,7 @@ const Settings = ({navigation}) => {
                       fontWeight={600}
                       borderRadius={10}
                       w={'95%'}
-                      h={16}
+                      h={12}
                       px={5}
                       mt={3}
                       onChangeText={text => setPassword(text)}
@@ -348,13 +348,6 @@ const Settings = ({navigation}) => {
                         />
                       }
                     />
-                    {/* <Text
-                      color="#CED4DA"
-                      ml={2.5}
-                      mb={1}
-                      alignSelf="flex-start">
-                      Confirm Password
-                    </Text> */}
                     <Input
                       isRequired
                       keyboardAppearance="dark"
@@ -369,7 +362,7 @@ const Settings = ({navigation}) => {
                       fontWeight={600}
                       borderRadius={10}
                       w={'95%'}
-                      h={16}
+                      h={12}
                       px={5}
                       onChangeText={text => setConfirmPassword(text)}
                       value={confirmPassword}
@@ -413,7 +406,7 @@ const Settings = ({navigation}) => {
                 fontWeight={700}>
                 Let's sign you in.
               </Heading>
-              <Heading mb={10} color="#CED4DA" size="xl" fontWeight={400}>
+              <Heading mb={10} color="#CED4DA" size="lg" fontWeight={400}>
                 {`Welcome back.\nYou've been missed.`}
               </Heading>
               <VStack alignItems="center">
@@ -432,7 +425,7 @@ const Settings = ({navigation}) => {
                   borderRadius={10}
                   _focus={{borderColor: '#ADB5BD'}}
                   w={'95%'}
-                  h="16"
+                  h="12"
                   onChangeText={text => setUsername(text)}
                   value={username}
                 />
@@ -453,7 +446,7 @@ const Settings = ({navigation}) => {
                   borderRadius={10}
                   _focus={{borderColor: '#ADB5BD'}}
                   w={'95%'}
-                  h={16}
+                  h={12}
                   onChangeText={text => setPassword(text)}
                   value={password}
                   InputRightElement={
@@ -504,12 +497,12 @@ const Settings = ({navigation}) => {
 
               <HStack mt={10} px={2} justifyContent="space-between">
                 <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
-                  <Text fontSize="sm" color="green.400">
+                  <Text fontSize="sm" color="#6C757D">
                     Forgot Username?
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
-                  <Text fontSize="sm" color="green.400">
+                  <Text fontSize="sm" color="#6C757D">
                     Forgot Password?
                   </Text>
                 </TouchableOpacity>

@@ -56,13 +56,10 @@ const RegistrationScreen = ({navigation}) => {
                 <Heading
                   mb={18}
                   color="#CED4DA"
-                  size="xl"
+                  size="lg"
                   fontWeight={400}
                   alignSelf="flex-start">
-                  Get ready to Go
-                  <Heading size="xl" color="#35C280" fontWeight={400}>
-                    Live
-                  </Heading>
+                  Get ready to Go Live
                 </Heading>
 
                 <Input

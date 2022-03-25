@@ -15,13 +15,17 @@ import {
   Input,
   Select,
   useToast,
+  Actionsheet,
+  useDisclose,
   FormControl,
   KeyboardAvoidingView,
 } from 'native-base';
-import Icon from 'react-native-vector-icons/AntDesign';
+import BackIcon from 'react-native-vector-icons/AntDesign';
 import UploadIcon from 'react-native-vector-icons/Ionicons';
 import {sPath, vPath} from '../utility/dev';
-import {launchImageLibrary} from 'react-native-image-picker';
+import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const width = Dimensions.get('window').width;
 
@@ -31,7 +35,7 @@ const VideoFormScreen = ({navigation}) => {
   const [fileData, setFileData] = useState(null); //file name
   const [fileUri, setFileUri] = useState(''); //file path
   const toast = useToast();
-  const toastIdRef = useRef();
+  const {isOpen, onOpen, onClose} = useDisclose();
 
   // const dispatch = useDispatch();
 
@@ -52,8 +56,56 @@ const VideoFormScreen = ({navigation}) => {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
+        onClose();
         setFileUri(response.assets[0].uri);
-        setFileData(response.assets[0].fileName);
+        toast.show({
+          duration: 2000,
+          render: () => {
+            return (
+              <Box
+                bg="#495057"
+                px={4}
+                py={3}
+                rounded="sm"
+                mb={16}
+                flexDirection="row"
+                justifyContent="center"
+                alignItems="center">
+                <HStack space={3}>
+                  <UploadIcon name="cloud-upload" size={30} color="#fff" />
+                  <Text color="#fff" fontSize="lg" fontWeight={600}>
+                    Uploading Video...
+                  </Text>
+                </HStack>
+              </Box>
+            );
+          },
+        });
+      }
+    });
+  };
+
+  const uploadFromCamera = () => {
+    let options = {
+      mediaType: 'video',
+      saveToPhotos: true,
+      storageOptions: {
+        skipBackup: true,
+        path: 'videos',
+      },
+    };
+    launchCamera(options, response => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        onClose();
+        setFileUri(response.assets[0].uri);
         toast.show({
           duration: 2000,
           render: () => {
@@ -93,7 +145,7 @@ const VideoFormScreen = ({navigation}) => {
                 width={width * 0.9}
                 justifyContent={'space-between'}
                 alignItems="center">
-                <Icon
+                <BackIcon
                   name="leftcircleo"
                   size={30}
                   color="#35C280"
@@ -133,7 +185,7 @@ const VideoFormScreen = ({navigation}) => {
                   fontWeight={600}
                   borderRadius={10}
                   w={'95%'}
-                  h={16}
+                  h={12}
                   onChangeText={text => setStreamTitle(text)}
                   value={streamTitle}
                 />
@@ -149,7 +201,7 @@ const VideoFormScreen = ({navigation}) => {
                 <Select
                   isRequired
                   w={'95%'}
-                  h={16}
+                  h={12}
                   px={5}
                   _focus={{borderColor: '#ADB5BD'}}
                   placeholder="Choose Category"
@@ -220,13 +272,13 @@ const VideoFormScreen = ({navigation}) => {
               <TouchableOpacity
                 activeOpacity={0.9}
                 onPress={() => {
-                  selectAVideo();
+                  onOpen();
                 }}>
                 <Box
                   w={width * 0.9}
                   bg="#35C280"
                   borderRadius={10}
-                  mt={5}
+                  mt={6}
                   p={3}
                   _pressed={{bg: '#000'}}>
                   <Text
@@ -238,6 +290,48 @@ const VideoFormScreen = ({navigation}) => {
                   </Text>
                 </Box>
               </TouchableOpacity>
+
+              <Actionsheet isOpen={isOpen} onClose={onClose}>
+                <Actionsheet.Content bg="#343A40">
+                  <Box w="100%" h={60} px={4} justifyContent="center">
+                    <Text fontSize="md" fontWeight={700} color="#6C757D">
+                      Upload a Video
+                    </Text>
+                  </Box>
+                  <Actionsheet.Item
+                    onPress={() => selectAVideo()}
+                    startIcon={
+                      <Icon name="image-outline" size={30} color="#CED4DA" />
+                    }
+                    _pressed={{background: '#212529'}}>
+                    <Text color="#CED4DA" fontWeight={700} fontSize="md">
+                      Choose from Camera Roll
+                    </Text>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item
+                    onPress={() => uploadFromCamera()}
+                    startIcon={
+                      <Icon
+                        name="ios-camera-outline"
+                        size={30}
+                        color="#CED4DA"
+                      />
+                    }
+                    _pressed={{background: '#212529'}}>
+                    <Text color="#CED4DA" fontWeight={700} fontSize="md">
+                      Capture from Camera
+                    </Text>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item
+                    onPress={() => onClose()}
+                    startIcon={<Icon name="close" size={30} color="#CED4DA" />}
+                    _pressed={{background: '#212529'}}>
+                    <Text color="#CED4DA" fontWeight={700} fontSize="md">
+                      Cancel
+                    </Text>
+                  </Actionsheet.Item>
+                </Actionsheet.Content>
+              </Actionsheet>
             </VStack>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
