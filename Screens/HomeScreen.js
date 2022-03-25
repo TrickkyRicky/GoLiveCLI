@@ -131,7 +131,7 @@ const HomeScreen = ({navigation}) => {
                   <MotiView
                     from={{opacity: 0, translateX: 100}}
                     animate={{opacity: 1, translateX: 0}}
-                    delay={index * 250}
+                    delay={index * 300}
                     transition={{type: 'timing'}}>
                     <TouchableOpacity
                       activeOpacity={0.4}

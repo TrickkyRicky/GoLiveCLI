@@ -48,7 +48,7 @@ const RegistrationScreen = ({navigation}) => {
                   mt={4}
                   mb={1}
                   color="#CED4DA"
-                  size="2xl"
+                  size="xl"
                   fontWeight={700}
                   alignSelf="flex-start">
                   Getting Started.
@@ -56,10 +56,10 @@ const RegistrationScreen = ({navigation}) => {
                 <Heading
                   mb={18}
                   color="#CED4DA"
-                  size="lg"
+                  size="md"
                   fontWeight={400}
                   alignSelf="flex-start">
-                  Get ready to Go Live
+                  Stream. Upload. Enjoy.
                 </Heading>
 
                 <Input

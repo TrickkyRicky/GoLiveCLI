@@ -5,7 +5,7 @@ import {NodePlayerView} from 'react-native-nodemediaclient';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ShareIcon from 'react-native-vector-icons/Ionicons';
-// import Share from 'react-native-share';
+import VideoPlayer from 'react-native-media-console';
 import {MotiView, AnimatePresence} from 'moti';
 import {sPath, vPath} from '../utility/dev';
 
@@ -66,50 +66,36 @@ const PlayStream = props => {
           zIndex: 2,
         }}
       /> */}
-      <SafeAreaView style={{paddingBottom: 50}}>
-        <TouchableWithoutFeedback
-          onPress={() => setShowControls(!showControls)}>
-          <Box h={'25%'}>
-            <NodePlayerView
-              style={{height: '100%', backgroundColor: '#1F1F1F'}}
-              // ref={vp => {
-              //   setPlayerRef(vp);
-              // }}
-              // inputUrl={
-              //   props.route.params.playserver +
-              //   props.route.params.stream +
-              //   '/index.m3u8'
-              // }
-              scaleMode={'ScaleAspectFill'}
-              bufferTime={300}
-              maxBufferTime={1000}
-              autoplay={true}
-              onStatus={(code, msg) => {
-                console.log('onStatus=' + code + ' msg=' + msg);
-              }}
-            />
-            <AnimatePresence>
-              {showControls ? (
-                <MotiView
-                  style={{
-                    position: 'absolute',
-                    top: '40%',
-                    left: '45%',
-                  }}
-                  from={{opacity: 0}}
-                  animate={{opacity: 1}}
-                  exit={{opacity: 0}}>
-                  <Icon
-                    name="play"
-                    size={50}
-                    color="#fff"
-                    onPress={() => console.log('play button pressed')}
-                  />
-                </MotiView>
-              ) : null}
-            </AnimatePresence>
-          </Box>
-        </TouchableWithoutFeedback>
+      <SafeAreaView style={{paddingBottom: 0}}>
+        <Center h={300} w={width}>
+          <VideoPlayer
+            source={{uri: 'https://vjs.zencdn.net/v/oceans.mp4'}}
+            navigator={props.navigation}
+            rewindTime={10}
+            forwardTime={10}
+            controlTimeoutDelay={5000}
+            toggleResizeModeOnFullscreen={false}
+            fullscreen={true}
+            fullscreenOrientation="all"
+            pictureInPicture={true}
+            playInBackground={true}
+            playWhenInactive={true}
+            poster="https://picsum.photos/200/300"
+            posterResizeMode="cover"
+            volume={1}
+            showDuration={false}
+            ignoreSilentSwitch="ignore"
+            showTimeRemaining={true}
+            showHours={false}
+            disableVolume={true}
+            seekColor="#35C280"
+            style={{
+              width,
+            }}
+            videoStyle={{width}}
+            // onEnterFullscreen={() => { }}
+          />
+        </Center>
         <ScrollView
           style={{height: '100%', backgroundColor: '#212529'}}
           showsVerticalScrollIndicator={false}>
