@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Box, VStack, HStack, Text, Heading, Center} from 'native-base';
 import LottieView from 'lottie-react-native';
+import {MotiView} from 'moti';
+
 const StreamScreen = ({navigation}) => {
   const [streamTitle, setStreamTitle] = useState('');
 
@@ -22,30 +24,42 @@ const StreamScreen = ({navigation}) => {
           </Center>
 
           <TouchableOpacity onPress={() => navigation.navigate('VideoForm')}>
-            <Box
-              bg="#212529"
-              p={3}
-              w={'90%'}
-              mt={30}
-              borderRadius={10}
-              alignSelf="center">
-              <Heading color="#ADB5BD">Upload a Video</Heading>
-              <Text color="#ADB5BD">Upload a video or short clip</Text>
-            </Box>
+            <MotiView
+              from={{opacity: 0}}
+              animate={{opacity: 1}}
+              exit={{opacity: 0}}
+              delay={100}>
+              <Box
+                bg="#212529"
+                p={3}
+                w={'90%'}
+                mt={30}
+                borderRadius={10}
+                alignSelf="center">
+                <Heading color="#ADB5BD">Upload a Video</Heading>
+                <Text color="#ADB5BD">Upload a video or short clip</Text>
+              </Box>
+            </MotiView>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate('Form')}>
-            <Box
-              bg="#212529"
-              p={3}
-              w={'90%'}
-              mt={3}
-              mb={25}
-              borderRadius={10}
-              alignSelf="center">
-              <Heading color="#ADB5BD">Create a Stream</Heading>
-              <Text color="#ADB5BD">Stream live from your mobile device</Text>
-            </Box>
+            <MotiView
+              from={{opacity: 0}}
+              animate={{opacity: 1}}
+              exit={{opacity: 0}}
+              delay={100}>
+              <Box
+                bg="#212529"
+                p={3}
+                w={'90%'}
+                mt={3}
+                mb={25}
+                borderRadius={10}
+                alignSelf="center">
+                <Heading color="#ADB5BD">Create a Stream</Heading>
+                <Text color="#ADB5BD">Stream live from your mobile device</Text>
+              </Box>
+            </MotiView>
           </TouchableOpacity>
 
           <Text

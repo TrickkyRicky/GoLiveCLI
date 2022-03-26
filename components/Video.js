@@ -12,11 +12,21 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CrossIcon from 'react-native-vector-icons/Ionicons';
 import Dots from 'react-native-vector-icons/MaterialCommunityIcons';
+import LottieView from 'lottie-react-native';
 
-const Video = ({width, streamName, streamerName, views, image, bgColor}) => {
+const Video = ({
+  width,
+  streamName,
+  streamerName,
+  views,
+  image,
+  isLive,
+  bgColor,
+}) => {
   const {isOpen, onOpen, onClose} = useDisclose();
 
   let redWarningColor = '#b91c1c';
+  console.log(isLive);
 
   return (
     <Box borderRadius={10} width={width * 0.7} m={2}>
@@ -50,6 +60,25 @@ const Video = ({width, streamName, streamerName, views, image, bgColor}) => {
           </Text>
         </HStack>
       </Box>
+
+      {isLive ? (
+        <Box
+          width="25%"
+          h={6}
+          borderRadius={30}
+          position="absolute"
+          top={-7}
+          left={-10}>
+          <LottieView
+            source={require('../assets/lottie/streaming.json')}
+            autoPlay
+            loop
+            style={{
+              width: '100%',
+            }}
+          />
+        </Box>
+      ) : null}
 
       <HStack py="2" justifyContent="space-between" alignItems="center">
         <HStack>

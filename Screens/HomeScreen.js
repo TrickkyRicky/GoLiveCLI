@@ -14,74 +14,10 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Video from '../components/Video';
 // remember to create this file for you dev env.
 import {sPath, vPath} from '../utility/dev';
-
+import PopularStreamers from '../components/PopularStreamers';
 import {MotiView} from 'moti';
-
-const Data = [
-  {
-    id: 1,
-    streamName: 'Warzone Live',
-    streamerName: 'llamaLicker25',
-    views: '416K',
-    image: require('../assets/warzone2.jpg'),
-  },
-  {
-    id: 2,
-    streamName: 'Rebirth Resurgence Quads',
-    streamerName: 'Fighter10123',
-    views: '652K',
-    image: require('../assets/warzone3.jpg'),
-  },
-  {
-    id: 3,
-    streamName: 'Come Chill Out',
-    streamerName: 'GhostHunter28',
-    views: '295K',
-    image: require('../assets/warzone4.jpg'),
-  },
-  {
-    id: 4,
-    streamName: 'Warzone Live',
-    streamerName: 'NinjaWarrior67',
-    views: '6K',
-    image: require('../assets/warzone.jpg'),
-  },
-];
-
-const CATEGORIES = [
-  {
-    id: 1,
-    category: 'Art',
-  },
-  {
-    id: 2,
-    category: 'Beauty',
-  },
-  {
-    id: 3,
-    category: 'Chatting',
-  },
-  {
-    id: 4,
-    category: 'Education',
-  },
-  {
-    id: 5,
-    category: 'Gaming',
-  },
-  {
-    id: 6,
-    category: 'Music',
-  },
-  {
-    id: 7,
-    category: 'Sports',
-  },
-  {
-    id: 8,
-    category: 'Vlogs',
-  },
-];
+import {Data, CATEGORIES, POPULAR_STREAMERS} from '../utility/data';
+import Category from '../components/Category';
 
 const width = Dimensions.get('window').width;
 
@@ -102,10 +38,6 @@ const HomeScreen = ({navigation}) => {
           showHideTransition={'fade'}
           hidden={false}
         />
-        {/* <MotiView
-          from={{opacity: 0}}
-          animate={{opacity: 1}}
-          transition={{type: 'timing'}}> */}
         <VStack>
           <Image
             source={Logo}
@@ -116,10 +48,10 @@ const HomeScreen = ({navigation}) => {
             }}
           />
           <ScrollView showsVerticalScrollIndicator={false}>
-            <Heading color="#E9ECEF" size="2xl" px="3" mb={5}>
+            {/* <Heading color="#E9ECEF" size="2xl" px="3" mb={5}>
               Browse
-            </Heading>
-
+            </Heading> */}
+            <Box h={5} />
             <FlatList
               data={CATEGORIES}
               showsHorizontalScrollIndicator={false}
@@ -140,18 +72,7 @@ const HomeScreen = ({navigation}) => {
                           width: width,
                         })
                       }>
-                      <Box
-                        px={5}
-                        h={10}
-                        bg="#343A40"
-                        borderRadius={12}
-                        mr={3}
-                        justifyContent="center"
-                        alignItems="center">
-                        <Text color="#fff" fontSize="md" fontWeight="600">
-                          {item.category}
-                        </Text>
-                      </Box>
+                      <Category category={item.category} />
                     </TouchableOpacity>
                   </MotiView>
                 );
@@ -161,7 +82,7 @@ const HomeScreen = ({navigation}) => {
             <HStack
               justifyContent={'space-between'}
               alignItems="flex-end"
-              mt={4}
+              mt={5}
               mb={2}
               px={3}>
               <Heading size="md" color="#F5F4F4">
@@ -193,11 +114,6 @@ const HomeScreen = ({navigation}) => {
                   16,
                 );
                 return (
-                  // <MotiView
-                  //   from={{opacity: 0, translateX: 100}}
-                  //   animate={{opacity: 1, translateX: 0}}
-                  //   delay={index * 300}
-                  //   transition={{type: 'spring'}}>
                   <TouchableOpacity
                     style={{marginLeft: 5}}
                     activeOpacity={0.9}
@@ -217,13 +133,47 @@ const HomeScreen = ({navigation}) => {
                       streamerName={item.streamerName}
                       views={item.views}
                       image={item.image}
+                      isLive={true}
                       bgColor={randomColor}
                     />
                   </TouchableOpacity>
-                  // </MotiView>
                 );
               }}
             />
+
+            <Heading mt={3} pl={3} size="md" color="#F5F4F4">
+              Popular Streamers
+            </Heading>
+            <FlatList
+              data={POPULAR_STREAMERS}
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              keyExtractor={item => item.id}
+              ListHeaderComponent={<Box width={4}></Box>}
+              renderItem={({item, index}) => {
+                return (
+                  <MotiView
+                    from={{opacity: 0, translateX: 100}}
+                    animate={{opacity: 1, translateX: 0}}
+                    delay={index * 350}
+                    transition={{type: 'timing'}}>
+                    <TouchableOpacity
+                      activeOpacity={0.4}
+                      onPress={() =>
+                        navigation.navigate('Discover', {
+                          width: width,
+                        })
+                      }>
+                      <PopularStreamers
+                        name={item.name}
+                        followers={item.folowers}
+                      />
+                    </TouchableOpacity>
+                  </MotiView>
+                );
+              }}
+            />
+
             <HStack
               justifyContent={'space-between'}
               alignItems="flex-end"
@@ -259,11 +209,6 @@ const HomeScreen = ({navigation}) => {
                   16,
                 );
                 return (
-                  // <MotiView
-                  //   from={{opacity: 0, translateX: 100}}
-                  //   animate={{opacity: 1, translateX: 0}}
-                  //   delay={index * 300}
-                  //   transition={{type: 'spring'}}>
                   <TouchableOpacity
                     style={{marginLeft: 5}}
                     activeOpacity={0.9}
@@ -283,10 +228,10 @@ const HomeScreen = ({navigation}) => {
                       streamerName={item.streamerName}
                       views={item.views}
                       image={item.image}
+                      isLive={false}
                       bgColor={randomColor}
                     />
                   </TouchableOpacity>
-                  // {/* </MotiView> */}
                 );
               }}
             />
@@ -325,11 +270,6 @@ const HomeScreen = ({navigation}) => {
                   16,
                 );
                 return (
-                  // <MotiView
-                  //   from={{opacity: 0, translateX: 100}}
-                  //   animate={{opacity: 1, translateX: 0}}
-                  //   delay={index * 300}
-                  //   transition={{type: 'spring'}}>
                   <TouchableOpacity
                     style={{marginLeft: 5}}
                     activeOpacity={0.9}
@@ -349,17 +289,16 @@ const HomeScreen = ({navigation}) => {
                       streamerName={item.streamerName}
                       views={item.views}
                       image={item.image}
+                      isLive={false}
                       bgColor={randomColor}
                     />
                   </TouchableOpacity>
-                  // </MotiView>
                 );
               }}
             />
             <Center height={180} />
           </ScrollView>
         </VStack>
-        {/* </MotiView> */}
       </SafeAreaView>
     </Box>
   );

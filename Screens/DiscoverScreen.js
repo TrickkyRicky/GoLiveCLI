@@ -9,83 +9,10 @@ import React, {useRef, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Box, VStack, Text, Heading, HStack, Input} from 'native-base';
 import DiscoverVideo from '../components/DiscoverVideo';
-import Video from '../components/Video';
+import {Data} from '../utility/data';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {sPath, vPath} from '../utility/dev';
 import {MotiView} from 'moti';
-
-const Data = [
-  {
-    id: 1,
-    streamName: 'Warzone Live',
-    streamerName: 'llamaLicker25',
-    views: '416K',
-    image: require('../assets/warzone3.jpg'),
-  },
-  {
-    id: 2,
-    streamName: 'Rebirth Resurgence Quads ',
-    streamerName: 'llamaLicker25',
-    views: '652K',
-    image: require('../assets/warzone.jpg'),
-  },
-  {
-    id: 3,
-    streamName: 'Come Chill Out',
-    streamerName: 'llamaLicker25',
-    views: '295K',
-    image: require('../assets/warzone2.jpg'),
-  },
-  {
-    id: 4,
-    streamName: 'Warzone Live',
-    streamerName: 'llamaLicker25',
-    views: '6K',
-    image: require('../assets/warzone4.jpg'),
-  },
-  {
-    id: 5,
-    streamName: 'Warzone Live',
-    streamerName: 'llamaLicker25',
-    views: '416K',
-    image: require('../assets/warzone.jpg'),
-  },
-  {
-    id: 6,
-    streamName: 'Rebirth Resurgence Quads ',
-    streamerName: 'llamaLicker25',
-    views: '652K',
-    image: require('../assets/warzone2.jpg'),
-  },
-  {
-    id: 7,
-    streamName: 'Come Chill Out',
-    streamerName: 'llamaLicker25',
-    views: '295K',
-    image: require('../assets/warzone3.jpg'),
-  },
-  {
-    id: 8,
-    streamName: 'Warzone Live',
-    streamerName: 'llamaLicker25',
-    views: '6K',
-    image: require('../assets/warzone4.jpg'),
-  },
-  {
-    id: 9,
-    streamName: 'Come Chill Out',
-    streamerName: 'llamaLicker25',
-    views: '295K',
-    image: require('../assets/warzone.jpg'),
-  },
-  {
-    id: 10,
-    streamName: 'Warzone Live',
-    streamerName: 'llamaLicker25',
-    views: '6K',
-    image: require('../assets/warzone2.jpg'),
-  },
-];
 
 const width = Dimensions.get('window').width;
 const ITEM_SIZE = 250;
@@ -104,7 +31,7 @@ const DiscoverScreen = ({navigation}) => {
   const [stream, setStream] = useState('STREAM_NAME');
 
   return (
-    <Box flex={1} bg="#212529">
+    <Box flex={1} bg="#101010">
       <SafeAreaView style={{padding: 10}}>
         <VStack>
           <HStack
@@ -123,12 +50,13 @@ const DiscoverScreen = ({navigation}) => {
               keyboardAppearance="dark"
               ml={5}
               placeholder="Search"
-              bg="#495057"
-              borderColor="#495057"
-              color="#CCC"
-              fontSize="sm"
+              bg="#212529"
+              borderColor="#212529"
+              color="#CED4DA"
+              fontSize="md"
               borderRadius={10}
               w={'90%'}
+              _focus={{borderColor: '#101010'}}
               onChangeText={e => setSearchValue(e)}
               value={searchValue}
               InputLeftElement={
