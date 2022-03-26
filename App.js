@@ -104,12 +104,12 @@ const TabNavigator = () => {
           headerShown: false,
           tabBarShowLabel: false,
           tabBarActiveTintColor: '#35C280',
-          tabBarInactiveTintColor: '#CCC',
+          tabBarInactiveTintColor: '#6C757D',
           tabBarStyle: {
             position: 'absolute',
             bottom: 25,
             left: 0,
-            backgroundColor: '#343A40',
+            backgroundColor: '#212529',
             border: 'none',
             borderWidth: 0,
             borderTopWidth: 0,
@@ -137,7 +137,6 @@ const TabNavigator = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginBottom: Platform.OS == 'android' ? 50 : 20,
-                    zIndex: 2,
                   }}>
                   <Icon name="video-camera" size={25} color="#fff" />
                 </View>
@@ -163,7 +162,19 @@ const TabNavigator = () => {
             },
           })}
         />
-        <Tab.Screen name="Stream" component={StreamStackNavigator} />
+        <Tab.Screen
+          name="Stream"
+          component={StreamStackNavigator}
+          // listeners={({navigation, route}) => ({
+          //   tabPress: e => {
+          //     Animated.spring(tabOffsetValue, {
+          //       toValue: 5 * 1.9,
+          //       useNativeDriver: true,
+
+          //     }).start();
+          //   },
+          // })}
+        />
         <Tab.Screen
           name="Settings"
           component={Settings}

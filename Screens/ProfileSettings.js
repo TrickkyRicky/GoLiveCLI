@@ -6,7 +6,6 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
 import {
@@ -14,7 +13,6 @@ import {
   VStack,
   HStack,
   Text,
-  Heading,
   Center,
   Actionsheet,
   useDisclose,
@@ -88,7 +86,7 @@ const ProfileSettings = ({navigation}) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{
         flex: 1,
-        backgroundColor: '#212529',
+        backgroundColor: '#101010',
         justifyContent: 'flex-start',
       }}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -161,8 +159,8 @@ const ProfileSettings = ({navigation}) => {
                 keyboardAppearance="dark"
                 mb={1}
                 placeholder={userName}
-                bg="#343A40"
-                borderColor="#343A40"
+                bg="#212529"
+                borderColor="#212529"
                 color="#CED4DA"
                 fontSize="sm"
                 fontWeight={600}
@@ -170,7 +168,7 @@ const ProfileSettings = ({navigation}) => {
                 w={'100%'}
                 h={12}
                 px={5}
-                _focus={{borderColor: '#ADB5BD'}}
+                _focus={{borderColor: '#495057'}}
                 onChangeText={text => setUsername(text)}
                 value={username}
               />
@@ -183,8 +181,8 @@ const ProfileSettings = ({navigation}) => {
                 keyboardType="email-address"
                 mb={1}
                 placeholder={emailAddress}
-                bg="#343A40"
-                borderColor="#343A40"
+                bg="#212529"
+                borderColor="#212529"
                 color="#CED4DA"
                 fontSize="sm"
                 fontWeight={600}
@@ -192,7 +190,7 @@ const ProfileSettings = ({navigation}) => {
                 w={'100%'}
                 h={12}
                 px={5}
-                _focus={{borderColor: '#ADB5BD'}}
+                _focus={{borderColor: '#495057'}}
                 onChangeText={text => setEmail(text)}
                 value={email}
               />
@@ -207,7 +205,7 @@ const ProfileSettings = ({navigation}) => {
                   }, 2000);
                 }}>
                 <Box
-                  bg="#495057"
+                  bg="#343A40"
                   m={4}
                   w={width * 0.9}
                   py={3}
@@ -225,7 +223,7 @@ const ProfileSettings = ({navigation}) => {
               </TouchableOpacity>
 
               <Actionsheet isOpen={isOpen} onClose={onClose}>
-                <Actionsheet.Content bg="#343A40">
+                <Actionsheet.Content bg="#212529">
                   <Box w="100%" h={60} px={4} justifyContent="center">
                     <Text fontSize="md" fontWeight={700} color="#6C757D">
                       Upload a Photo
@@ -236,7 +234,7 @@ const ProfileSettings = ({navigation}) => {
                     startIcon={
                       <Icon name="image-outline" size={30} color="#CED4DA" />
                     }
-                    _pressed={{background: '#212529'}}>
+                    _pressed={{background: '#1F1F1F'}}>
                     <Text color="#CED4DA" fontWeight={700} fontSize="md">
                       Choose from Camera Roll
                     </Text>
@@ -250,7 +248,7 @@ const ProfileSettings = ({navigation}) => {
                         color="#CED4DA"
                       />
                     }
-                    _pressed={{background: '#212529'}}>
+                    _pressed={{background: '#1F1F1F'}}>
                     <Text color="#CED4DA" fontWeight={700} fontSize="md">
                       Capture from Camera
                     </Text>
@@ -258,7 +256,7 @@ const ProfileSettings = ({navigation}) => {
                   <Actionsheet.Item
                     onPress={() => onClose()}
                     startIcon={<Icon name="close" size={30} color="#CED4DA" />}
-                    _pressed={{background: '#212529'}}>
+                    _pressed={{background: '#1F1F1F'}}>
                     <Text color="#CED4DA" fontWeight={700} fontSize="md">
                       Cancel
                     </Text>

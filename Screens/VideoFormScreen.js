@@ -37,6 +37,9 @@ const VideoFormScreen = ({navigation}) => {
   const toast = useToast();
   const {isOpen, onOpen, onClose} = useDisclose();
 
+  const selectFontColor = '#ADB5BD';
+  const selectOnPressedBGColor = '#343A40';
+
   // const dispatch = useDispatch();
 
   const selectAVideo = () => {
@@ -134,7 +137,7 @@ const VideoFormScreen = ({navigation}) => {
   };
 
   return (
-    <Box flex={1} bg="#212529">
+    <Box flex={1} bg="#101010">
       <SafeAreaView style={{padding: 10}}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -154,18 +157,18 @@ const VideoFormScreen = ({navigation}) => {
               </HStack>
 
               <Box w="100%" h={60} ml={3.5} mb={12} justifyContent="center">
-                <Heading size="2xl" fontWeight={600} color="#E9ECEF">
+                <Heading size="2xl" fontWeight={600} color="#ADB5BD">
                   Upload a Video
                 </Heading>
-                <Heading size="md" fontWeight={400} color="#E9ECEF">
+                <Heading size="md" fontWeight={400} color="#ADB5BD">
                   Post videos for others to watch.
                 </Heading>
               </Box>
 
               <FormControl alignItems="center">
                 <Text
-                  fontSize="md"
-                  color="#CED4DA"
+                  fontSize="sm"
+                  color="#ADB5BD"
                   ml={2.5}
                   mb={1}
                   alignSelf="flex-start">
@@ -176,11 +179,11 @@ const VideoFormScreen = ({navigation}) => {
                   keyboardAppearance="dark"
                   mb={3}
                   px={5}
-                  _focus={{borderColor: '#ADB5BD'}}
+                  _focus={{borderColor: '#101010'}}
                   placeholder="Title"
-                  bg="#343A40"
-                  borderColor="#343A40"
-                  color="#CED4DA"
+                  bg="#212529"
+                  borderColor="#212529"
+                  color="#ADB5BD"
                   fontSize="md"
                   fontWeight={600}
                   borderRadius={10}
@@ -191,8 +194,8 @@ const VideoFormScreen = ({navigation}) => {
                 />
 
                 <Text
-                  color="#CED4DA"
-                  fontSize="md"
+                  color="#ADB5BD"
+                  fontSize="sm"
                   ml={2.5}
                   mb={1}
                   alignSelf="flex-start">
@@ -203,62 +206,62 @@ const VideoFormScreen = ({navigation}) => {
                   w={'95%'}
                   h={12}
                   px={5}
-                  _focus={{borderColor: '#ADB5BD'}}
+                  _focus={{borderColor: '#101010'}}
                   placeholder="Choose Category"
-                  bg="#343A40"
+                  bg="#212529"
                   fontSize="md"
                   fontWeight={600}
-                  color="#CED4DA"
-                  borderColor="#343A40"
+                  color="#ADB5BD"
+                  borderColor="#212529"
                   borderRadius={10}
-                  _actionSheetContent={{backgroundColor: '#343A40'}}
+                  _actionSheetContent={{backgroundColor: '#212529'}}
                   selectedValue={category}
                   onValueChange={selectedItem => setCategory(selectedItem)}>
                   <Select.Item
-                    _text={{color: '#F5F4F4'}}
-                    _pressed={{background: '#212529'}}
+                    _text={{color: selectFontColor}}
+                    _pressed={{background: selectOnPressedBGColor}}
                     label="Art"
                     value="Art"
                   />
                   <Select.Item
-                    _text={{color: '#F5F4F4'}}
-                    _pressed={{background: '#1F1F1F'}}
+                    _text={{color: selectFontColor}}
+                    _pressed={{background: selectOnPressedBGColor}}
                     label="Beauty"
                     value="Beauty"
                   />
                   <Select.Item
-                    _text={{color: '#F5F4F4'}}
-                    _pressed={{background: '#1F1F1F'}}
+                    _text={{color: selectFontColor}}
+                    _pressed={{background: selectOnPressedBGColor}}
                     label="Chatting"
                     value="Chatting"
                   />
                   <Select.Item
-                    _text={{color: '#F5F4F4'}}
-                    _pressed={{background: '#1F1F1F'}}
+                    _text={{color: selectFontColor}}
+                    _pressed={{background: selectOnPressedBGColor}}
                     label="Education"
                     value="Education"
                   />
                   <Select.Item
-                    _text={{color: '#F5F4F4'}}
-                    _pressed={{background: '#1F1F1F'}}
+                    _text={{color: selectFontColor}}
+                    _pressed={{background: selectOnPressedBGColor}}
                     label="Gaming"
                     value="Gaming"
                   />
                   <Select.Item
-                    _text={{color: '#F5F4F4'}}
-                    _pressed={{background: '#1F1F1F'}}
+                    _text={{color: selectFontColor}}
+                    _pressed={{background: selectOnPressedBGColor}}
                     label="Music"
                     value="Music"
                   />
                   <Select.Item
-                    _text={{color: '#F5F4F4'}}
-                    _pressed={{background: '#1F1F1F'}}
+                    _text={{color: selectFontColor}}
+                    _pressed={{background: selectOnPressedBGColor}}
                     label="Sports"
                     value="Sports"
                   />
                   <Select.Item
-                    _text={{color: '#F5F4F4'}}
-                    _pressed={{background: '#1F1F1F'}}
+                    _text={{color: selectFontColor}}
+                    _pressed={{background: selectOnPressedBGColor}}
                     label="Vlogs"
                     value="Vlogs"
                   />
@@ -279,8 +282,7 @@ const VideoFormScreen = ({navigation}) => {
                   bg="#35C280"
                   borderRadius={10}
                   mt={6}
-                  p={3}
-                  _pressed={{bg: '#000'}}>
+                  p={3}>
                   <Text
                     fontSize="md"
                     fontWeight={'medium'}
@@ -292,7 +294,7 @@ const VideoFormScreen = ({navigation}) => {
               </TouchableOpacity>
 
               <Actionsheet isOpen={isOpen} onClose={onClose}>
-                <Actionsheet.Content bg="#343A40">
+                <Actionsheet.Content bg="#212529">
                   <Box w="100%" h={60} px={4} justifyContent="center">
                     <Text fontSize="md" fontWeight={700} color="#6C757D">
                       Upload a Video
@@ -303,7 +305,7 @@ const VideoFormScreen = ({navigation}) => {
                     startIcon={
                       <Icon name="image-outline" size={30} color="#CED4DA" />
                     }
-                    _pressed={{background: '#212529'}}>
+                    _pressed={{background: '#1F1F1F'}}>
                     <Text color="#CED4DA" fontWeight={700} fontSize="md">
                       Choose from Camera Roll
                     </Text>
@@ -317,7 +319,7 @@ const VideoFormScreen = ({navigation}) => {
                         color="#CED4DA"
                       />
                     }
-                    _pressed={{background: '#212529'}}>
+                    _pressed={{background: '#1F1F1F'}}>
                     <Text color="#CED4DA" fontWeight={700} fontSize="md">
                       Capture from Camera
                     </Text>
@@ -325,7 +327,7 @@ const VideoFormScreen = ({navigation}) => {
                   <Actionsheet.Item
                     onPress={() => onClose()}
                     startIcon={<Icon name="close" size={30} color="#CED4DA" />}
-                    _pressed={{background: '#212529'}}>
+                    _pressed={{background: '#1F1F1F'}}>
                     <Text color="#CED4DA" fontWeight={700} fontSize="md">
                       Cancel
                     </Text>

@@ -50,22 +50,7 @@ const PlayStream = props => {
   };
 
   return (
-    <Box flex={1} bg="#000">
-      {/* <Icon
-        name="leftcircleo"
-        size={30}
-        onPress={() => {
-          props.navigation.goBack();
-        }}
-        color="#35C280"
-        style={{
-          padding: 12,
-          position: 'absolute',
-          top: 46,
-          left: 23,
-          zIndex: 2,
-        }}
-      /> */}
+    <Box flex={1} bg="#101010">
       <SafeAreaView style={{paddingBottom: 0}}>
         <Center h={300} w={width}>
           <VideoPlayer
@@ -97,7 +82,7 @@ const PlayStream = props => {
           />
         </Center>
         <ScrollView
-          style={{height: '100%', backgroundColor: '#212529'}}
+          style={{height: '100%', backgroundColor: '#101010'}}
           showsVerticalScrollIndicator={false}>
           <VStack p={2} mt={2}>
             <HStack>

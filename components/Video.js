@@ -10,10 +10,13 @@ import {
 } from 'native-base';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import CrossIcon from 'react-native-vector-icons/Ionicons';
 import Dots from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Video = ({width, streamName, streamerName, views, image, bgColor}) => {
   const {isOpen, onOpen, onClose} = useDisclose();
+
+  let redWarningColor = '#b91c1c';
 
   return (
     <Box borderRadius={10} width={width * 0.7} m={2}>
@@ -85,26 +88,28 @@ const Video = ({width, streamName, streamerName, views, image, bgColor}) => {
         </HStack>
       </HStack>
       <Actionsheet isOpen={isOpen} onClose={onClose}>
-        <Actionsheet.Content bg="#343A40">
+        <Actionsheet.Content bg="#212529">
           <Actionsheet.Item
-            startIcon={<Icon name="ban" size={30} color="#ef4444" />}
-            _pressed={{background: '#212529'}}
+            startIcon={<Icon name="ban" size={30} color={redWarningColor} />}
+            _pressed={{background: '#1F1F1F'}}
             _text={{
-              color: '#ef4444',
+              color: redWarningColor,
               fontWeight: 'bold',
             }}>{`Block ${streamerName}`}</Actionsheet.Item>
           <Actionsheet.Item
-            startIcon={<Icon name="warning" size={27} color="#ef4444" />}
-            _pressed={{background: '#212529'}}
+            startIcon={
+              <Icon name="warning" size={27} color={redWarningColor} />
+            }
+            _pressed={{background: '#1F1F1F'}}
             _text={{
-              color: '#ef4444',
+              color: redWarningColor,
               fontWeight: 'bold',
             }}>{`Report ${streamerName}`}</Actionsheet.Item>
 
           <Actionsheet.Item
             onPress={() => onClose()}
-            justifyContent="center"
-            _pressed={{background: '#212529'}}>
+            startIcon={<CrossIcon name="close" size={30} color="#CED4DA" />}
+            _pressed={{background: '#1F1F1F'}}>
             <Text color="#DEE2E6" fontWeight={800} fontSize="md">
               Cancel
             </Text>

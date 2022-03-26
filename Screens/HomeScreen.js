@@ -94,7 +94,7 @@ const HomeScreen = ({navigation}) => {
   const [stream, setStream] = useState('STREAM_NAME');
 
   return (
-    <Box flex={1} bg="#212529" zIndex={1}>
+    <Box flex={1} bg="#101010" zIndex={1}>
       <SafeAreaView style={{paddingBottom: 50}}>
         <StatusBar
           animated={true}
@@ -143,7 +143,7 @@ const HomeScreen = ({navigation}) => {
                       <Box
                         px={5}
                         h={10}
-                        bg="#495057"
+                        bg="#343A40"
                         borderRadius={12}
                         mr={3}
                         justifyContent="center"

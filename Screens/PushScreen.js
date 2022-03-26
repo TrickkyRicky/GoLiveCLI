@@ -41,7 +41,7 @@ const StreamContent = props => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: '#212529'}}>
+    <View style={{flex: 1, backgroundColor: '#101010'}}>
       <NodeCameraView
         style={{flex: 1}}
         ref={vb => {

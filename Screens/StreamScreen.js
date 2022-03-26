@@ -7,7 +7,7 @@ const StreamScreen = ({navigation}) => {
   const [streamTitle, setStreamTitle] = useState('');
 
   return (
-    <Box bg="#212529" flex={1} justifyContent="flex-end">
+    <Box bg="#101010" flex={1} justifyContent="flex-end">
       <SafeAreaView>
         <VStack>
           <Center mb={75}>
@@ -23,33 +23,33 @@ const StreamScreen = ({navigation}) => {
 
           <TouchableOpacity onPress={() => navigation.navigate('VideoForm')}>
             <Box
-              bg="#495057"
+              bg="#212529"
               p={3}
               w={'90%'}
               mt={30}
               borderRadius={10}
               alignSelf="center">
-              <Heading color="#fff">Upload a Video</Heading>
-              <Text color="#fff">Upload a video or short clip</Text>
+              <Heading color="#ADB5BD">Upload a Video</Heading>
+              <Text color="#ADB5BD">Upload a video or short clip</Text>
             </Box>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate('Form')}>
             <Box
-              bg="#495057"
+              bg="#212529"
               p={3}
               w={'90%'}
               mt={3}
               mb={25}
               borderRadius={10}
               alignSelf="center">
-              <Heading color="#fff">Create a Stream</Heading>
-              <Text color="#fff">Stream live from your mobile device</Text>
+              <Heading color="#ADB5BD">Create a Stream</Heading>
+              <Text color="#ADB5BD">Stream live from your mobile device</Text>
             </Box>
           </TouchableOpacity>
 
           <Text
-            color="#CCC"
+            color="#6C757D"
             fontSize={9}
             px={2}
             mb={20}

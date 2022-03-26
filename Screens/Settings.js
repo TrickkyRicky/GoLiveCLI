@@ -15,7 +15,6 @@ import {
   Button,
 } from 'native-base';
 import {SafeAreaView} from 'react-native-safe-area-context';
-// import Icon from 'react-native-vector-icons/FontAwesome';
 import Arrow from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Ionicons';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
@@ -33,6 +32,7 @@ const Settings = ({navigation}) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [showPasswordText, setShowPasswordText] = useState(true);
+  const bgColor = '#101010';
 
   useEffect(() => {
     FingerprintScanner.isSensorAvailable()
@@ -71,7 +71,7 @@ const Settings = ({navigation}) => {
   };
 
   return (
-    <VStack bg="#212529" flex={1}>
+    <VStack bg="#101010" flex={1}>
       <SafeAreaView>
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -112,7 +112,7 @@ const Settings = ({navigation}) => {
 
               <Text
                 color="#ADB5BD"
-                bg="#343A40"
+                bg="#212529"
                 letterSpacing={1.5}
                 fontSize="sm"
                 py={2.5}
@@ -121,7 +121,7 @@ const Settings = ({navigation}) => {
               </Text>
 
               <TouchableOpacity onPress={() => null}>
-                <Box bg="#212529" h={50} justifyContent="center" px={3} py={1}>
+                <Box bg={bgColor} h={50} justifyContent="center" px={3} py={1}>
                   <HStack
                     alignItems="center"
                     justifyContent={'space-between'}
@@ -139,7 +139,7 @@ const Settings = ({navigation}) => {
               </TouchableOpacity>
               <Text
                 color="#ADB5BD"
-                bg="#343A40"
+                bg="#212529"
                 letterSpacing={1.5}
                 fontSize="sm"
                 py={2.5}
@@ -148,7 +148,7 @@ const Settings = ({navigation}) => {
               </Text>
 
               <TouchableOpacity onPress={() => null}>
-                <Box bg="#212529" h={50} justifyContent="center" px={3} py={1}>
+                <Box bg={bgColor} h={50} justifyContent="center" px={3} py={1}>
                   <HStack
                     alignItems="center"
                     justifyContent={'space-between'}
@@ -170,7 +170,7 @@ const Settings = ({navigation}) => {
               </TouchableOpacity>
               <Text
                 color="#ADB5BD"
-                bg="#343A40"
+                bg="#212529"
                 letterSpacing={1.5}
                 fontSize="sm"
                 py={2.5}
@@ -179,7 +179,7 @@ const Settings = ({navigation}) => {
               </Text>
 
               <TouchableOpacity onPress={() => setShowModal(true)}>
-                <Box bg="#212529" h={50} justifyContent="center" px={3} py={1}>
+                <Box bg={bgColor} h={50} justifyContent="center" px={3} py={1}>
                   <HStack
                     alignItems="center"
                     justifyContent={'space-between'}
@@ -199,7 +199,7 @@ const Settings = ({navigation}) => {
                   </HStack>
                 </Box>
               </TouchableOpacity>
-              <Box bg="#212529" h={50} justifyContent="center" px={3} py={1}>
+              <Box bg={bgColor} h={50} justifyContent="center" px={3} py={1}>
                 <HStack
                   alignItems="center"
                   justifyContent={'space-between'}
@@ -227,7 +227,7 @@ const Settings = ({navigation}) => {
 
               <Text
                 color="#ADB5BD"
-                bg="#343A40"
+                bg="#212529"
                 letterSpacing={1.5}
                 fontSize="sm"
                 py={2.5}
@@ -236,7 +236,7 @@ const Settings = ({navigation}) => {
               </Text>
 
               <TouchableOpacity onPress={() => null}>
-                <Box bg="#212529" h={50} justifyContent="center" px={3} py={1}>
+                <Box bg={bgColor} h={50} justifyContent="center" px={3} py={1}>
                   <HStack
                     alignItems="center"
                     justifyContent={'space-between'}
@@ -257,7 +257,7 @@ const Settings = ({navigation}) => {
                 </Box>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => null}>
-                <Box bg="#212529" h={50} justifyContent="center" px={3} py={1}>
+                <Box bg={bgColor} h={50} justifyContent="center" px={3} py={1}>
                   <HStack
                     alignItems="center"
                     justifyContent={'space-between'}
@@ -282,7 +282,7 @@ const Settings = ({navigation}) => {
                 activeOpacity={0.8}
                 onPress={() => setIsSignedIn(false)}>
                 <Box
-                  bg="#495057"
+                  bg="#343A40"
                   m={4}
                   py={3}
                   borderRadius={10}
@@ -300,11 +300,11 @@ const Settings = ({navigation}) => {
                 _backdrop={{bg: '#000'}}
                 isOpen={showModal}
                 onClose={() => setShowModal(false)}>
-                <Modal.Content w={width * 0.9} bg="#343A40">
+                <Modal.Content w={width * 0.9} bg="#212529">
                   <Modal.CloseButton />
                   <Modal.Header
-                    borderBottomColor="#495057"
-                    _text={{color: '#DEE2E6'}}>
+                    borderBottomColor="#343A40"
+                    _text={{color: '#ADB5BD'}}>
                     Password Reset
                   </Modal.Header>
 
@@ -324,8 +324,8 @@ const Settings = ({navigation}) => {
                       secureTextEntry={showPasswordText}
                       mb={3}
                       placeholder="Password"
-                      bg="#495057"
-                      borderColor="#495057"
+                      bg="#343A40"
+                      borderColor="#343A40"
                       borderWidth={2}
                       color="#CED4DA"
                       fontSize="md"
@@ -337,7 +337,7 @@ const Settings = ({navigation}) => {
                       mt={3}
                       onChangeText={text => setPassword(text)}
                       value={password}
-                      _focus={{borderColor: '#ADB5BD'}}
+                      _focus={{borderColor: '#495057'}}
                       InputRightElement={
                         <Icon2
                           name="eye"
@@ -354,8 +354,8 @@ const Settings = ({navigation}) => {
                       secureTextEntry={true}
                       // mb={1}
                       placeholder="Confirm Password"
-                      bg="#495057"
-                      borderColor="#495057"
+                      bg="#343A40"
+                      borderColor="#343A40"
                       borderWidth={2}
                       color="#CED4DA"
                       fontSize="md"
@@ -366,11 +366,11 @@ const Settings = ({navigation}) => {
                       px={5}
                       onChangeText={text => setConfirmPassword(text)}
                       value={confirmPassword}
-                      _focus={{borderColor: '#ADB5BD'}}
+                      _focus={{borderColor: '#495057'}}
                     />
                   </Modal.Body>
 
-                  <Modal.Footer bg="#343A40">
+                  <Modal.Footer bg="#212529">
                     <Button.Group space={2}>
                       <Button
                         variant="ghost"
@@ -383,9 +383,9 @@ const Settings = ({navigation}) => {
                       </Button>
 
                       <Button
-                        bg="#6C757D"
+                        bg="#343A40"
                         _text={{color: '#fff'}}
-                        _pressed={{bg: '#343A40', fontSize: 'md'}}
+                        _pressed={{bg: '#212529', fontSize: 'md'}}
                         onPress={() => {
                           null;
                         }}>
@@ -401,12 +401,12 @@ const Settings = ({navigation}) => {
               <Heading
                 mt={4}
                 mb={2}
-                color="#CED4DA"
+                color="#ADB5BD"
                 size="2xl"
-                fontWeight={700}>
+                fontWeight={600}>
                 Let's sign you in.
               </Heading>
-              <Heading mb={10} color="#CED4DA" size="lg" fontWeight={400}>
+              <Heading mb={10} color="#ADB5BD" size="md" fontWeight={400}>
                 {`Welcome back.\nYou've been missed.`}
               </Heading>
               <VStack alignItems="center">
@@ -416,16 +416,16 @@ const Settings = ({navigation}) => {
                   mb={3}
                   px={5}
                   placeholder="Username"
-                  bg="#343A40"
-                  borderColor="#495057"
+                  bg="#212529"
+                  borderColor="#212529"
                   borderWidth={2}
-                  color="#CED4DA"
+                  color="#ADB5BD"
                   fontSize="md"
                   fontWeight={600}
                   borderRadius={10}
-                  _focus={{borderColor: '#ADB5BD'}}
+                  _focus={{borderColor: '#343A40'}}
                   w={'95%'}
-                  h="12"
+                  h={12}
                   onChangeText={text => setUsername(text)}
                   value={username}
                 />
@@ -437,14 +437,14 @@ const Settings = ({navigation}) => {
                   mb={3}
                   px={5}
                   placeholder="Password"
-                  bg="#343A40"
-                  borderColor="#495057"
+                  bg="#212529"
+                  borderColor="#212529"
                   borderWidth={2}
                   color="#CED4DA"
                   fontSize="md"
                   fontWeight={600}
                   borderRadius={10}
-                  _focus={{borderColor: '#ADB5BD'}}
+                  _focus={{borderColor: '#343A40'}}
                   w={'95%'}
                   h={12}
                   onChangeText={text => setPassword(text)}
@@ -470,7 +470,7 @@ const Settings = ({navigation}) => {
                   }, 2000);
                 }}>
                 <Box
-                  bg="#495057"
+                  bg="#343A40"
                   m={4}
                   py={3}
                   borderRadius={10}
@@ -479,7 +479,7 @@ const Settings = ({navigation}) => {
                   {isLoading ? (
                     <Spinner color="emerald.500" />
                   ) : (
-                    <Text color="#fff" fontSize="lg" fontWeight="bold">
+                    <Text color="#DEE2E6" fontSize="lg" fontWeight="bold">
                       Sign In
                     </Text>
                   )}
@@ -491,7 +491,7 @@ const Settings = ({navigation}) => {
                   fontSize="sm"
                   color="green.400"
                   onPress={() => navigation.navigate('Register')}>
-                  Create one now{' '}
+                  Register now{' '}
                 </Text>
               </Text>
 
