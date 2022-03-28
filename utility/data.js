@@ -76,33 +76,41 @@ export const CATEGORIES = [
   {
     id: 1,
     category: 'Art',
+    icon: 'ios-brush',
   },
   {
     id: 2,
     category: 'Beauty',
+    icon: 'ios-brush',
   },
   {
     id: 3,
     category: 'Chatting',
+    icon: 'ios-brush',
   },
   {
     id: 4,
     category: 'Education',
+    icon: 'ios-brush',
   },
   {
     id: 5,
     category: 'Gaming',
+    icon: 'ios-brush',
   },
   {
     id: 6,
     category: 'Music',
+    icon: 'ios-brush',
   },
   {
     id: 7,
     category: 'Sports',
+    icon: 'ios-brush',
   },
   {
     id: 8,
     category: 'Vlogs',
+    icon: 'ios-brush',
   },
 ];

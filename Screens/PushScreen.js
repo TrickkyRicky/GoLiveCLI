@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {View, TouchableOpacity, Share} from 'react-native';
 import {Center, Text, VStack} from 'native-base';
+import {View} from 'react-native';
 import {NodeCameraView} from 'react-native-nodemediaclient';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Ionicons';
+import {shareSheet} from '../utility/share';
 
 const StreamContent = props => {
   const [playerRef, setPlayerRef] = useState(null);
@@ -15,30 +16,7 @@ const StreamContent = props => {
     };
   }, []);
 
-  const shareTest = async () => {
-    try {
-      const result = await Share.share(
-        {
-          message: `Check out this livestream\nhttps://www.dummyurl.com/live/llamalicker25`,
-        },
-        {
-          tintColor: '#35C280',
-          subject: 'GoLive',
-        },
-      );
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const streamKey = 'g4hs6f6tds5';
 
   return (
     <View style={{flex: 1, backgroundColor: '#101010'}}>
@@ -103,7 +81,7 @@ const StreamContent = props => {
           <Icon2
             name="ios-arrow-redo-outline"
             size={30}
-            onPress={() => shareTest()}
+            onPress={() => shareSheet(streamKey)}
             color="#35C280"
           />
         </Center>

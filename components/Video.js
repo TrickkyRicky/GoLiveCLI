@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import CrossIcon from 'react-native-vector-icons/Ionicons';
 import Dots from 'react-native-vector-icons/MaterialCommunityIcons';
 import LottieView from 'lottie-react-native';
+import {shareSheet} from '../utility/share';
 
 const Video = ({
   width,
@@ -25,8 +26,8 @@ const Video = ({
 }) => {
   const {isOpen, onOpen, onClose} = useDisclose();
 
+  const streamKey = 'g4hs6f6tds5';
   let redWarningColor = '#b91c1c';
-  console.log(isLive);
 
   return (
     <Box borderRadius={10} width={width * 0.7} m={2}>
@@ -134,6 +135,17 @@ const Video = ({
               color: redWarningColor,
               fontWeight: 'bold',
             }}>{`Report ${streamerName}`}</Actionsheet.Item>
+
+          <Actionsheet.Item
+            onPress={() => shareSheet(streamKey)}
+            startIcon={<CrossIcon name="arrow-redo" size={30} color="#fff" />}
+            _pressed={{background: '#1F1F1F'}}
+            _text={{
+              color: '#fff',
+              fontWeight: 'bold',
+            }}>
+            Share
+          </Actionsheet.Item>
 
           <Actionsheet.Item
             onPress={() => onClose()}

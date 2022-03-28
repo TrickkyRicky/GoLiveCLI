@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView, Dimensions, Share} from 'react-native';
+import {ScrollView, Dimensions, TouchableOpacity} from 'react-native';
 import {Box, HStack, Text, VStack, Center, Heading} from 'native-base';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Ionicons';
 import ShareIcon from 'react-native-vector-icons/Ionicons';
 import VideoPlayer from 'react-native-media-console';
 import {MotiView, AnimatePresence} from 'moti';
 import Orientation from 'react-native-orientation-locker';
 import {sPath, vPath} from '../utility/dev';
+import {shareSheet} from '../utility/share';
 
 const PlayStream = props => {
   const [playerRef, setPlayerRef] = useState(null);
@@ -29,26 +30,7 @@ const PlayStream = props => {
     };
   }, []);
 
-  let streamKey = 'g4hs6f6tds5';
-
-  const shareTest = async () => {
-    try {
-      const result = await Share.share({
-        message: `Check out this livestream https://www.dummyurl.com/live/${streamKey}`,
-      });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const streamKey = 'g4hs6f6tds5';
 
   const toggleFullScreen = () => {
     if (isFullScreen) {
@@ -62,7 +44,7 @@ const PlayStream = props => {
 
   return (
     <Box flex={1} bg="#000">
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#101010'}}>
         <Center h={height * 0.24} w={width}>
           <VideoPlayer
             source={{uri: 'https://vjs.zencdn.net/v/oceans.mp4'}}
@@ -93,66 +75,149 @@ const PlayStream = props => {
             onExitFullscreen={() => setIsFullScreen(false)}
           />
         </Center>
-        <ScrollView
-          style={{height: '100%', backgroundColor: '#101010'}}
-          showsVerticalScrollIndicator={false}>
-          <VStack w={width} p={3}>
-            <HStack justifyContent="space-between" alignItems="center">
-              <HStack alignItems="center">
-                <Center
-                  bg={`#${bgColor}`}
-                  width={10}
-                  height={10}
-                  borderRadius={100}
-                />
+
+        <VStack w={width}>
+          <HStack
+            justifyContent="space-between"
+            alignItems="center"
+            borderBottomColor="#212529"
+            borderBottomWidth={1.5}>
+            <HStack pl={3} py={3} alignItems="center">
+              <Center
+                bg={`#${bgColor}`}
+                width={9}
+                height={9}
+                borderRadius={100}
+              />
+              <VStack alignItems="flex-start" ml={2}>
                 <Heading
-                  color="#ADB5BD"
+                  color="#6C757D"
                   size="sm"
-                  fontWeight={400}
-                  ml={2}
+                  fontWeight={800}
                   isTruncated={true}
-                  // width={width * 0.4}
-                >
+                  w={width * 0.4}>
                   {streamerName}
                 </Heading>
-              </HStack>
+                <Text color="#ADB5BD" fontSize="sm" fontWeight={300}>
+                  1.5K Followers
+                </Text>
+              </VStack>
+            </HStack>
+
+            <HStack
+              space={3}
+              justifyContent="space-between"
+              alignItems="center">
+              <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
+                <Box bg="#35C280" px={5} py={1.5} borderRadius={10}>
+                  <Text color="#fff" fontSize="md" fontWeight={600}>
+                    Follow
+                  </Text>
+                </Box>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => shareSheet(streamKey)}>
+                <Center
+                  bg="#212529"
+                  p={1.5}
+                  mr={3}
+                  alignItems="center"
+                  justifyContent="center"
+                  borderRadius={10}>
+                  <ShareIcon
+                    name="ios-share-outline"
+                    size={25}
+                    color="#35C280"
+                  />
+                </Center>
+              </TouchableOpacity>
+            </HStack>
+          </HStack>
+
+          <HStack ml={3}>
+            <HStack alignItems="center">
+              <Icon name="time-outline" size={20} color="#35C280" />
               <Text
                 color="#ADB5BD"
                 fontSize="xs"
                 fontWeight={500}
-                ml={2}
-                isTruncated={true}
-                // width={width * 0.4}
-              >
+                ml={0.5}
+                pr={3}
+                py={3}
+                isTruncated={true}>
+                38 minutes ago
+              </Text>
+            </HStack>
+            <HStack alignItems="center">
+              <Icon name="eye-outline" size={20} color="#35C280" />
+              <Text
+                color="#ADB5BD"
+                fontSize="xs"
+                fontWeight={500}
+                ml={1}
+                pr={3}
+                py={3}
+                isTruncated={true}>
                 56,545 viewers
               </Text>
             </HStack>
-            <Heading
-              color="#ADB5BD"
-              size="xl"
-              my={3}
-              fontWeight="bold"
-              isTruncated={true}
-              numberOfLines={2}
-              width={width * 0.7}>
-              {streamName}
-            </Heading>
+          </HStack>
 
-            <HStack justifyContent="space-between" alignItems="center">
-              <Box bg="#35C280" px={5} py={1} borderRadius={10}>
-                <Text color="#fff" fontSize="md">
-                  Follow
-                </Text>
-              </Box>
-
-              <ShareIcon
-                name="ios-share-outline"
-                size={30}
-                color="#35C280"
-                onPress={() => shareTest()}
-              />
-            </HStack>
-          </VStack>
+          <Heading
+            color="#ADB5BD"
+            size="lg"
+            mt={1}
+            mb={2}
+            px={3}
+            fontWeight="bold"
+            isTruncated={true}
+            numberOfLines={2}
+            width={width * 0.9}>
+            {streamName}
+          </Heading>
+        </VStack>
+        <ScrollView
+          style={{
+            height: '60%',
+            paddingBottom: 50,
+          }}
+          showsVerticalScrollIndicator={false}>
+          <Center>
+            <VStack>
+              <Heading my={5} color="#495057">
+                Comment section here
+              </Heading>
+              <Heading my={5} color="#495057">
+                Comment section here
+              </Heading>
+              <Heading my={5} color="#495057">
+                Comment section here
+              </Heading>
+              <Heading my={5} color="#495057">
+                Comment section here
+              </Heading>
+              <Heading my={5} color="#495057">
+                Comment section here
+              </Heading>
+              <Heading my={5} color="#495057">
+                Comment section here
+              </Heading>
+              <Heading my={5} color="#495057">
+                Comment section here
+              </Heading>
+              <Heading my={5} color="#495057">
+                Comment section here
+              </Heading>
+              <Heading my={5} color="#495057">
+                Comment section here
+              </Heading>
+              <Heading my={5} color="#495057">
+                Comment section here
+              </Heading>
+            </VStack>
+            <Box h={50} />
+          </Center>
         </ScrollView>
       </SafeAreaView>
     </Box>

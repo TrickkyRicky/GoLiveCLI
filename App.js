@@ -53,11 +53,7 @@ function SplashStackNavigation() {
             />
             <Stack.Screen name="Play" component={PlayScreen} />
             <Stack.Screen name="Push" component={PushScreen} />
-            <Stack.Screen
-              name="Profile"
-              component={ProfileSettings}
-              options={{presentation: 'modal'}}
-            />
+            <Stack.Screen name="Profile" component={ProfileSettings} />
             <Stack.Screen
               name="Register"
               component={RegistrationScreen}

@@ -388,7 +388,6 @@ const Settings = ({navigation}) => {
                         isRequired
                         keyboardAppearance="dark"
                         secureTextEntry={true}
-                        // mb={1}
                         placeholder="Confirm Password"
                         bg="#343A40"
                         borderColor="#343A40"
