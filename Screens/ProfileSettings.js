@@ -147,54 +147,6 @@ const ProfileSettings = ({navigation}) => {
                   {userName}
                 </Text>
 
-                <HStack space={3} justifyContent="space-between">
-                  <VStack
-                    px={3}
-                    py={4}
-                    h={32}
-                    w={width * 0.45}
-                    bg="#343A40"
-                    borderRadius={20}
-                    justifyContent="space-between">
-                    <Text fontSize="lg" color="#6C757D" fontWeight={700}>
-                      Videos
-                    </Text>
-                    <Text fontSize="2xl" color="#ADB5BD">
-                      13
-                    </Text>
-                  </VStack>
-                  <VStack
-                    px={3}
-                    py={4}
-                    h={32}
-                    w={width * 0.45}
-                    bg="#343A40"
-                    borderRadius={20}
-                    justifyContent="space-between">
-                    <Text fontSize="lg" color="#6C757D" fontWeight={700}>
-                      Views
-                    </Text>
-                    <Text fontSize="2xl" color="#ADB5BD">
-                      456,565
-                    </Text>
-                  </VStack>
-                </HStack>
-                <VStack
-                  px={3}
-                  py={4}
-                  h={32}
-                  w={'100%'}
-                  bg="#343A40"
-                  borderRadius={20}
-                  justifyContent="space-between">
-                  <Text fontSize="xl" color="#6C757D" fontWeight={700}>
-                    Followers
-                  </Text>
-                  <Text fontSize="3xl" color="#ADB5BD">
-                    456,565
-                  </Text>
-                </VStack>
-
                 <Text color="#CED4DA" ml={1} alignSelf="flex-start">
                   Change Username
                 </Text>

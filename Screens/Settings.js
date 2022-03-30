@@ -96,7 +96,7 @@ const Settings = ({navigation}) => {
                       llamalicker25
                     </Text>
 
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                       activeOpacity={0.8}
                       onPress={() => navigation.navigate('Profile')}>
                       <Box
@@ -112,7 +112,54 @@ const Settings = ({navigation}) => {
                           <Arrow name="right" size={17} color="#fff" />
                         </HStack>
                       </Box>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
+                    <HStack space={3} justifyContent="space-between">
+                      <VStack
+                        px={3}
+                        py={4}
+                        h={24}
+                        w={width * 0.45}
+                        bg="#212529"
+                        borderRadius={20}
+                        justifyContent="space-between">
+                        <Text fontSize="lg" color="#6C757D" fontWeight={700}>
+                          Videos
+                        </Text>
+                        <Text fontSize="2xl" color="#ADB5BD">
+                          13
+                        </Text>
+                      </VStack>
+                      <VStack
+                        px={3}
+                        py={4}
+                        h={24}
+                        w={width * 0.45}
+                        bg="#212529"
+                        borderRadius={20}
+                        justifyContent="space-between">
+                        <Text fontSize="lg" color="#6C757D" fontWeight={700}>
+                          Views
+                        </Text>
+                        <Text fontSize="2xl" color="#ADB5BD">
+                          456,565
+                        </Text>
+                      </VStack>
+                    </HStack>
+                    <VStack
+                      px={3}
+                      py={4}
+                      h={32}
+                      w={width * 0.93}
+                      bg="#212529"
+                      borderRadius={20}
+                      justifyContent="space-between">
+                      <Text fontSize="xl" color="#6C757D" fontWeight={700}>
+                        Followers
+                      </Text>
+                      <Text fontSize="3xl" color="#ADB5BD">
+                        456,565
+                      </Text>
+                    </VStack>
                   </VStack>
                 </Box>
 
@@ -123,9 +170,37 @@ const Settings = ({navigation}) => {
                   fontSize="sm"
                   py={2.5}
                   px={3}>
-                  CONTENT
+                  USER SETTINGS
                 </Text>
 
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => navigation.navigate('Profile')}>
+                  <Box
+                    bg={bgColor}
+                    h={50}
+                    justifyContent="center"
+                    px={3}
+                    py={1}>
+                    <HStack
+                      alignItems="center"
+                      justifyContent={'space-between'}
+                      width={'100%'}>
+                      <HStack alignItems="center" space={4} ml={2}>
+                        <Icon2
+                          name="person-outline"
+                          size={25}
+                          color="#35C280"
+                        />
+                        <Text fontSize="lg" color="#F4F4F4">
+                          My Profile
+                        </Text>
+                      </HStack>
+
+                      <Arrow name="right" size={20} color="#CCC" />
+                    </HStack>
+                  </Box>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => null}>
                   <Box
                     bg={bgColor}

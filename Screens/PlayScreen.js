@@ -1,6 +1,15 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {ScrollView, Dimensions, TouchableOpacity, FlatList} from 'react-native';
-import {Box, HStack, Text, VStack, Center, Heading, Input} from 'native-base';
+import {
+  Box,
+  HStack,
+  Text,
+  VStack,
+  Center,
+  Heading,
+  Input,
+  Button,
+} from 'native-base';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Likes from 'react-native-vector-icons/AntDesign';
@@ -17,6 +26,7 @@ const PlayStream = props => {
   const [playerRef, setPlayerRef] = useState(null);
   const [showControls, setShowControls] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const animation = useRef(null);
   const {height} = Dimensions.get('window');
@@ -46,6 +56,8 @@ const PlayStream = props => {
       setIsFullScreen(true);
     }
   };
+
+  const [changedData, setChangedData] = useState(COMMENTS);
 
   return (
     <Box flex={1} bg="#000">
@@ -94,13 +106,12 @@ const PlayStream = props => {
                 height={9}
                 borderRadius={100}
               />
-              <VStack alignItems="flex-start" ml={2}>
+              <VStack alignItems="flex-start" ml={2} w={width * 0.4}>
                 <Heading
                   color="#6C757D"
                   size="sm"
                   fontWeight={800}
-                  isTruncated={true}
-                  w={width * 0.4}>
+                  isTruncated={true}>
                   {streamerName}
                 </Heading>
                 <Text color="#ADB5BD" fontSize="sm" fontWeight={300}>
@@ -113,10 +124,12 @@ const PlayStream = props => {
               space={3}
               justifyContent="space-between"
               alignItems="center">
-              <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => setIsFollowing(!isFollowing)}>
                 <Box bg="#35C280" px={5} py={1.5} borderRadius={10}>
                   <Text color="#fff" fontSize="md" fontWeight={600}>
-                    Follow
+                    {isFollowing ? 'Following' : 'Follow'}
                   </Text>
                 </Box>
               </TouchableOpacity>
@@ -202,10 +215,22 @@ const PlayStream = props => {
           <FlatList
             data={COMMENTS}
             keyExtractor={item => item.id}
-            renderItem={({item}) => (
-              <Comments name={item.name} comment={item.comment} width={width} />
+            showsVerticalScrollIndicator={false}
+            extraData={changedData}
+            renderItem={({item, index}) => (
+              <MotiView
+                from={{opacity: 0, translateY: 100}}
+                animate={{opacity: 1, translateY: 0}}
+                delay={index * 600}
+                transition={{type: 'timing'}}>
+                <Comments
+                  name={item.name}
+                  comment={item.comment}
+                  width={width}
+                />
+              </MotiView>
             )}
-            ListFooterComponent={<Box h={100} />}
+            ListFooterComponent={<Box h={160} />}
           />
         </Box>
 
@@ -213,7 +238,7 @@ const PlayStream = props => {
           h={32}
           w={width}
           bg="#101010"
-          position={'absolute'}
+          position="absolute"
           bottom={5}
           left={0}>
           <HStack

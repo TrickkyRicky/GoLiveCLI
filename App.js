@@ -16,6 +16,7 @@ import StreamFormScreen from './Screens/StreamFormScreen';
 import VideoFormScreen from './Screens/VideoFormScreen';
 import ProfileSettings from './Screens/ProfileSettings';
 import RegistrationScreen from './Screens/RegistrationScreen';
+import ProfileScreen from './Screens/ProfileScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import 'react-native-reanimated';
 
@@ -73,6 +74,7 @@ const HomeStackNavigator = () => {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="Discover" component={DiscoverScreen} />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
