@@ -1,19 +1,24 @@
-import React, {useState, useEffect} from 'react';
-import {ScrollView, Dimensions, TouchableOpacity} from 'react-native';
-import {Box, HStack, Text, VStack, Center, Heading} from 'native-base';
+import React, {useState, useEffect, useRef} from 'react';
+import {ScrollView, Dimensions, TouchableOpacity, FlatList} from 'react-native';
+import {Box, HStack, Text, VStack, Center, Heading, Input} from 'native-base';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ShareIcon from 'react-native-vector-icons/Ionicons';
+import Likes from 'react-native-vector-icons/AntDesign';
 import VideoPlayer from 'react-native-media-console';
 import {MotiView, AnimatePresence} from 'moti';
+import LottieView from 'lottie-react-native';
 import Orientation from 'react-native-orientation-locker';
 import {sPath, vPath} from '../utility/dev';
+import {COMMENTS} from '../utility/data';
 import {shareSheet} from '../utility/share';
+import Comments from '../components/Comments';
 
 const PlayStream = props => {
   const [playerRef, setPlayerRef] = useState(null);
   const [showControls, setShowControls] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const animation = useRef(null);
   const {height} = Dimensions.get('window');
   const {streamName, streamerName, bgColor, width} = props.route.params;
 
@@ -125,11 +130,7 @@ const PlayStream = props => {
                   alignItems="center"
                   justifyContent="center"
                   borderRadius={10}>
-                  <ShareIcon
-                    name="ios-share-outline"
-                    size={25}
-                    color="#35C280"
-                  />
+                  <Icon name="ios-share-outline" size={25} color="#35C280" />
                 </Center>
               </TouchableOpacity>
             </HStack>
@@ -164,61 +165,86 @@ const PlayStream = props => {
             </HStack>
           </HStack>
 
-          <Heading
-            color="#ADB5BD"
-            size="lg"
-            mt={1}
-            mb={2}
-            px={3}
-            fontWeight="bold"
-            isTruncated={true}
-            numberOfLines={2}
-            width={width * 0.9}>
-            {streamName}
-          </Heading>
+          <HStack px={3} justifyContent="space-between" alignItems="center">
+            <Heading
+              color="#ADB5BD"
+              size="lg"
+              fontWeight="bold"
+              isTruncated={true}
+              numberOfLines={2}
+              width={width * 0.8}>
+              {streamName}
+            </Heading>
+
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPress={() => {
+                animation.current.play(0, 76);
+                // animation.current.play();
+              }}>
+              <LottieView
+                source={require('../assets/lottie/like2.json')}
+                ref={animation}
+                loop={false}
+                // onAnimationFinish={() => {
+                // 	animation.current.pause();
+                // }}
+                style={{
+                  height: 60,
+                  width: 60,
+                }}
+              />
+            </TouchableOpacity>
+          </HStack>
         </VStack>
-        <ScrollView
-          style={{
-            height: '60%',
-            paddingBottom: 50,
-          }}
-          showsVerticalScrollIndicator={false}>
-          <Center>
-            <VStack>
-              <Heading my={5} color="#495057">
-                Comment section here
-              </Heading>
-              <Heading my={5} color="#495057">
-                Comment section here
-              </Heading>
-              <Heading my={5} color="#495057">
-                Comment section here
-              </Heading>
-              <Heading my={5} color="#495057">
-                Comment section here
-              </Heading>
-              <Heading my={5} color="#495057">
-                Comment section here
-              </Heading>
-              <Heading my={5} color="#495057">
-                Comment section here
-              </Heading>
-              <Heading my={5} color="#495057">
-                Comment section here
-              </Heading>
-              <Heading my={5} color="#495057">
-                Comment section here
-              </Heading>
-              <Heading my={5} color="#495057">
-                Comment section here
-              </Heading>
-              <Heading my={5} color="#495057">
-                Comment section here
-              </Heading>
-            </VStack>
-            <Box h={50} />
-          </Center>
-        </ScrollView>
+
+        <Box h={'60%'}>
+          <FlatList
+            data={COMMENTS}
+            keyExtractor={item => item.id}
+            renderItem={({item}) => (
+              <Comments name={item.name} comment={item.comment} width={width} />
+            )}
+            ListFooterComponent={<Box h={100} />}
+          />
+        </Box>
+
+        <Box
+          h={32}
+          w={width}
+          bg="#101010"
+          position={'absolute'}
+          bottom={5}
+          left={0}>
+          <HStack
+            w={width}
+            px={3}
+            mt={3}
+            position="absolute"
+            top={0}
+            left={0}
+            justifyContent="center">
+            <Input
+              borderRadius={10}
+              keyboardAppearance="dark"
+              w="95%"
+              h={12}
+              px={3}
+              placeholder="Add a comment..."
+              borderColor="#212529"
+              bg="#212529"
+              InputRightElement={
+                <Icon
+                  name="send"
+                  size={18}
+                  color="#CED4DA"
+                  style={{marginRight: 12}}
+                  onPress={() => null}
+                />
+              }
+            />
+          </HStack>
+        </Box>
       </SafeAreaView>
     </Box>
   );

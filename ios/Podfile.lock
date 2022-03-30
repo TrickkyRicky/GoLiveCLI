@@ -417,6 +417,10 @@ PODS:
     - React
   - RNVectorIcons (9.1.0):
     - React-Core
+  - VisionCamera (2.13.0):
+    - React
+    - React-callinvoker
+    - React-Core
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -494,6 +498,7 @@ DEPENDENCIES:
   - RNShare (from `../node_modules/react-native-share`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -614,6 +619,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
+  VisionCamera:
+    :path: "../node_modules/react-native-vision-camera"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -683,6 +690,7 @@ SPEC CHECKSUMS:
   RNShare: f116bbb04f310c665ca483d0bd1e88cf59b3b334
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
+  VisionCamera: 8280788627dc64ff49ba7f3ad8e09c978a83a325
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

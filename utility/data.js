@@ -114,3 +114,46 @@ export const CATEGORIES = [
     icon: 'ios-brush',
   },
 ];
+
+export const COMMENTS = [
+  {
+    id: 1,
+    name: 'llamaLicker25',
+    comment: 'this is a test comment.',
+  },
+  {
+    id: 2,
+    name: 'Fighter10123',
+    comment: 'this is a test comment.',
+  },
+  {
+    id: 3,
+    name: 'GhostHunter28',
+    comment: 'this is a test comment.',
+  },
+  {
+    id: 4,
+    name: 'NinjaWarrior67',
+    comment: 'this is a test comment.',
+  },
+  {
+    id: 5,
+    name: 'Pop Smoke',
+    comment: 'this is a test comment.',
+  },
+  {
+    id: 6,
+    name: 'Drake',
+    comment: 'this is a test comment.',
+  },
+  {
+    id: 7,
+    name: 'Call of Duty',
+    comment: 'this is a test comment.',
+  },
+  {
+    id: 8,
+    name: 'Apple',
+    comment: 'this is a test comment.',
+  },
+];

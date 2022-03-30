@@ -33,6 +33,7 @@ const Settings = ({navigation}) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [showPasswordText, setShowPasswordText] = useState(true);
+  const [useNotifications, setUseNotifications] = useState(true);
   const bgColor = '#101010';
 
   useEffect(() => {
@@ -160,33 +161,30 @@ const Settings = ({navigation}) => {
                   px={3}>
                   APP SETTINGS
                 </Text>
-
-                <TouchableOpacity onPress={() => null}>
-                  <Box
-                    bg={bgColor}
-                    h={50}
-                    justifyContent="center"
-                    px={3}
-                    py={1}>
-                    <HStack
-                      alignItems="center"
-                      justifyContent={'space-between'}
-                      width={'100%'}>
-                      <HStack alignItems="center" space={4} ml={2}>
-                        <Icon2
-                          name="mail-unread-outline"
-                          size={25}
-                          color="#35C280"
-                        />
-                        <Text fontSize="lg" color="#F4F4F4">
-                          Notifications
-                        </Text>
-                      </HStack>
-
-                      <Arrow name="right" size={20} color="#CCC" />
+                <Box bg={bgColor} h={50} justifyContent="center" px={3} py={1}>
+                  <HStack
+                    alignItems="center"
+                    justifyContent={'space-between'}
+                    width={'100%'}>
+                    <HStack alignItems="center" space={4} ml={2}>
+                      <Icon2
+                        name="mail-unread-outline"
+                        size={25}
+                        color="#35C280"
+                      />
+                      <Text fontSize="lg" color="#F4F4F4">
+                        Allow Notifications
+                      </Text>
                     </HStack>
-                  </Box>
-                </TouchableOpacity>
+
+                    <Switch
+                      value={useNotifications}
+                      onToggle={() => setUseNotifications(!useNotifications)}
+                      size="md"
+                      onTrackColor="#35C280"
+                    />
+                  </HStack>
+                </Box>
                 <Text
                   color="#ADB5BD"
                   bg="#212529"
