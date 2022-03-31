@@ -19,9 +19,11 @@ import ProfileSettings from './Screens/ProfileSettings';
 import RegistrationScreen from './Screens/RegistrationScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {Provider} from 'react-redux';
 import 'react-native-reanimated';
-
+import store from './store/index.js';
 import OneSignal from 'react-native-onesignal';
+import MMKVStorage from 'react-native-mmkv-storage';
 
 const width = Dimensions.get('window').width;
 
@@ -236,5 +238,11 @@ export default function App() {
     console.log('OneSignal: notification opened:', notification);
   });
 
-  return <SplashStackNavigation />;
+  // const storage = new MMKVStorage.Loader().initialize();
+
+  return (
+    <Provider store={store}>
+      <SplashStackNavigation />
+    </Provider>
+  );
 }

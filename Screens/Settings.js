@@ -7,7 +7,6 @@ import {
   Center,
   Box,
   Switch,
-  FormControl,
   Input,
   Heading,
   Spinner,
@@ -19,6 +18,11 @@ import Arrow from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Ionicons';
 import {MotiView, AnimatePresence} from 'moti';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
+import {postLogin} from '../store/auth/auth-actions';
+import {useDispatch} from 'react-redux';
+import MMKVStorage, {useMMKVStorage} from 'react-native-mmkv-storage';
+
+const MMKV = new MMKVStorage.Loader().initialize();
 
 const width = Dimensions.get('window').width;
 
@@ -35,6 +39,9 @@ const Settings = ({navigation}) => {
   const [showPasswordText, setShowPasswordText] = useState(true);
   const [useNotifications, setUseNotifications] = useState(true);
   const bgColor = '#101010';
+  const isAuth = false;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     FingerprintScanner.isSensorAvailable()
@@ -62,6 +69,9 @@ const Settings = ({navigation}) => {
         console.log('biometric authentication is not available');
       }
     };
+
+    const auth = JSON.parse(MMKV.getString('auth'));
+    console.log(auth);
   }, []);
 
   const getMessage = () => {
@@ -72,6 +82,15 @@ const Settings = ({navigation}) => {
     }
   };
 
+  const clickSubmit = () => {
+    setIsLoading(true);
+
+    dispatch(postLogin(username, password)).then(res => {
+      setIsLoading(false);
+      setIsSignedIn(true);
+    });
+  };
+
   return (
     <VStack bg="#101010" flex={1}>
       <SafeAreaView>
@@ -79,7 +98,7 @@ const Settings = ({navigation}) => {
           showsVerticalScrollIndicator={false}
           style={{height: '100%'}}>
           <AnimatePresence>
-            {isSignedIn ? (
+            {isAuth ? (
               <MotiView
                 from={{translateX: 100}}
                 animate={{translateX: 0}}
@@ -96,23 +115,6 @@ const Settings = ({navigation}) => {
                       llamalicker25
                     </Text>
 
-                    {/* <TouchableOpacity
-                      activeOpacity={0.8}
-                      onPress={() => navigation.navigate('Profile')}>
-                      <Box
-                        bg="#35C280"
-                        h={10}
-                        w={width * 0.35}
-                        borderRadius={10}
-                        justifyContent="center">
-                        <HStack justifyContent="center" alignItems="center">
-                          <Text color="#fff" fontSize="md" mr={2}>
-                            Edit Profile
-                          </Text>
-                          <Arrow name="right" size={17} color="#fff" />
-                        </HStack>
-                      </Box>
-                    </TouchableOpacity> */}
                     <HStack space={3} justifyContent="space-between">
                       <VStack
                         px={3}
@@ -575,11 +577,12 @@ const Settings = ({navigation}) => {
                   <TouchableOpacity
                     activeOpacity={0.8}
                     onPress={() => {
-                      setIsLoading(true);
-                      setTimeout(() => {
-                        setIsLoading(false);
-                        setIsSignedIn(true);
-                      }, 2000);
+                      clickSubmit();
+                      // setIsLoading(true);
+                      // setTimeout(() => {
+                      //   setIsLoading(false);
+                      //   setIsSignedIn(true);
+                      // }, 2000);
                     }}>
                     <Box
                       bg="#343A40"
@@ -641,7 +644,7 @@ const Settings = ({navigation}) => {
                 ) : null} */}
                 </VStack>
               </MotiView>
-            )}{' '}
+            )}
           </AnimatePresence>
           <Box h={100} />
         </ScrollView>

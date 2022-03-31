@@ -8,8 +8,10 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {Box, VStack, Text, Center, Input, Heading, Spinner} from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {postRegister} from '../store/auth/auth-actions';
 
 const width = Dimensions.get('window').width;
 
@@ -20,6 +22,17 @@ const RegistrationScreen = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPasswordText, setShowPasswordText] = useState(true);
+
+  const dispatch = useDispatch();
+
+  const clickSubmit = () => {
+    setIsLoading(true);
+
+    dispatch(postRegister(username, email, password)).then(res => {
+      setIsLoading(false);
+      navigation.goBack();
+    });
+  };
 
   return (
     <KeyboardAvoidingView
@@ -152,11 +165,11 @@ const RegistrationScreen = ({navigation}) => {
                 <TouchableOpacity
                   activeOpacity={0.8}
                   onPress={() => {
-                    setIsLoading(true);
-                    setTimeout(() => {
-                      setIsLoading(false);
-                      navigation.goBack();
-                    }, 2000);
+                    clickSubmit();
+                    // setTimeout(() => {
+                    //   setIsLoading(false);
+                    //   navigation.goBack();
+                    // }, 2000);
                   }}>
                   <Box
                     bg="#343A40"

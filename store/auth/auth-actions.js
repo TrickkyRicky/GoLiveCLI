@@ -1,12 +1,15 @@
-import { authActions } from "./auth-slice";
+import {authActions} from './auth-slice';
+import MMKVStorage, {useMMKVStorage} from 'react-native-mmkv-storage';
+
+const MMKV = new MMKVStorage.Loader().initialize();
 
 export const postRegister = (username, email, password) => {
-  return async (dispatch) => {
+  return async dispatch => {
     const postData = async () => {
-      const response = await fetch("http://localhost:8080/auth/register", {
-        method: "POST",
+      const response = await fetch('http://localhost:8080/auth/register', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           username: username,
@@ -28,18 +31,18 @@ export const postRegister = (username, email, password) => {
       //   throw new Error("could not get data");
       // }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 };
 
 export const postLogin = (username, password) => {
-  return async (dispatch) => {
+  return async dispatch => {
     const postData = async () => {
-      const response = await fetch("http://localhost:8080/auth/login", {
-        method: "POST",
+      const response = await fetch('http://localhost:8080/auth/login', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           username: username,
@@ -52,7 +55,7 @@ export const postLogin = (username, password) => {
         throw new Error(response.statusText);
       }
       if (response.status !== 200 && response.status !== 201) {
-        throw new Error("Could not authenticate");
+        throw new Error('Could not authenticate');
       }
       return await response.json();
     };
@@ -64,14 +67,23 @@ export const postLogin = (username, password) => {
           authActions.LoggedIn({
             jwt: result.token,
             userIdLogin: result.userId,
-          })
+          }),
         );
         // maybe expire in future
-        localStorage.setItem("token", result.token);
-        localStorage.setItem("userId", result.userId);
+        await MMKV.setStringAsync('token', result.token);
+        // await MMKV.setStringAsync('userId', result.userId);
+        await MMKV.setStringAsync(
+          'auth',
+          JSON.stringify({
+            user: username,
+            password: password,
+          }),
+        );
+
+        // console.log('MMKV: ', await MMKV.getStringAsync('auth'));
         return result;
       } else {
-        throw new Error("could not get data");
+        throw new Error('could not get data');
       }
     } catch (e) {
       console.log(e);
@@ -82,13 +94,13 @@ export const postLogin = (username, password) => {
 //logout
 
 export const logout = () => {
-  return async (dispatch) => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
+  return async dispatch => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
     dispatch(authActions.LoggedOut());
     try {
-      let response = await fetch("http://localhost:8080/auth/logout", {
-        method: "GET",
+      let response = await fetch('http://localhost:8080/auth/logout', {
+        method: 'GET',
       });
 
       return await response.json();
