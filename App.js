@@ -1,5 +1,6 @@
 import React, {useRef} from 'react';
 import {Animated, View, Platform, Dimensions} from 'react-native';
+import {APP_ID} from '@env';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -206,7 +207,7 @@ const TabNavigator = () => {
 export default function App() {
   //OneSignal Init Code
   OneSignal.setLogLevel(6, 0);
-  OneSignal.setAppId('789bc4ec-59bd-4d8e-88aa-e5cc1f1a89b6');
+  OneSignal.setAppId(APP_ID);
   //END OneSignal Init Code
 
   //Prompt for push on iOS

@@ -8,7 +8,7 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Box,
   VStack,
@@ -56,6 +56,8 @@ const ProfileSettings = ({navigation}) => {
       }
     });
   };
+
+  const captureCamera = () => {};
 
   const uploadFromCamera = () => {
     let options = {

@@ -128,7 +128,7 @@ export const COMMENTS = [
   },
   {
     id: 3,
-    name: 'GhostHunter28',
+    name: 'Drake',
     comment: 'this is a test comment.',
   },
   {
@@ -138,12 +138,12 @@ export const COMMENTS = [
   },
   {
     id: 5,
-    name: 'Pop Smoke',
+    name: 'Nicki Minaj',
     comment: 'this is a test comment.',
   },
   {
     id: 6,
-    name: 'Drake',
+    name: 'GhostHunter28',
     comment: 'this is a test comment.',
   },
   {
