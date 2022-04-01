@@ -24,7 +24,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BackIcon from 'react-native-vector-icons/AntDesign';
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
-
+import {useDispatch, useSelector} from 'react-redux';
 const width = Dimensions.get('window').width;
 
 const ProfileSettings = ({navigation}) => {

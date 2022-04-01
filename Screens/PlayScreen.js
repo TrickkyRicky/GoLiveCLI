@@ -62,8 +62,11 @@ const PlayStream = props => {
   return (
     <Box flex={1} bg="#000">
       <SafeAreaView style={{backgroundColor: '#101010'}}>
-        <Center h={height * 0.24} w={width}>
+        <Center h={height * 0.26} w={width}>
           <VideoPlayer
+            // source={{
+            //   uri: 'https://2572-2603-8081-1604-91e7-75eb-8bab-2abc-6a15.ngrok.io/live/STREAM_NAME/index.m3u8',
+            // }}
             source={{uri: 'https://vjs.zencdn.net/v/oceans.mp4'}}
             navigator={props.navigation}
             rewindTime={10}

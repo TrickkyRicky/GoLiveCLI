@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Center, Text, VStack} from 'native-base';
-import {View} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import {NodeCameraView} from 'react-native-nodemediaclient';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Ionicons';
@@ -9,6 +9,15 @@ import {shareSheet} from '../utility/share';
 const StreamContent = props => {
   const [playerRef, setPlayerRef] = useState(null);
   const [toggle, setToggle] = useState(false);
+
+  // Example: "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
+  const [playserver, setPlayserver] = useState(vPath);
+  // Example: "rtmp://4.tcp.ngrok.io:13824/live/"
+  const [pushserver, setPushserver] = useState(sPath);
+
+  // const [playserver, setPlayserver] = useState('http://192.168.1.2/live/');
+  // const [pushserver, setPushserver] = useState('http://192.168.1.2/live/');
+  const [stream, setStream] = useState('demo_295');
 
   useEffect(() => {
     return () => {
@@ -25,7 +34,7 @@ const StreamContent = props => {
         ref={vb => {
           setPlayerRef(vb);
         }}
-        // outputUrl={props.route.params.pushserver + props.route.params.stream}
+        outputUrl={pushserver + stream}
         camera={{cameraId: 1, cameraFrontMirror: true}}
         audio={{bitrate: 32000, profile: 1, samplerate: 44100}}
         video={{
@@ -144,7 +153,7 @@ const StreamContent = props => {
         </Text>
       </VStack>
 
-      {/* <TouchableOpacity
+      <TouchableOpacity
         onPress={() => {
           playerRef.start();
         }}>
@@ -160,7 +169,7 @@ const StreamContent = props => {
           }}>
           <Text style={{color: '#fff', fontSize: 16}}>Start Streaming</Text>
         </View>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
     </View>
   );
 };

@@ -18,6 +18,8 @@ import VideoFormScreen from './Screens/VideoFormScreen';
 import ProfileSettings from './Screens/ProfileSettings';
 import RegistrationScreen from './Screens/RegistrationScreen';
 import ProfileScreen from './Screens/ProfileScreen';
+import ResetPasswordScreen from './Screens/ResetPasswordScreen';
+import LoginScreen from './Screens/LoginScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Provider} from 'react-redux';
 import 'react-native-reanimated';
@@ -93,6 +95,25 @@ const StreamStackNavigator = () => {
   );
 };
 
+const AuthStackNavigator = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="LoginScreen"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen
+        options={{
+          animationEnabled: false,
+          gestureEnabled: false,
+        }}
+        name="SettingsScreen"
+        component={Settings}
+      />
+      <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+    </Stack.Navigator>
+  );
+};
+
 const TabNavigator = () => {
   // Animated Tab Indicator...
   const tabOffsetValue = useRef(new Animated.Value(0)).current;
@@ -163,22 +184,10 @@ const TabNavigator = () => {
             },
           })}
         />
-        <Tab.Screen
-          name="Stream"
-          component={StreamStackNavigator}
-          // listeners={({navigation, route}) => ({
-          //   tabPress: e => {
-          //     Animated.spring(tabOffsetValue, {
-          //       toValue: 5 * 1.9,
-          //       useNativeDriver: true,
-
-          //     }).start();
-          //   },
-          // })}
-        />
+        <Tab.Screen name="Stream" component={StreamStackNavigator} />
         <Tab.Screen
           name="Settings"
-          component={Settings}
+          component={AuthStackNavigator}
           listeners={({navigation, route}) => ({
             tabPress: e => {
               Animated.spring(tabOffsetValue, {
@@ -237,8 +246,6 @@ export default function App() {
   OneSignal.setNotificationOpenedHandler(notification => {
     console.log('OneSignal: notification opened:', notification);
   });
-
-  // const storage = new MMKVStorage.Loader().initialize();
 
   return (
     <Provider store={store}>
