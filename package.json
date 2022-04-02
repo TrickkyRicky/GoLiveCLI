@@ -46,7 +46,8 @@
     "react-native-vector-icons": "^9.1.0",
     "react-native-video": "^5.2.0",
     "react-native-vision-camera": "^2.13.0",
-    "react-redux": "^7.2.6"
+    "react-redux": "^7.2.6",
+    "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
     "@babel/core": "7.17.5",

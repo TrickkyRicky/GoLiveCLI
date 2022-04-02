@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {Center, Text, VStack} from 'native-base';
-import {View, TouchableOpacity} from 'react-native';
-import {NodeCameraView} from 'react-native-nodemediaclient';
-import Icon from 'react-native-vector-icons/AntDesign';
-import Icon2 from 'react-native-vector-icons/Ionicons';
-import {shareSheet} from '../utility/share';
+import React, { useState, useEffect } from "react";
+import { Center, Text, VStack } from "native-base";
+import { View, TouchableOpacity } from "react-native";
+import { NodeCameraView } from "react-native-nodemediaclient";
+import Icon from "react-native-vector-icons/AntDesign";
+import Icon2 from "react-native-vector-icons/Ionicons";
+import { shareSheet } from "../utility/share";
 
-const StreamContent = props => {
+const StreamContent = (props) => {
   const [playerRef, setPlayerRef] = useState(null);
   const [toggle, setToggle] = useState(false);
 
@@ -17,7 +17,7 @@ const StreamContent = props => {
 
   // const [playserver, setPlayserver] = useState('http://192.168.1.2/live/');
   // const [pushserver, setPushserver] = useState('http://192.168.1.2/live/');
-  const [stream, setStream] = useState('demo_295');
+  const [stream, setStream] = useState("STREAM_NAME");
 
   useEffect(() => {
     return () => {
@@ -25,18 +25,18 @@ const StreamContent = props => {
     };
   }, []);
 
-  const streamKey = 'g4hs6f6tds5';
+  const streamKey = "STREAM_NAME";
 
   return (
-    <View style={{flex: 1, backgroundColor: '#101010'}}>
+    <View style={{ flex: 1, backgroundColor: "#101010" }}>
       <NodeCameraView
-        style={{flex: 1}}
-        ref={vb => {
+        style={{ flex: 1 }}
+        ref={(vb) => {
           setPlayerRef(vb);
         }}
         outputUrl={pushserver + stream}
-        camera={{cameraId: 1, cameraFrontMirror: true}}
-        audio={{bitrate: 32000, profile: 1, samplerate: 44100}}
+        camera={{ cameraId: 1, cameraFrontMirror: true }}
+        audio={{ bitrate: 32000, profile: 1, samplerate: 44100 }}
         video={{
           preset: 1,
           bitrate: 500000,
@@ -47,7 +47,7 @@ const StreamContent = props => {
         smoothSkinLevel={3}
         autopreview={true}
         onStatus={(code, msg) => {
-          console.log('onStatus=' + code + ' msg=' + msg);
+          console.log("onStatus=" + code + " msg=" + msg);
         }}
       />
 
@@ -56,13 +56,15 @@ const StreamContent = props => {
         alignItems="center"
         position="absolute"
         top={60}
-        right={23}>
+        right={23}
+      >
         <Center
           bg="black"
           width={12}
           height={12}
           opacity={0.5}
-          borderRadius={50}>
+          borderRadius={50}
+        >
           <Icon
             name="close"
             size={30}
@@ -80,13 +82,15 @@ const StreamContent = props => {
         alignItems="center"
         position="absolute"
         bottom={310}
-        right={23}>
+        right={23}
+      >
         <Center
           bg="black"
           width={12}
           height={12}
           opacity={0.5}
-          borderRadius={50}>
+          borderRadius={50}
+        >
           <Icon2
             name="ios-arrow-redo-outline"
             size={30}
@@ -104,13 +108,15 @@ const StreamContent = props => {
         alignItems="center"
         position="absolute"
         bottom={230}
-        right={23}>
+        right={23}
+      >
         <Center
           bg="black"
           width={12}
           height={12}
           opacity={0.5}
-          borderRadius={50}>
+          borderRadius={50}
+        >
           <Icon2
             name="flash-outline"
             size={30}
@@ -132,13 +138,15 @@ const StreamContent = props => {
         alignItems="center"
         position="absolute"
         bottom={150}
-        right={23}>
+        right={23}
+      >
         <Center
           bg="black"
           width={12}
           height={12}
           opacity={0.5}
-          borderRadius={50}>
+          borderRadius={50}
+        >
           <Icon2
             name="camera-reverse-outline"
             size={30}
@@ -156,18 +164,20 @@ const StreamContent = props => {
       <TouchableOpacity
         onPress={() => {
           playerRef.start();
-        }}>
+        }}
+      >
         <View
           style={{
             padding: 12,
-            backgroundColor: 'rgba(10, 125, 10, 0.2)',
+            backgroundColor: "rgba(10, 125, 10, 0.2)",
             borderRadius: 15,
-            position: 'absolute',
+            position: "absolute",
             bottom: 80,
             zIndex: 2,
-            alignSelf: 'center',
-          }}>
-          <Text style={{color: '#fff', fontSize: 16}}>Start Streaming</Text>
+            alignSelf: "center",
+          }}
+        >
+          <Text style={{ color: "#fff", fontSize: 16 }}>Start Streaming</Text>
         </View>
       </TouchableOpacity>
     </View>
