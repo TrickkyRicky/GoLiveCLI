@@ -5,6 +5,7 @@ import {NodeCameraView} from 'react-native-nodemediaclient';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Ionicons';
 import {shareSheet} from '../utility/share';
+import {vPath, sPath} from '../utility/dev';
 
 const StreamContent = props => {
   const [playerRef, setPlayerRef] = useState(null);
@@ -17,15 +18,13 @@ const StreamContent = props => {
 
   // const [playserver, setPlayserver] = useState('http://192.168.1.2/live/');
   // const [pushserver, setPushserver] = useState('http://192.168.1.2/live/');
-  const [stream, setStream] = useState('demo_295');
+  const [stream, setStream] = useState('STREAM_NAME');
 
   useEffect(() => {
     return () => {
       if (playerRef) playerRef.stop();
     };
   }, []);
-
-  const streamKey = 'g4hs6f6tds5';
 
   return (
     <View style={{flex: 1, backgroundColor: '#101010'}}>
@@ -67,7 +66,7 @@ const StreamContent = props => {
             name="close"
             size={30}
             onPress={() => {
-              // playerRef.stop();
+              playerRef.stop();
               props.navigation.goBack();
             }}
             color="#35C280"
@@ -90,7 +89,7 @@ const StreamContent = props => {
           <Icon2
             name="ios-arrow-redo-outline"
             size={30}
-            onPress={() => shareSheet(streamKey)}
+            onPress={() => shareSheet(stream)}
             color="#35C280"
           />
         </Center>

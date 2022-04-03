@@ -58,7 +58,13 @@ function SplashStackNavigation() {
               options={{animationEnabled: false, gestureEnabled: false}}
             />
             <Stack.Screen name="Play" component={PlayScreen} />
-            <Stack.Screen name="Push" component={PushScreen} />
+            <Stack.Screen
+              name="Push"
+              component={PushScreen}
+              options={{
+                gestureEnabled: false,
+              }}
+            />
             <Stack.Screen name="Profile" component={ProfileSettings} />
             <Stack.Screen
               name="Register"
