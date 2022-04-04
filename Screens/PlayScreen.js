@@ -16,7 +16,7 @@ import Likes from 'react-native-vector-icons/AntDesign';
 import VideoPlayer from 'react-native-media-console';
 import {MotiView, AnimatePresence} from 'moti';
 import LottieView from 'lottie-react-native';
-import Orientation from 'react-native-orientation-locker';
+// import Orientation from 'react-native-orientation-locker';
 import {sPath, vPath} from '../utility/dev';
 import {COMMENTS} from '../utility/data';
 import {shareSheet} from '../utility/share';
@@ -47,15 +47,15 @@ const PlayStream = props => {
 
   const streamKey = 'g4hs6f6tds5';
 
-  const toggleFullScreen = () => {
-    if (isFullScreen) {
-      Orientation.lockToPortrait();
-      setIsFullScreen(false);
-    } else {
-      Orientation.lockToLandscape();
-      setIsFullScreen(true);
-    }
-  };
+  // const toggleFullScreen = () => {
+  //   if (isFullScreen) {
+  //     Orientation.lockToPortrait();
+  //     setIsFullScreen(false);
+  //   } else {
+  //     Orientation.lockToLandscape();
+  //     setIsFullScreen(true);
+  //   }
+  // };
 
   const [changedData, setChangedData] = useState(COMMENTS);
 
@@ -73,6 +73,7 @@ const PlayStream = props => {
             forwardTime={10}
             controlTimeoutDelay={5000}
             toggleResizeModeOnFullscreen={false}
+            fullscreenAutorotate={true}
             fullscreen={isFullScreen}
             fullscreenOrientation="all"
             pictureInPicture={true}
@@ -233,7 +234,7 @@ const PlayStream = props => {
                 />
               </MotiView>
             )}
-            ListFooterComponent={<Box h={160} />}
+            ListFooterComponent={<Box h={180} />}
           />
         </Box>
 
@@ -242,7 +243,7 @@ const PlayStream = props => {
           w={width}
           bg="#101010"
           position="absolute"
-          bottom={5}
+          bottom={10}
           left={0}>
           <HStack
             w={width}
