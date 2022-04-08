@@ -82,7 +82,8 @@ const LoginScreen = ({navigation}) => {
 
   const clickSubmit = () => {
     setIsLoading(true);
-    navigation.navigate('SettingsScreen');
+    navigation.navigate('SettingsScreen', {disableBiometric});
+    setIsLoading(false);
 
     // dispatch(postLogin(username, password)).then(res => {
     //   setIsLoading(false);

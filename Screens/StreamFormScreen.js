@@ -16,6 +16,7 @@ import {
   Input,
   Select,
   FormControl,
+  Switch,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {sPath, vPath} from '../utility/dev';
@@ -27,6 +28,7 @@ const StreamFormScreen = ({navigation}) => {
   const selectOnPressedBGColor = '#343A40';
   const [category, setCategory] = useState('');
   const [streamTitle, setStreamTitle] = useState('');
+  const [privateVideo, setPrivateVideo] = useState(false);
 
   // Example: "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
   const [playserver, setPlayserver] = useState(vPath);
@@ -165,6 +167,24 @@ const StreamFormScreen = ({navigation}) => {
                     value="Vlogs"
                   />
                 </Select>
+
+                <HStack
+                  mt={7}
+                  mb={5}
+                  w="97%"
+                  justifyContent="space-between"
+                  alignItems="center">
+                  <Heading color="#ADB5BD" size="sm" ml={2.5} mb={1}>
+                    Make this stream private?
+                  </Heading>
+                  <Switch
+                    value={privateVideo}
+                    onToggle={() => setPrivateVideo(!privateVideo)}
+                    size="md"
+                    onTrackColor="#35C280"
+                  />
+                </HStack>
+
                 <FormControl.ErrorMessage
                   leftIcon={<Icon name="warning" color="#dc2626" size={20} />}>
                   Please make a selection!

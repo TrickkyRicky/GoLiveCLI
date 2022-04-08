@@ -14,7 +14,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Likes from 'react-native-vector-icons/AntDesign';
 import VideoPlayer from 'react-native-media-console';
-import {MotiView, AnimatePresence} from 'moti';
+import {MotiView} from 'moti';
 import LottieView from 'lottie-react-native';
 // import Orientation from 'react-native-orientation-locker';
 import {sPath, vPath} from '../utility/dev';

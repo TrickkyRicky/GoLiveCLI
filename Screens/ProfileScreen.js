@@ -1,106 +1,166 @@
-import {Text, VStack, HStack, Box, Center, Divider} from 'native-base';
-import {TouchableOpacity} from 'react-native';
-import React from 'react';
+import {
+  Text,
+  VStack,
+  HStack,
+  Box,
+  Center,
+  Divider,
+  Heading,
+  Avatar,
+} from 'native-base';
+import {TouchableOpacity, Dimensions, Image, FlatList} from 'react-native';
+import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BackIcon from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ProfileVideo from '../components/ProfileVideo';
 import {Data} from '../utility/data';
 import Carousel from 'react-native-snap-carousel';
+import {MotiView} from 'moti';
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 const ProfileScreen = props => {
   const {navigation} = props;
-  const {width, name, followers} = props.route.params;
+  const {name, followers} = props.route.params;
+  const [isFollowing, setIsFollowing] = useState(false);
 
   return (
-    <Box flex={1} bg="#101010">
-      <SafeAreaView>
-        <TouchableOpacity
-          style={{position: 'absolute', top: 60, left: 23, zIndex: 2}}
-          onPress={() => navigation.goBack()}
-          activeOpacity={0.8}>
-          <BackIcon name="leftcircleo" size={30} color="#35C280" />
-        </TouchableOpacity>
-        <VStack justifyContent="center" p={4}>
-          <VStack justifyContent="center" p={4}>
-            <Box py={5}>
-              <VStack space={3} justifyContent="center" alignItems="center">
-                <Center
-                  bg={'#495057'}
-                  width={150}
-                  height={150}
-                  borderRadius={100}
-                />
+    <Box flex={1}>
+      <TouchableOpacity
+        style={{position: 'absolute', top: 60, left: 23, zIndex: 2}}
+        onPress={() => navigation.goBack()}
+        activeOpacity={0.8}>
+        <BackIcon name="leftcircleo" size={30} color="#35C280" />
+      </TouchableOpacity>
+      <Box h={height * 0.25} w={width} bg="#35C280">
+        <Image
+          source={require('../assets/bg.jpeg')}
+          style={{height: '100%', width: '100%'}}
+          blurRadius={5}
+        />
+      </Box>
 
-                <Text color="#ADB5BD" fontSize="3xl" fontWeight="bold">
-                  {name}
+      <Box
+        position="absolute"
+        bottom={0}
+        left={0}
+        h={height * 0.8}
+        w={width}
+        bg="#101010"
+        zIndex={2}
+        borderRadius={30}>
+        <HStack>
+          {true ? (
+            <Avatar
+              source={{
+                uri: 'https://images.ctfassets.net/mmeshd7gafk1/3zPFdwwYIwHLZjrxhTdtuD/8b15546c40d832ad8aeddc9670d1d3e8/_logo_Apple.png',
+              }}
+              bg={'#495057'}
+              width={90}
+              height={90}
+              borderRadius={100}
+              top={-20}
+              ml={15}
+              borderWidth={4}
+              borderColor="#101010"
+            />
+          ) : (
+            <Center
+              bg={'#495057'}
+              width={90}
+              height={90}
+              borderRadius={100}
+              top={-20}
+              ml={15}
+              borderWidth={4}
+              borderColor="#101010"
+            />
+          )}
+
+          <HStack mt={3} w={width * 0.7} justifyContent="space-between">
+            <VStack ml={2}>
+              <Text
+                alignSelf="center"
+                color="#DEE2E6"
+                fontSize="xl"
+                fontWeight="bold">
+                {name}
+              </Text>
+              <Text color="#6C757D" fontSize="md" fontWeight={300}>
+                Enjoy the stream!
+              </Text>
+            </VStack>
+
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => setIsFollowing(!isFollowing)}>
+              <Box bg="#35C280" mt={2} px={3} py={1.5} borderRadius={10}>
+                <Text color="#fff" fontSize="md" fontWeight={600}>
+                  {isFollowing ? 'Following' : 'Follow'}
                 </Text>
+              </Box>
+            </TouchableOpacity>
+          </HStack>
+        </HStack>
 
-                {/* <Text color="#ADB5BD" fontSize="xl" fontWeight="bold">
-                  Check out my Videos
-                </Text> */}
-              </VStack>
-              <HStack mt={5} justifyContent="center" alignItems="center">
-                <VStack alignItems="center">
-                  <Text color="#6C757D" fontSize="md" fontWeight="bold">
-                    132
-                  </Text>
-                  <Text color="#ADB5BD" fontSize="md" fontWeight="bold">
-                    Following
-                  </Text>
-                </VStack>
-                <Divider mx={4} h="full" orientation="vertical" opacity={0.3} />
-                <VStack alignItems="center">
-                  <Text color="#6C757D" fontSize="md" fontWeight="bold">
-                    324
-                  </Text>
-                  <Text color="#ADB5BD" fontSize="md" fontWeight="bold">
-                    Followers
-                  </Text>
-                </VStack>
-                <Divider mx={4} h="full" orientation="vertical" opacity={0.3} />
-                <VStack alignItems="center">
-                  <Text color="#6C757D" fontSize="md" fontWeight="bold">
-                    13
-                  </Text>
-                  <Text color="#ADB5BD" fontSize="md" fontWeight="bold">
-                    Videos
-                  </Text>
-                </VStack>
-              </HStack>
-
-              <Center mt={5}>
-                <Carousel
-                  data={Data}
-                  layout="stack"
-                  layoutCardOffset={50}
-                  activeSlideAlignment="end"
-                  activeSlideOffset={20}
-                  loop={true}
-                  sliderWidth={width}
-                  itemWidth={width}
-                  renderItem={({item, index}) => {
-                    var randomColor = Math.floor(
-                      Math.random() * 16777215,
-                    ).toString(16);
-                    return (
-                      <ProfileVideo
-                        width={width}
-                        streamName={item.streamName}
-                        streamerName={item.streamerName}
-                        views={item.views}
-                        image={item.image}
-                        isLive={true}
-                        bgColor={randomColor}
-                      />
-                    );
-                  }}
-                />
-              </Center>
-            </Box>
+        <HStack mt={3} mb={4} justifyContent="center" alignItems="center">
+          <VStack alignItems="center">
+            <Text color="#495057" fontSize="lg" fontWeight={500}>
+              Following
+            </Text>
+            <Heading color="#ADB5BD" size="lg" fontWeight={800}>
+              132
+            </Heading>
           </VStack>
-        </VStack>
-      </SafeAreaView>
+          <Divider mx={6} h="full" orientation="vertical" opacity={0.3} />
+          <VStack alignItems="center">
+            <Text color="#495057" fontSize="lg" fontWeight={500}>
+              Followers
+            </Text>
+            <Heading color="#ADB5BD" size="lg" fontWeight={800}>
+              324
+            </Heading>
+          </VStack>
+          <Divider mx={6} h="full" orientation="vertical" opacity={0.3} />
+          <VStack alignItems="center">
+            <Text color="#495057" fontSize="lg" fontWeight={500}>
+              Videos
+            </Text>
+            <Heading color="#ADB5BD" size="lg" fontWeight={800}>
+              1350
+            </Heading>
+          </VStack>
+        </HStack>
+
+        <FlatList
+          data={Data}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item => item.id}
+          numColumns={1}
+          renderItem={({item, index}) => {
+            return (
+              <TouchableOpacity activeOpacity={0.9} onPress={() => null}>
+                <MotiView
+                  from={{opacity: 0, translateY: 100}}
+                  animate={{opacity: 1, translateY: 0}}
+                  delay={index * 250}
+                  transition={{type: 'spring'}}>
+                  <ProfileVideo
+                    width={width}
+                    streamName={item.streamName}
+                    streamerName={item.streamerName}
+                    views={item.views}
+                    image={item.image}
+                  />
+                </MotiView>
+              </TouchableOpacity>
+            );
+          }}
+          ListFooterComponent={<Box h={130} />}
+        />
+      </Box>
     </Box>
   );
 };

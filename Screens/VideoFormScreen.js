@@ -19,6 +19,7 @@ import {
   useDisclose,
   FormControl,
   KeyboardAvoidingView,
+  Switch,
 } from 'native-base';
 import BackIcon from 'react-native-vector-icons/AntDesign';
 import UploadIcon from 'react-native-vector-icons/Ionicons';
@@ -32,6 +33,7 @@ const width = Dimensions.get('window').width;
 const VideoFormScreen = ({navigation}) => {
   const [category, setCategory] = useState('');
   const [streamTitle, setStreamTitle] = useState('');
+  const [privateVideo, setPrivateVideo] = useState(false);
   const [fileData, setFileData] = useState(null); //file name
   const [fileUri, setFileUri] = useState(''); //file path
   const toast = useToast();
@@ -266,6 +268,24 @@ const VideoFormScreen = ({navigation}) => {
                     value="Vlogs"
                   />
                 </Select>
+
+                <HStack
+                  mt={7}
+                  mb={5}
+                  w="97%"
+                  justifyContent="space-between"
+                  alignItems="center">
+                  <Heading color="#ADB5BD" size="sm" ml={2.5} mb={1}>
+                    Make this video private?
+                  </Heading>
+                  <Switch
+                    value={privateVideo}
+                    onToggle={() => setPrivateVideo(!privateVideo)}
+                    size="md"
+                    onTrackColor="#35C280"
+                  />
+                </HStack>
+
                 <FormControl.ErrorMessage
                   leftIcon={<Icon name="warning" color="#dc2626" size={20} />}>
                   Please make a selection!

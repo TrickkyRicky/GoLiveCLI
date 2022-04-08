@@ -53,7 +53,7 @@ const StreamScreen = ({navigation}) => {
                 p={3}
                 w={'90%'}
                 mt={3}
-                mb={25}
+                mb={15}
                 borderRadius={10}
                 alignSelf="center">
                 <Heading color="#ADB5BD">Create a Stream</Heading>

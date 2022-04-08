@@ -26,13 +26,11 @@ const MMKV = new MMKVStorage.Loader().initialize();
 
 const width = Dimensions.get('window').width;
 
-const Settings = ({navigation}) => {
+const Settings = ({navigation, route}) => {
   const [useFaceID, setUseFaceID] = useState(true);
-  const [disableBiometric, setDisablebiometric] = useState(false);
-  const [typeOfBiometric, setTypeOfBiometric] = useState(null);
   const [useNotifications, setUseNotifications] = useState(true);
   const bgColor = '#101010';
-  const isAuth = false;
+  const {disableBiometric} = route.params;
 
   return (
     <VStack bg="#101010" flex={1}>
@@ -129,7 +127,7 @@ const Settings = ({navigation}) => {
                     <HStack alignItems="center" space={4} ml={2}>
                       <Icon2 name="person-outline" size={25} color="#35C280" />
                       <Text fontSize="lg" color="#F4F4F4">
-                        My Profile
+                        Edit Profile
                       </Text>
                     </HStack>
 

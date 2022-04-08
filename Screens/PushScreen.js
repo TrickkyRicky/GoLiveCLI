@@ -6,10 +6,13 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Ionicons';
 import {shareSheet} from '../utility/share';
 import {vPath, sPath} from '../utility/dev';
+import LottieView from 'lottie-react-native';
+import {MotiView, AnimatePresence} from 'moti';
 
 const StreamContent = props => {
   const [playerRef, setPlayerRef] = useState(null);
   const [toggle, setToggle] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
 
   // Example: "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
   const [playserver, setPlayserver] = useState(vPath);
@@ -49,6 +52,19 @@ const StreamContent = props => {
           console.log('onStatus=' + code + ' msg=' + msg);
         }}
       />
+
+      {isStreaming ? (
+        <Center width="25%" h={5} position="absolute" top={20} left={2}>
+          <LottieView
+            source={require('../assets/lottie/streaming2.json')}
+            autoPlay
+            loop
+            style={{
+              width: '100%',
+            }}
+          />
+        </Center>
+      ) : null}
 
       <VStack
         justifyContent="center"
@@ -152,25 +168,57 @@ const StreamContent = props => {
         </Text>
       </VStack>
 
-      <TouchableOpacity
-        onPress={() => {
-          playerRef.start();
-        }}>
-        <View
-          style={{
-            padding: 12,
-            backgroundColor: 'rgba(10, 125, 10, 0.2)',
-            borderRadius: 15,
-            position: 'absolute',
-            bottom: 80,
-            zIndex: 2,
-            alignSelf: 'center',
-          }}>
-          <Text style={{color: '#fff', fontSize: 16}}>Start Streaming</Text>
-        </View>
-      </TouchableOpacity>
+      <AnimatePresence>
+        {isStreaming ? null : (
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => {
+              playerRef.start();
+              setIsStreaming(true);
+            }}>
+            <MotiView
+              from={{opacity: 1}}
+              animate={{opacity: 1}}
+              exit={{
+                opacity: 0,
+              }}
+              style={{
+                padding: 12,
+                backgroundColor: 'rgba(10, 125, 10, 0.2)',
+                borderRadius: 15,
+                position: 'absolute',
+                bottom: 80,
+                zIndex: 2,
+                alignSelf: 'center',
+              }}>
+              <Text style={{color: '#fff', fontSize: 16}}>Start Streaming</Text>
+            </MotiView>
+          </TouchableOpacity>
+        )}
+      </AnimatePresence>
     </View>
   );
 };
 
 export default StreamContent;
+
+// {
+//   isLive ? (
+//     <Box
+//       width="25%"
+//       h={6}
+//       borderRadius={30}
+//       position="absolute"
+//       top={-7}
+//       left={-10}>
+//       <LottieView
+//         source={require('../assets/lottie/streaming.json')}
+//         autoPlay
+//         loop
+//         style={{
+//           width: '100%',
+//         }}
+//       />
+//     </Box>
+//   ) : null;
+// }
