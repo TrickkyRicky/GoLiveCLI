@@ -10,12 +10,11 @@ import {
 } from 'native-base';
 import {TouchableOpacity, Dimensions, Image, FlatList} from 'react-native';
 import React, {useState} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import BackIcon from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ProfileVideo from '../components/ProfileVideo';
 import {Data} from '../utility/data';
-import Carousel from 'react-native-snap-carousel';
+import {sPath, vPath} from '../utility/dev';
 import {MotiView} from 'moti';
 
 const width = Dimensions.get('window').width;
@@ -25,6 +24,13 @@ const ProfileScreen = props => {
   const {navigation} = props;
   const {name, followers} = props.route.params;
   const [isFollowing, setIsFollowing] = useState(false);
+
+  // Example: "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
+  const [playserver, setPlayserver] = useState(vPath);
+  // Example: "rtmp://4.tcp.ngrok.io:13824/live/"
+  const [pushserver, setPushserver] = useState(sPath);
+
+  const [stream, setStream] = useState('STREAM_NAME');
 
   return (
     <Box flex={1}>
@@ -141,7 +147,18 @@ const ProfileScreen = props => {
           numColumns={1}
           renderItem={({item, index}) => {
             return (
-              <TouchableOpacity activeOpacity={0.9} onPress={() => null}>
+              <TouchableOpacity
+                activeOpacity={0.9}
+                onPress={() =>
+                  navigation.navigate('Play', {
+                    playserver: playserver,
+                    stream: stream,
+                    streamName: item.streamName,
+                    streamerName: item.streamerName,
+                    bgColor: '2B6FFF',
+                    width: width,
+                  })
+                }>
                 <MotiView
                   from={{opacity: 0, translateY: 100}}
                   animate={{opacity: 1, translateY: 0}}
