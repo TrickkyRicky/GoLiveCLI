@@ -16,13 +16,12 @@ import Likes from 'react-native-vector-icons/AntDesign';
 import VideoPlayer from 'react-native-media-console';
 import {MotiView} from 'moti';
 import LottieView from 'lottie-react-native';
-// import Orientation from 'react-native-orientation-locker';
 import {sPath, vPath} from '../utility/dev';
 import {COMMENTS} from '../utility/data';
 import {shareSheet} from '../utility/share';
 import Comments from '../components/Comments';
 
-const PlayStream = props => {
+const PlayStream = ({route, navigation}) => {
   const [playerRef, setPlayerRef] = useState(null);
   const [showControls, setShowControls] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -30,7 +29,7 @@ const PlayStream = props => {
   const [isLiked, setIsLiked] = useState(false);
   const animation = useRef(null);
   const {height} = Dimensions.get('window');
-  const {streamName, streamerName, bgColor, width} = props.route.params;
+  const {streamName, streamerName, bgColor, width} = route.params;
 
   // Example: "https://0b3a-2603-8081-1604-91e7-fcca-eb88-d9a1-5b79.ngrok.io/live/"
   const [playserver, setPlayserver] = useState(vPath);
@@ -47,16 +46,6 @@ const PlayStream = props => {
 
   const streamKey = 'g4hs6f6tds5';
 
-  // const toggleFullScreen = () => {
-  //   if (isFullScreen) {
-  //     Orientation.lockToPortrait();
-  //     setIsFullScreen(false);
-  //   } else {
-  //     Orientation.lockToLandscape();
-  //     setIsFullScreen(true);
-  //   }
-  // };
-
   const [changedData, setChangedData] = useState(COMMENTS);
 
   return (
@@ -68,7 +57,7 @@ const PlayStream = props => {
             //   uri: 'https://2572-2603-8081-1604-91e7-75eb-8bab-2abc-6a15.ngrok.io/live/STREAM_NAME/index.m3u8',
             // }}
             source={{uri: 'https://vjs.zencdn.net/v/oceans.mp4'}}
-            navigator={props.navigation}
+            navigator={navigation}
             rewindTime={10}
             forwardTime={10}
             controlTimeoutDelay={5000}
@@ -79,8 +68,6 @@ const PlayStream = props => {
             pictureInPicture={true}
             playInBackground={true}
             playWhenInactive={true}
-            // poster="https://picsum.photos/200/300"
-            // posterResizeMode="cover"
             volume={1}
             showDuration={false}
             ignoreSilentSwitch="ignore"
@@ -104,12 +91,22 @@ const PlayStream = props => {
             borderBottomColor="#212529"
             borderBottomWidth={1.5}>
             <HStack pl={3} py={3} alignItems="center">
-              <Center
-                bg={`#${bgColor}`}
-                width={9}
-                height={9}
-                borderRadius={100}
-              />
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => {
+                  navigation.navigate('ProfileScreen', {
+                    width,
+                    name: streamerName,
+                    // followers: item.followers,
+                  });
+                }}>
+                <Center
+                  bg={`#${bgColor}`}
+                  width={9}
+                  height={9}
+                  borderRadius={100}
+                />
+              </TouchableOpacity>
               <VStack alignItems="flex-start" ml={2} w={width * 0.4}>
                 <Heading
                   color="#6C757D"

@@ -22,7 +22,7 @@ export const Data = [
   },
   {
     id: 4,
-    streamName: 'Warzone Live',
+    streamName: 'New Caldera Map',
     streamerName: 'NinjaWarrior67',
     views: '6K',
     image: require('../assets/warzone.jpg'),

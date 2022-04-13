@@ -7,6 +7,7 @@ import {
   Center,
   Actionsheet,
   useDisclose,
+  Avatar,
 } from 'native-base';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -45,7 +46,7 @@ const Video = ({
         opacity={0.7}
         width="25%"
         h={6}
-        borderRadius={30}
+        borderRadius={5}
         position="absolute"
         bottom={16}
         left={3}>
@@ -83,10 +84,18 @@ const Video = ({
 
       <HStack py="2" justifyContent="space-between" alignItems="center">
         <HStack>
-          <Center
+          {/* <Center
             bg={`#${bgColor}`}
             width={10}
             height={10}
+            borderRadius={100}
+          /> */}
+          <Avatar
+            source={{
+              uri: 'https://yt3.ggpht.com/ytc/AKedOLQaldPj-Tm-zaihNrmO0w30nGleIdemd2bQznyWbQ=s900-c-k-c0x00ffffff-no-rj',
+            }}
+            w={10}
+            h={10}
             borderRadius={100}
           />
           <HStack>

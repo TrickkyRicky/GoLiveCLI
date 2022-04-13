@@ -61,7 +61,7 @@ const ProfileScreen = props => {
           {true ? (
             <Avatar
               source={{
-                uri: 'https://images.ctfassets.net/mmeshd7gafk1/3zPFdwwYIwHLZjrxhTdtuD/8b15546c40d832ad8aeddc9670d1d3e8/_logo_Apple.png',
+                uri: 'https://yt3.ggpht.com/ytc/AKedOLQaldPj-Tm-zaihNrmO0w30nGleIdemd2bQznyWbQ=s900-c-k-c0x00ffffff-no-rj',
               }}
               bg={'#495057'}
               width={90}
@@ -91,11 +91,19 @@ const ProfileScreen = props => {
                 alignSelf="center"
                 color="#DEE2E6"
                 fontSize="xl"
+                isTruncated={true}
+                w={width * 0.42}
                 fontWeight="bold">
                 {name}
               </Text>
-              <Text color="#6C757D" fontSize="md" fontWeight={300}>
-                Enjoy the stream!
+              <Text
+                color="#6C757D"
+                fontSize="md"
+                numberOfLines={2}
+                w={width * 0.42}
+                isTruncated={true}
+                fontWeight={300}>
+                Hit That Follow Button!
               </Text>
             </VStack>
 

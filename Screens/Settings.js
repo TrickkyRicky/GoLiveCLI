@@ -27,7 +27,7 @@ const MMKV = new MMKVStorage.Loader().initialize();
 const width = Dimensions.get('window').width;
 
 const Settings = ({navigation, route}) => {
-  const [useFaceID, setUseFaceID] = useState(true);
+  const [useFaceID, setUseFaceID] = useState(false);
   const [useNotifications, setUseNotifications] = useState(true);
   const bgColor = '#101010';
   const {disableBiometric} = route.params;
@@ -100,7 +100,7 @@ const Settings = ({navigation, route}) => {
                       Followers
                     </Text>
                     <Text fontSize="3xl" color="#ADB5BD">
-                      456,565
+                      32,565
                     </Text>
                   </VStack>
                 </VStack>
@@ -135,7 +135,7 @@ const Settings = ({navigation, route}) => {
                   </HStack>
                 </Box>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => null}>
+              <TouchableOpacity onPress={() => navigation.navigate('MyVideos')}>
                 <Box bg={bgColor} h={50} justifyContent="center" px={3} py={1}>
                   <HStack
                     alignItems="center"
@@ -274,7 +274,8 @@ const Settings = ({navigation, route}) => {
                 GENERAL
               </Text>
 
-              <TouchableOpacity onPress={() => null}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('ContactUs')}>
                 <Box bg={bgColor} h={50} justifyContent="center" px={3} py={1}>
                   <HStack
                     alignItems="center"
@@ -295,7 +296,8 @@ const Settings = ({navigation, route}) => {
                   </HStack>
                 </Box>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => null}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('ContactUs')}>
                 <Box bg={bgColor} h={50} justifyContent="center" px={3} py={1}>
                   <HStack
                     alignItems="center"

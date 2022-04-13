@@ -49,7 +49,7 @@ const HomeScreen = ({navigation}) => {
         blurRadius={5}
         source={require('../assets/bg.jpeg')}
         resizeMode="cover">
-        <SafeAreaView style={{paddingBottom: 50}}>
+        <SafeAreaView edges={['right', 'top', 'left']}>
           <StatusBar
             animated={true}
             barStyle={'light-content'}
@@ -313,7 +313,7 @@ const HomeScreen = ({navigation}) => {
                   );
                 }}
               />
-              <Center height={180} />
+              <Center height={130} />
             </ScrollView>
           </VStack>
         </SafeAreaView>

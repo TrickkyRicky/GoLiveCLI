@@ -19,7 +19,9 @@ import ProfileSettings from './Screens/ProfileSettings';
 import RegistrationScreen from './Screens/RegistrationScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import ResetPasswordScreen from './Screens/ResetPasswordScreen';
+import MyVideos from './Screens/MyVideosScreen';
 import LoginScreen from './Screens/LoginScreen';
+import ContactUs from './Screens/ContactUs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Provider} from 'react-redux';
 import 'react-native-reanimated';
@@ -66,6 +68,7 @@ function SplashStackNavigation() {
               }}
             />
             <Stack.Screen name="Profile" component={ProfileSettings} />
+            <Stack.Screen name="MyVideos" component={MyVideos} />
             <Stack.Screen
               name="Register"
               component={RegistrationScreen}
@@ -116,6 +119,7 @@ const AuthStackNavigator = () => {
         component={Settings}
       />
       <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+      <Stack.Screen name="ContactUs" component={ContactUs} />
     </Stack.Navigator>
   );
 };
