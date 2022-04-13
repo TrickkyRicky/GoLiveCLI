@@ -28,10 +28,14 @@ const RegistrationScreen = ({navigation}) => {
   const clickSubmit = () => {
     setIsLoading(true);
 
-    dispatch(postRegister(username, email, password)).then(res => {
-      setIsLoading(false);
-      navigation.goBack();
-    });
+    dispatch(postRegister(username, email, password))
+      .then(res => {
+        setIsLoading(false);
+        navigation.goBack();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
@@ -166,10 +170,6 @@ const RegistrationScreen = ({navigation}) => {
                   activeOpacity={0.8}
                   onPress={() => {
                     clickSubmit();
-                    // setTimeout(() => {
-                    //   setIsLoading(false);
-                    //   navigation.goBack();
-                    // }, 2000);
                   }}>
                   <Box
                     bg="#343A40"

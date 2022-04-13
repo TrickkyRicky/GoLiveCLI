@@ -169,6 +169,7 @@ const TabNavigator = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginBottom: Platform.OS == 'android' ? 50 : 20,
+                    zIndex: 2,
                   }}>
                   <Icon name="video-camera" size={25} color="#fff" />
                 </View>
@@ -194,7 +195,18 @@ const TabNavigator = () => {
             },
           })}
         />
-        <Tab.Screen name="Stream" component={StreamStackNavigator} />
+        <Tab.Screen
+          name="Stream"
+          component={StreamStackNavigator}
+          // listeners={({navigation, route}) => ({
+          //   tabPress: e => {
+          //     Animated.spring(tabOffsetValue, {
+          //       toValue: getWidth() * 6,
+          //       useNativeDriver: true,
+          //     }).start();
+          //   },
+          // })}
+        />
         <Tab.Screen
           name="Settings"
           component={AuthStackNavigator}
@@ -218,6 +230,7 @@ const TabNavigator = () => {
           // Horizontal Padding = 20...
           left: 47,
           borderRadius: 20,
+          zIndex: 1,
           transform: [{translateX: tabOffsetValue}],
         }}
       />

@@ -107,7 +107,7 @@ const LoginScreen = ({navigation}) => {
               <Heading mb={10} color="#ADB5BD" size="md" fontWeight={400}>
                 {`Welcome back.\nYou've been missed.`}
               </Heading>
-              {!showlogin ? (
+              {!showlogin && useFaceID ? (
                 <VStack>
                   <Center>
                     <TouchableOpacity

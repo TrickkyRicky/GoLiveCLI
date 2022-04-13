@@ -146,14 +146,4 @@ export const COMMENTS = [
     name: 'GhostHunter28',
     comment: 'this is a test comment.',
   },
-  {
-    id: 7,
-    name: 'Call of Duty',
-    comment: 'this is a test comment.',
-  },
-  {
-    id: 8,
-    name: 'Apple',
-    comment: 'this is a test comment.',
-  },
 ];

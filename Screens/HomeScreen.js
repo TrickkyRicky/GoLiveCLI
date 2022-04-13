@@ -124,6 +124,7 @@ const HomeScreen = ({navigation}) => {
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={item => item.id}
                 horizontal
+                initialNumToRender={4}
                 renderItem={({item, index}) => {
                   var randomColor = Math.floor(
                     Math.random() * 16777215,
@@ -221,6 +222,7 @@ const HomeScreen = ({navigation}) => {
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={item => item.id}
                 horizontal
+                initialNumToRender={4}
                 renderItem={({item, index}) => {
                   var randomColor = Math.floor(
                     Math.random() * 16777215,
@@ -282,6 +284,7 @@ const HomeScreen = ({navigation}) => {
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={item => item.id}
                 horizontal
+                initialNumToRender={4}
                 renderItem={({item, index}) => {
                   var randomColor = Math.floor(
                     Math.random() * 16777215,

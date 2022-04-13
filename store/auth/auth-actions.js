@@ -26,10 +26,9 @@ export const postRegister = (username, email, password) => {
 
       if (result.userId) {
         return result;
+      } else {
+        throw new Error('could not get data');
       }
-      // else {
-      //   throw new Error("could not get data");
-      // }
     } catch (e) {
       console.error(e);
     }

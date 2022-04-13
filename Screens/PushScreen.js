@@ -54,7 +54,13 @@ const StreamContent = props => {
       />
 
       {isStreaming ? (
-        <Center width="25%" h={5} position="absolute" top={20} left={2}>
+        <Center
+          width="25%"
+          h={5}
+          position="absolute"
+          top={20}
+          left={2}
+          opacity={0.7}>
           <LottieView
             source={require('../assets/lottie/streaming2.json')}
             autoPlay
