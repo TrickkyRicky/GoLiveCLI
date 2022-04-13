@@ -150,10 +150,9 @@ const MyVideos = ({navigation}) => {
               renderHiddenItem={renderHiddenItem}
               keyExtractor={item => item.id}
               rightOpenValue={-140}
+              closeOnRowPress={true}
+              useNativeDriver={true}
               disableRightSwipe={true}
-              //   previewRowKey={'0'}
-              //   previewOpenValue={-40}
-              //   previewOpenDelay={3000}
               onRowDidOpen={onRowDidOpen}
             />
           ) : (

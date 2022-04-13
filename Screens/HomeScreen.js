@@ -72,7 +72,7 @@ const HomeScreen = ({navigation}) => {
                 showsHorizontalScrollIndicator={false}
                 horizontal
                 keyExtractor={item => item.id}
-                ListHeaderComponent={<Box width={4}></Box>}
+                ListHeaderComponent={<Box width={4} />}
                 renderItem={({item, index}) => {
                   return (
                     <MotiView

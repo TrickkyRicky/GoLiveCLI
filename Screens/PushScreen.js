@@ -130,7 +130,6 @@ const StreamContent = props => {
             name="flash-outline"
             size={30}
             onPress={() => {
-              // playerRef.stopPreview();
               setToggle(!toggle);
               playerRef.flashEnable(toggle);
             }}
@@ -181,17 +180,22 @@ const StreamContent = props => {
               animate={{opacity: 1}}
               exit={{
                 opacity: 0,
-              }}
-              style={{
-                padding: 12,
-                backgroundColor: 'rgba(10, 125, 10, 0.2)',
-                borderRadius: 15,
-                position: 'absolute',
-                bottom: 80,
-                zIndex: 2,
-                alignSelf: 'center',
               }}>
-              <Text style={{color: '#fff', fontSize: 16}}>Start Streaming</Text>
+              <Center
+                w="25s%"
+                position="absolute"
+                bottom={12}
+                left="38%"
+                zIndex={2}>
+                <LottieView
+                  source={require('../assets/lottie/startButton.json')}
+                  autoPlay
+                  loop
+                  style={{
+                    width: '100%',
+                  }}
+                />
+              </Center>
             </MotiView>
           </TouchableOpacity>
         )}
