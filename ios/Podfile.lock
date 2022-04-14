@@ -302,7 +302,7 @@ PODS:
     - React (< 1.0.0, >= 0.13.0)
   - react-native-orientation-locker (1.2.0):
     - React
-  - react-native-pager-view (5.4.11):
+  - react-native-pager-view (5.4.15):
     - React-Core
   - react-native-safe-area-context (3.1.9):
     - React-Core
@@ -673,7 +673,7 @@ SPEC CHECKSUMS:
   react-native-nodemediaclient: 59d49a2115afd788a5bd97a523f5e468e609d2e0
   react-native-onesignal: 7643517fe655b94cfda8e697ec16f9b9135648b8
   react-native-orientation-locker: 47aaa55d59bfc1613804dc22f159e6bb1cca5f30
-  react-native-pager-view: 7f00d63688f7df9fad86dfb0154814419cc5eb8d
+  react-native-pager-view: b1914469643f40042e65d78cbf3d3dfebd6fb0d9
   react-native-safe-area-context: b6e0e284002381d2ff29fa4fff42b4d8282e3c94
   react-native-video: a4c2635d0802f983594b7057e1bce8f442f0ad28
   React-perflogger: 93075d8931c32cd1fce8a98c15d2d5ccc4d891bd

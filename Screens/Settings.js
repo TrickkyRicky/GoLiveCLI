@@ -152,7 +152,9 @@ const Settings = ({navigation, route}) => {
                   </HStack>
                 </Box>
               </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate('Subscriptions')}>
                 <Box bg={bgColor} h={50} justifyContent="center" px={3} py={1}>
                   <HStack
                     alignItems="center"

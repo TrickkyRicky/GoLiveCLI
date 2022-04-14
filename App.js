@@ -4,6 +4,7 @@ import {APP_ID} from '@env';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NativeBaseProvider} from 'native-base';
 import PlayScreen from './Screens/PlayScreen';
@@ -22,6 +23,9 @@ import ResetPasswordScreen from './Screens/ResetPasswordScreen';
 import MyVideos from './Screens/MyVideosScreen';
 import LoginScreen from './Screens/LoginScreen';
 import ContactUs from './Screens/ContactUs';
+import Followers from './Screens/Followers';
+import Following from './Screens/Following';
+import TopTabHeader from './components/TopTabHeader';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Provider} from 'react-redux';
 import 'react-native-reanimated';
@@ -44,6 +48,7 @@ function getWidth() {
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const TopTab = createMaterialTopTabNavigator();
 
 function SplashStackNavigation() {
   return (
@@ -69,6 +74,22 @@ function SplashStackNavigation() {
             />
             <Stack.Screen name="Profile" component={ProfileSettings} />
             <Stack.Screen name="MyVideos" component={MyVideos} />
+            <Stack.Screen
+              name="Subscriptions"
+              component={FollowTopTabNavigator}
+              options={{
+                headerShown: true,
+                headerTitle: TopTabHeader,
+                headerStyle: {
+                  backgroundColor: '#101010',
+                  shadowColor: '#101010',
+                  elevation: 0,
+                },
+                headerBackTitle: 'Back',
+                headerBackTitleStyle: {color: '#35C280'},
+                headerTintColor: '#35C280',
+              }}
+            />
             <Stack.Screen
               name="Register"
               component={RegistrationScreen}
@@ -121,6 +142,27 @@ const AuthStackNavigator = () => {
       <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
       <Stack.Screen name="ContactUs" component={ContactUs} />
     </Stack.Navigator>
+  );
+};
+
+const FollowTopTabNavigator = () => {
+  return (
+    <TopTab.Navigator
+      initialRouteName="Followers"
+      screenOptions={{
+        // tabBarLabelStyle: {fontSize: 13},
+        tabBarItemStyle: {width: width * 0.5},
+        tabBarStyle: {backgroundColor: '#101010'},
+        tabBarBounces: true,
+        tabBarScrollEnabled: true,
+        tabBarPressOpacity: 0.8,
+        tabBarActiveTintColor: '#35C280',
+        tabBarInactiveTintColor: '#DEE2E6',
+        tabBarIndicatorStyle: {backgroundColor: '#35C280'},
+      }}>
+      <TopTab.Screen name="Followers" component={Followers} />
+      <TopTab.Screen name="Following" component={Following} />
+    </TopTab.Navigator>
   );
 };
 
@@ -195,18 +237,7 @@ const TabNavigator = () => {
             },
           })}
         />
-        <Tab.Screen
-          name="Stream"
-          component={StreamStackNavigator}
-          // listeners={({navigation, route}) => ({
-          //   tabPress: e => {
-          //     Animated.spring(tabOffsetValue, {
-          //       toValue: getWidth() * 6,
-          //       useNativeDriver: true,
-          //     }).start();
-          //   },
-          // })}
-        />
+        <Tab.Screen name="Stream" component={StreamStackNavigator} />
         <Tab.Screen
           name="Settings"
           component={AuthStackNavigator}

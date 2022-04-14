@@ -163,30 +163,32 @@ const LoginScreen = ({navigation}) => {
                 space={2}
                 justifyContent="center"
                 alignItems="center">
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={() => showAuthenticationDialog()}>
-                  <Box
-                    bg="#35C280"
-                    w={width * 0.45}
-                    borderRadius={10}
-                    py={3}
-                    px={5}
-                    alignItems="center">
-                    <HStack
-                      justifyContent="center"
-                      alignItems="center"
-                      space={2}>
-                      <Image
-                        source={require('../assets/faceid.png')}
-                        style={{width: 25, height: 25, resizeMode: 'cover'}}
-                      />
-                      <Text color="#000" fontSize="lg" fontWeight={700}>
-                        Face ID
-                      </Text>
-                    </HStack>
-                  </Box>
-                </TouchableOpacity>
+                {useFaceID ? (
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={() => showAuthenticationDialog()}>
+                    <Box
+                      bg="#35C280"
+                      w={width * 0.42}
+                      borderRadius={10}
+                      py={3}
+                      px={5}
+                      alignItems="center">
+                      <HStack
+                        justifyContent="center"
+                        alignItems="center"
+                        space={2}>
+                        <Image
+                          source={require('../assets/faceid.png')}
+                          style={{width: 25, height: 25, resizeMode: 'cover'}}
+                        />
+                        <Text color="#000" fontSize="lg" fontWeight={700}>
+                          Face ID
+                        </Text>
+                      </HStack>
+                    </Box>
+                  </TouchableOpacity>
+                ) : null}
 
                 <TouchableOpacity
                   activeOpacity={0.8}
@@ -195,8 +197,7 @@ const LoginScreen = ({navigation}) => {
                   }}>
                   <Box
                     bg="#343A40"
-                    // mx={3}
-                    w={width * 0.45}
+                    w={useFaceID ? width * 0.42 : width * 0.85}
                     py={3}
                     borderRadius={10}
                     justifyContent="center"
