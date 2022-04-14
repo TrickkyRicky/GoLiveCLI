@@ -29,6 +29,7 @@ const PlayStream = ({route, navigation}) => {
   const [isLiked, setIsLiked] = useState(false);
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState(COMMENTS);
+  const [ref, setRef] = useState(null);
   const animation = useRef(null);
 
   const {height} = Dimensions.get('window');
@@ -221,11 +222,16 @@ const PlayStream = ({route, navigation}) => {
           <Box h={height * 0.38}>
             <FlatList
               data={comments}
-              ref={ref => (flatListRef = ref)}
+              ref={ref => {
+                setRef(ref);
+              }}
               inverted
               initialScrollIndex={5}
               keyExtractor={item => item.id}
               showsVerticalScrollIndicator={false}
+              onScrollToIndexFailed={() => {
+                console.log('failed');
+              }}
               renderItem={({item, index}) => (
                 <MotiView
                   from={{opacity: 0, translateY: 100}}
@@ -278,6 +284,10 @@ const PlayStream = ({route, navigation}) => {
                     onPress={() => {
                       setComments([...comments, {name: streamerName, comment}]);
                       setComment('');
+                      ref.scrollToIndex({
+                        animated: true,
+                        index: 5,
+                      });
 
                       Keyboard.dismiss();
                     }}

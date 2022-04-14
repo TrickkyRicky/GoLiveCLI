@@ -107,131 +107,122 @@ const LoginScreen = ({navigation}) => {
               <Heading mb={10} color="#ADB5BD" size="md" fontWeight={400}>
                 {`Welcome back.\nYou've been missed.`}
               </Heading>
-              {!showlogin && useFaceID ? (
-                <VStack>
-                  <Center>
-                    <TouchableOpacity
-                      activeOpacity={0.8}
-                      onPress={() => showAuthenticationDialog()}>
-                      <Box
-                        bg="#35C280"
-                        w={width * 0.8}
-                        borderRadius={20}
-                        py={2}
-                        alignItems="center">
-                        <HStack
-                          justifyContent="center"
-                          alignItems="center"
-                          space={2}>
-                          <Image
-                            source={require('../assets/faceid.png')}
-                            style={{width: 25, height: 25, resizeMode: 'cover'}}
-                          />
-                          <Text color="#000" fontSize="lg" fontWeight={700}>
-                            Face ID
-                          </Text>
-                        </HStack>
-                      </Box>
-                    </TouchableOpacity>
-                    <Text
-                      fontSize="md"
-                      color="#ADB5BD"
-                      p={3}
-                      onPress={() => setShowLogin(true)}>
-                      Log in with User ID
-                    </Text>
-                  </Center>
-                </VStack>
-              ) : (
-                <>
-                  <VStack alignItems="center">
-                    <Input
-                      isRequired
-                      keyboardAppearance="dark"
-                      mb={3}
-                      px={5}
-                      placeholder="Username"
-                      bg="#212529"
-                      borderColor="#212529"
-                      borderWidth={2}
-                      color="#ADB5BD"
-                      fontSize="md"
-                      fontWeight={600}
-                      borderRadius={10}
-                      _focus={{borderColor: '#343A40'}}
-                      w={'95%'}
-                      h={12}
-                      onChangeText={text => setUsername(text)}
-                      value={username}
-                    />
 
-                    <Input
-                      isRequired
-                      keyboardAppearance="dark"
-                      secureTextEntry={true}
-                      mb={3}
-                      px={5}
-                      placeholder="Password"
-                      bg="#212529"
-                      borderColor="#212529"
-                      borderWidth={2}
-                      color="#CED4DA"
-                      fontSize="md"
-                      fontWeight={600}
-                      borderRadius={10}
-                      _focus={{borderColor: '#343A40'}}
-                      w={'95%'}
-                      h={12}
-                      onChangeText={text => setPassword(text)}
-                      value={password}
-                      InputRightElement={
-                        <Icon2
-                          name="lock-open"
-                          size={18}
-                          color="#495057"
-                          style={{marginRight: 12}}
-                        />
-                      }
-                    />
-                  </VStack>
+              <VStack alignItems="center">
+                <Input
+                  isRequired
+                  keyboardAppearance="dark"
+                  mb={3}
+                  px={5}
+                  placeholder="Username"
+                  bg="#212529"
+                  borderColor="#212529"
+                  borderWidth={2}
+                  color="#ADB5BD"
+                  fontSize="md"
+                  fontWeight={600}
+                  borderRadius={10}
+                  _focus={{borderColor: '#343A40'}}
+                  w={'95%'}
+                  h={12}
+                  onChangeText={text => setUsername(text)}
+                  value={username}
+                />
 
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => {
-                      clickSubmit();
-                    }}>
-                    <Box
-                      bg="#343A40"
-                      mt={3}
-                      mx={3}
-                      py={3}
-                      borderRadius={10}
+                <Input
+                  isRequired
+                  keyboardAppearance="dark"
+                  secureTextEntry={true}
+                  mb={3}
+                  px={5}
+                  placeholder="Password"
+                  bg="#212529"
+                  borderColor="#212529"
+                  borderWidth={2}
+                  color="#CED4DA"
+                  fontSize="md"
+                  fontWeight={600}
+                  borderRadius={10}
+                  _focus={{borderColor: '#343A40'}}
+                  w={'95%'}
+                  h={12}
+                  onChangeText={text => setPassword(text)}
+                  value={password}
+                  InputRightElement={
+                    <Icon2
+                      name="lock-open"
+                      size={18}
+                      color="#495057"
+                      style={{marginRight: 12}}
+                    />
+                  }
+                />
+              </VStack>
+              <HStack
+                mt={3}
+                space={2}
+                justifyContent="center"
+                alignItems="center">
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => showAuthenticationDialog()}>
+                  <Box
+                    bg="#35C280"
+                    w={width * 0.45}
+                    borderRadius={10}
+                    py={3}
+                    px={5}
+                    alignItems="center">
+                    <HStack
                       justifyContent="center"
-                      alignItems="center">
-                      {isLoading ? (
-                        <Spinner color="emerald.500" />
-                      ) : (
-                        <Text color="#DEE2E6" fontSize="lg" fontWeight="bold">
-                          Sign In
-                        </Text>
-                      )}
-                    </Box>
-                  </TouchableOpacity>
+                      alignItems="center"
+                      space={2}>
+                      <Image
+                        source={require('../assets/faceid.png')}
+                        style={{width: 25, height: 25, resizeMode: 'cover'}}
+                      />
+                      <Text color="#000" fontSize="lg" fontWeight={700}>
+                        Face ID
+                      </Text>
+                    </HStack>
+                  </Box>
+                </TouchableOpacity>
 
-                  <HStack mt={4} px={2} justifyContent="space-between">
-                    <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
-                      <Text fontSize="sm" color="#6C757D">
-                        Forgot Username?
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => {
+                    clickSubmit();
+                  }}>
+                  <Box
+                    bg="#343A40"
+                    // mx={3}
+                    w={width * 0.45}
+                    py={3}
+                    borderRadius={10}
+                    justifyContent="center"
+                    alignItems="center">
+                    {isLoading ? (
+                      <Spinner color="emerald.500" />
+                    ) : (
+                      <Text color="#DEE2E6" fontSize="lg" fontWeight="bold">
+                        Sign In
                       </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
-                      <Text fontSize="sm" color="#6C757D">
-                        Forgot Password?
-                      </Text>
-                    </TouchableOpacity>
-                  </HStack>
-                </>
-              )}
+                    )}
+                  </Box>
+                </TouchableOpacity>
+              </HStack>
+              <HStack mt={4} px={2} justifyContent="space-between">
+                <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
+                  <Text fontSize="sm" color="#6C757D">
+                    Forgot Username?
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.8} onPress={() => null}>
+                  <Text fontSize="sm" color="#6C757D">
+                    Forgot Password?
+                  </Text>
+                </TouchableOpacity>
+              </HStack>
             </VStack>
           </MotiView>
         </ScrollView>
