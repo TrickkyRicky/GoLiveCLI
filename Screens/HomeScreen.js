@@ -177,9 +177,7 @@ const HomeScreen = ({navigation}) => {
                         activeOpacity={0.4}
                         onPress={() =>
                           navigation.navigate('ProfileScreen', {
-                            width: width,
                             name: item.name,
-                            followers: item.followers,
                           })
                         }>
                         <PopularStreamers

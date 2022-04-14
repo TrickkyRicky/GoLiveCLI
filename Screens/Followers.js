@@ -1,19 +1,30 @@
 import {TouchableOpacity, Dimensions} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {Box, VStack, HStack, Text, Heading, Center} from 'native-base';
+import {Box, FlatList} from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import BackIcon from 'react-native-vector-icons/AntDesign';
+import Subscriber from '../components/Subscriber';
+import {POPULAR_STREAMERS} from '../utility/data';
+
 const width = Dimensions.get('window').width;
 
 const Followers = ({navigation}) => {
   return (
     <Box flex={1} bg="#101010">
-      <Center mt={16} alignItems="center">
-        <Heading color="#DEE2E6" size="3xl">
-          Followers
-        </Heading>
-      </Center>
+      <FlatList
+        data={POPULAR_STREAMERS}
+        keyExtractor={item => item.id}
+        renderItem={({item, index}) => (
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() =>
+              navigation.navigate('ProfileScreen', {
+                name: item.name,
+              })
+            }>
+            <Subscriber name={item.name} />
+          </TouchableOpacity>
+        )}
+      />
     </Box>
   );
 };

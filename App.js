@@ -73,6 +73,7 @@ function SplashStackNavigation() {
               }}
             />
             <Stack.Screen name="Profile" component={ProfileSettings} />
+            <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
             <Stack.Screen name="MyVideos" component={MyVideos} />
             <Stack.Screen
               name="Subscriptions"
@@ -109,7 +110,6 @@ const HomeStackNavigator = () => {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="Discover" component={DiscoverScreen} />
-      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
@@ -148,7 +148,7 @@ const AuthStackNavigator = () => {
 const FollowTopTabNavigator = () => {
   return (
     <TopTab.Navigator
-      initialRouteName="Followers"
+      initialRouteName="Following"
       screenOptions={{
         // tabBarLabelStyle: {fontSize: 13},
         tabBarItemStyle: {width: width * 0.5},
@@ -160,8 +160,8 @@ const FollowTopTabNavigator = () => {
         tabBarInactiveTintColor: '#DEE2E6',
         tabBarIndicatorStyle: {backgroundColor: '#35C280'},
       }}>
-      <TopTab.Screen name="Followers" component={Followers} />
       <TopTab.Screen name="Following" component={Following} />
+      <TopTab.Screen name="Followers" component={Followers} />
     </TopTab.Navigator>
   );
 };
