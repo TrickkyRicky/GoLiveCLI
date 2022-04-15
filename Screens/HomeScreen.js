@@ -48,7 +48,7 @@ const HomeScreen = ({navigation}) => {
       <ImageBackground
         blurRadius={5}
         source={require('../assets/bg.jpeg')}
-        resizeMode="cover">
+        resizeMode="stretch">
         <SafeAreaView edges={['right', 'top', 'left']}>
           <StatusBar
             animated={true}

@@ -96,9 +96,9 @@ const MyVideos = ({navigation}) => {
           opacity: 0.5,
         }}>
         <VStack alignItems="center" space={2}>
-          <Icon name="ellipsis-vertical" size={25} color="#212529" />
+          <Icon name="ios-create-outline" size={25} color="#212529" />
           <Text fontSize="md" fontWeight="medium" color="#212529">
-            More
+            Edit
           </Text>
         </VStack>
       </Pressable>

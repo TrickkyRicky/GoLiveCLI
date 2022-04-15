@@ -6,6 +6,7 @@ import {
   PermissionsAndroid,
   Animated,
   Dimensions,
+  ImageBackground,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Logo from '../assets/Logo.png';

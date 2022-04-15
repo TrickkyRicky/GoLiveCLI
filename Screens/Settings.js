@@ -27,10 +27,10 @@ const MMKV = new MMKVStorage.Loader().initialize();
 const width = Dimensions.get('window').width;
 
 const Settings = ({navigation, route}) => {
-  const [useFaceID, setUseFaceID] = useState(false);
+  const {disableBiometric, useFaceID} = route.params;
+  const [enableFaceID, setEnableFaceID] = useState(useFaceID);
   const [useNotifications, setUseNotifications] = useState(true);
   const bgColor = '#101010';
-  const {disableBiometric} = route.params;
 
   return (
     <VStack bg="#101010" flex={1}>
@@ -258,7 +258,7 @@ const Settings = ({navigation, route}) => {
 
                   <Switch
                     value={useFaceID}
-                    onToggle={() => setUseFaceID(!useFaceID)}
+                    onToggle={() => setEnableFaceID(!enableFaceID)}
                     isDisabled={disableBiometric == true ? true : false}
                     size="md"
                     onTrackColor="#35C280"

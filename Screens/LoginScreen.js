@@ -1,17 +1,8 @@
 import {ScrollView, TouchableOpacity, Image, Dimensions} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {
-  HStack,
-  VStack,
-  Text,
-  Center,
-  Box,
-  Input,
-  Heading,
-  Spinner,
-} from 'native-base';
+import {HStack, VStack, Text, Center, Box, Heading, Spinner} from 'native-base';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import Icon2 from 'react-native-vector-icons/Ionicons';
+import {Hoshi} from 'react-native-textinput-effects';
 import {MotiView, AnimatePresence} from 'moti';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import {postLogin} from '../store/auth/auth-actions';
@@ -76,7 +67,7 @@ const LoginScreen = ({navigation}) => {
 
   const clickSubmit = () => {
     setIsLoading(true);
-    navigation.navigate('SettingsScreen', {disableBiometric});
+    navigation.navigate('SettingsScreen', {disableBiometric, useFaceID});
     setIsLoading(false);
 
     // dispatch(postLogin(username, password)).then(res => {
@@ -108,58 +99,41 @@ const LoginScreen = ({navigation}) => {
                 {`Welcome back.\nYou've been missed.`}
               </Heading>
 
-              <VStack alignItems="center">
-                <Input
-                  isRequired
-                  keyboardAppearance="dark"
-                  mb={3}
-                  px={5}
-                  placeholder="Username"
-                  bg="#212529"
-                  borderColor="#212529"
-                  borderWidth={2}
-                  color="#ADB5BD"
-                  fontSize="md"
-                  fontWeight={600}
-                  borderRadius={10}
-                  _focus={{borderColor: '#343A40'}}
-                  w={'95%'}
-                  h={12}
+              <VStack alignItems="center" space={2}>
+                <Hoshi
+                  label={'Username'}
+                  // this is used as active border color
+                  borderColor={'#35C280'}
+                  // active border height
+                  borderHeight={3}
+                  inputPadding={16}
+                  // this is used to set backgroundColor of label mask.
+                  // please pass the backgroundColor of your TextInput container.
+                  backgroundColor={'#101010'}
+                  style={{width: '95%'}}
                   onChangeText={text => setUsername(text)}
                   value={username}
-                />
-
-                <Input
-                  isRequired
                   keyboardAppearance="dark"
+                />
+                <Hoshi
+                  label={'Password'}
+                  // this is used as active border color
+                  borderColor={'#35C280'}
+                  // active border height
+                  borderHeight={3}
+                  inputPadding={16}
+                  // this is used to set backgroundColor of label mask.
+                  // please pass the backgroundColor of your TextInput container.
+                  backgroundColor={'transparent'}
+                  style={{width: '95%'}}
                   secureTextEntry={true}
-                  mb={3}
-                  px={5}
-                  placeholder="Password"
-                  bg="#212529"
-                  borderColor="#212529"
-                  borderWidth={2}
-                  color="#CED4DA"
-                  fontSize="md"
-                  fontWeight={600}
-                  borderRadius={10}
-                  _focus={{borderColor: '#343A40'}}
-                  w={'95%'}
-                  h={12}
                   onChangeText={text => setPassword(text)}
                   value={password}
-                  InputRightElement={
-                    <Icon2
-                      name="lock-open"
-                      size={18}
-                      color="#495057"
-                      style={{marginRight: 12}}
-                    />
-                  }
+                  keyboardAppearance="dark"
                 />
               </VStack>
               <HStack
-                mt={3}
+                mt={5}
                 space={2}
                 justifyContent="center"
                 alignItems="center">
@@ -197,7 +171,7 @@ const LoginScreen = ({navigation}) => {
                   }}>
                   <Box
                     bg="#343A40"
-                    w={useFaceID ? width * 0.42 : width * 0.85}
+                    w={useFaceID ? width * 0.42 : width * 0.9}
                     py={3}
                     borderRadius={10}
                     justifyContent="center"

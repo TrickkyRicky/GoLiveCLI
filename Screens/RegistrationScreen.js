@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {Box, VStack, Text, Center, Input, Heading, Spinner} from 'native-base';
+import {Box, VStack, Text, Center, Heading, Spinner} from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {Hoshi} from 'react-native-textinput-effects';
 import {postRegister} from '../store/auth/auth-actions';
 
 const width = Dimensions.get('window').width;
@@ -60,7 +61,7 @@ const RegistrationScreen = ({navigation}) => {
           style={{height: '100%'}}>
           <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <Box p={2}>
-              <VStack justifyContent="center" alignItems="center">
+              <VStack space={2} justifyContent="center" alignItems="center">
                 <Heading
                   mt={4}
                   mb={1}
@@ -79,97 +80,81 @@ const RegistrationScreen = ({navigation}) => {
                   Stream. Upload. Enjoy.
                 </Heading>
 
-                <Input
-                  keyboardAppearance="dark"
-                  placeholder="Username"
-                  bg="#212529"
-                  color="#CED4DA"
-                  fontSize="md"
-                  borderColor="#212529"
-                  borderWidth={2}
-                  fontWeight={600}
-                  borderRadius={10}
-                  w={'100%'}
-                  h={16}
-                  px={5}
-                  mb={3}
-                  _focus={{borderColor: '#495057'}}
+                <Hoshi
+                  label={'Username'}
+                  // this is used as active border color
+                  borderColor={'#35C280'}
+                  // active border height
+                  borderHeight={3}
+                  inputPadding={16}
+                  // this is used to set backgroundColor of label mask.
+                  // please pass the backgroundColor of your TextInput container.
+                  backgroundColor={'#101010'}
+                  style={{width: '100%'}}
                   onChangeText={text => setUsername(text)}
                   value={username}
+                  keyboardAppearance="dark"
                 />
 
-                <Input
-                  keyboardAppearance="dark"
-                  keyboardType="email-address"
-                  placeholder="Email Address"
-                  bg="#212529"
-                  color="#CED4DA"
-                  fontSize="md"
-                  borderColor="#212529"
-                  borderWidth={2}
-                  fontWeight={600}
-                  borderRadius={10}
-                  w={'100%'}
-                  h={16}
-                  px={5}
-                  mb={3}
-                  _focus={{borderColor: '#495057'}}
+                <Hoshi
+                  label={'Email Address'}
+                  // this is used as active border color
+                  borderColor={'#35C280'}
+                  // active border height
+                  borderHeight={3}
+                  inputPadding={16}
+                  // this is used to set backgroundColor of label mask.
+                  // please pass the backgroundColor of your TextInput container.
+                  backgroundColor={'#101010'}
+                  style={{width: '100%'}}
                   onChangeText={text => setEmail(text)}
                   value={email}
+                  keyboardAppearance="dark"
                 />
 
-                <Input
-                  keyboardAppearance="dark"
-                  secureTextEntry={showPasswordText}
-                  placeholder="Password"
-                  bg="#212529"
-                  color="#CED4DA"
-                  fontSize="md"
-                  borderColor="#212529"
-                  borderWidth={2}
-                  fontWeight={600}
-                  borderRadius={10}
-                  w={'100%'}
-                  h={16}
-                  px={5}
-                  mb={3}
-                  _focus={{borderColor: '#495057'}}
+                <Hoshi
+                  label={'Password'}
+                  // this is used as active border color
+                  borderColor={'#35C280'}
+                  // active border height
+                  borderHeight={3}
+                  inputPadding={16}
+                  // this is used to set backgroundColor of label mask.
+                  // please pass the backgroundColor of your TextInput container.
+                  backgroundColor={'transparent'}
+                  style={{width: '100%'}}
+                  secureTextEntry={true}
                   onChangeText={text => setPassword(text)}
                   value={password}
-                  InputRightElement={
-                    <Icon
-                      name="eye"
-                      size={18}
-                      color="#495057"
-                      onPress={() => setShowPasswordText(!showPasswordText)}
-                      style={{marginRight: 15}}
-                    />
-                  }
+                  keyboardAppearance="dark"
                 />
 
-                <Input
-                  keyboardAppearance="dark"
+                <Hoshi
+                  label={'Confirm Password'}
+                  // this is used as active border color
+                  borderColor={'#35C280'}
+                  // active border height
+                  borderHeight={3}
+                  inputPadding={16}
+                  // this is used to set backgroundColor of label mask.
+                  // please pass the backgroundColor of your TextInput container.
+                  backgroundColor={'transparent'}
+                  style={{width: '100%'}}
                   secureTextEntry={true}
-                  placeholder="Confirm Password"
-                  bg="#212529"
-                  color="#CED4DA"
-                  fontSize="md"
-                  borderColor="#212529"
-                  borderWidth={2}
-                  fontWeight={600}
-                  borderRadius={10}
-                  w={'100%'}
-                  h={16}
-                  px={5}
-                  _focus={{borderColor: '#495057'}}
                   onChangeText={text => setConfirmPassword(text)}
                   value={confirmPassword}
+                  keyboardAppearance="dark"
                 />
 
                 <TouchableOpacity
                   activeOpacity={0.8}
                   onPress={() => {
-                    clickSubmit();
+                    Keyboard.dismiss();
+                    if (password != confirmPassword) {
+                      setShowAlert(true);
+                    } else {
+                      clickSubmit();
+                    }
                   }}>
                   <Box
                     bg="#343A40"

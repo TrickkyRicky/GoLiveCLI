@@ -1,7 +1,11 @@
-import {TouchableOpacity, Dimensions} from 'react-native';
+import {
+  TouchableOpacity,
+  Dimensions,
+  TouchableHighlight,
+  Pressable,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Box, FlatList} from 'native-base';
-import Icon from 'react-native-vector-icons/Ionicons';
 import Subscriber from '../components/Subscriber';
 import {POPULAR_STREAMERS} from '../utility/data';
 
@@ -15,7 +19,7 @@ const Followers = ({navigation}) => {
         keyExtractor={item => item.id}
         renderItem={({item, index}) => (
           <TouchableOpacity
-            activeOpacity={1}
+            activeOpacity={0.8}
             onPress={() =>
               navigation.navigate('ProfileScreen', {
                 name: item.name,

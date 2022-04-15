@@ -225,7 +225,6 @@ const PlayStream = ({route, navigation}) => {
               ref={ref => {
                 setRef(ref);
               }}
-              inverted
               initialScrollIndex={5}
               keyExtractor={item => item.id}
               showsVerticalScrollIndicator={false}
@@ -236,7 +235,6 @@ const PlayStream = ({route, navigation}) => {
                 <MotiView
                   from={{opacity: 0, translateY: 100}}
                   animate={{opacity: 1, translateY: 0}}
-                  // delay={index * 600}
                   transition={{type: 'timing'}}>
                   <Comments
                     name={item.name}

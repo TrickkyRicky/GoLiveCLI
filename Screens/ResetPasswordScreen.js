@@ -7,8 +7,18 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Box, VStack, Text, HStack, Heading, Input} from 'native-base';
+import {
+  Box,
+  VStack,
+  Text,
+  HStack,
+  Heading,
+  Alert,
+  IconButton,
+  Collapse,
+} from 'native-base';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {Hoshi} from 'react-native-textinput-effects';
 
 const width = Dimensions.get('window').width;
 
@@ -17,6 +27,7 @@ const ResetPasswordScreen = ({navigation}) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPasswordText, setShowPasswordText] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   return (
     <Box flex={1} bg="#101010">
@@ -43,47 +54,52 @@ const ResetPasswordScreen = ({navigation}) => {
                   Change Password
                 </Heading>
               </Box>
-              <Input
-                isRequired
-                keyboardAppearance="dark"
-                secureTextEntry={true}
-                mb={3}
-                px={5}
-                placeholder="Password"
-                bg="#212529"
-                borderColor="#212529"
-                _focus={{borderColor: '#101010'}}
-                color="#CED4DA"
-                fontSize="md"
-                fontWeight={600}
-                borderRadius={10}
-                w={'95%'}
-                h={12}
-                onChangeText={text => setPassword(text)}
-                value={password}
-              />
-              <Input
-                isRequired
-                keyboardAppearance="dark"
-                secureTextEntry={true}
-                mb={3}
-                px={5}
-                placeholder="Confirm Password"
-                bg="#212529"
-                borderColor="#212529"
-                _focus={{borderColor: '#101010'}}
-                color="#CED4DA"
-                fontSize="md"
-                fontWeight={600}
-                borderRadius={10}
-                w={'95%'}
-                h={12}
-                onChangeText={text => setConfirmPassword(text)}
-                value={confirmPassword}
-              />
+
+              <VStack alignItems="center" w="95%" space={3}>
+                <Hoshi
+                  label={'Password'}
+                  // this is used as active border color
+                  borderColor={'#35C280'}
+                  // active border height
+                  borderHeight={3}
+                  inputPadding={16}
+                  // this is used to set backgroundColor of label mask.
+                  // please pass the backgroundColor of your TextInput container.
+                  backgroundColor={'transparent'}
+                  style={{width: '100%'}}
+                  secureTextEntry={true}
+                  onChangeText={text => setPassword(text)}
+                  value={password}
+                  keyboardAppearance="dark"
+                />
+                <Hoshi
+                  label={'Confirm Password'}
+                  // this is used as active border color
+                  borderColor={'#35C280'}
+                  // active border height
+                  borderHeight={3}
+                  inputPadding={16}
+                  // this is used to set backgroundColor of label mask.
+                  // please pass the backgroundColor of your TextInput container.
+                  backgroundColor={'#101010'}
+                  style={{width: '100%'}}
+                  secureTextEntry={true}
+                  onChangeText={text => setConfirmPassword(text)}
+                  value={confirmPassword}
+                  keyboardAppearance="dark"
+                />
+              </VStack>
+
               <TouchableOpacity
                 activeOpacity={0.9}
-                onPress={() => navigation.goBack()}>
+                onPress={() => {
+                  Keyboard.dismiss();
+                  if (password != confirmPassword) {
+                    setShowAlert(true);
+                  } else {
+                    navigation.goBack();
+                  }
+                }}>
                 <Box
                   w={width * 0.9}
                   bg="#35C280"
@@ -99,6 +115,44 @@ const ResetPasswordScreen = ({navigation}) => {
                   </Text>
                 </Box>
               </TouchableOpacity>
+              <Collapse w={width * 0.8} mt={7} isOpen={showAlert}>
+                <Alert status="error" colorScheme="error">
+                  <VStack space={2} flexShrink={1} w="100%">
+                    <HStack
+                      flexShrink={1}
+                      space={2}
+                      alignItems="center"
+                      justifyContent="space-between">
+                      <HStack flexShrink={1} space={2} alignItems="center">
+                        <Alert.Icon />
+                        <Text
+                          fontSize="md"
+                          fontWeight="medium"
+                          color="coolGray.800">
+                          Please try again!
+                        </Text>
+                      </HStack>
+                      <IconButton
+                        variant="unstyled"
+                        _focus={{
+                          borderWidth: 0,
+                        }}
+                        icon={
+                          <Icon name="close" size={20} color="coolGray.600" />
+                        }
+                        onPress={() => setShowAlert(false)}
+                      />
+                    </HStack>
+                    <Box
+                      pl="6"
+                      _text={{
+                        color: 'coolGray.600',
+                      }}>
+                      Passwords did not match.
+                    </Box>
+                  </VStack>
+                </Alert>
+              </Collapse>
             </VStack>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
